@@ -43,14 +43,15 @@ Web Worker的基本原理就是在当前javascript的主线程中，使用Worker
 
 <br/>
 test_worker.js
->onmessage =function (evt){
->&nbsp;&nbsp;var d = evt.data;  
->&nbsp; &nbsp; //通过evt.data获得发送来的数据
->&nbsp; 
->&nbsp;&nbsp;postMessage( d ); 
->&nbsp; &nbsp; //将获取到的数据发送会主线程
->}
+```
+onmessage =function (evt){
+var d = evt.data;  
+//通过evt.data获得发送来的数据
 
+postMessage( d ); 
+//将获取到的数据发送会主线程
+}
+```
 <br/>
 
 * html文件路径
@@ -58,35 +59,37 @@ test_worker.js
 >/test_html5/views/test.html   //访问：`http://localhost:3000/test`
 
 <br/>
-index.html
+test.html
 
-> &lt;!DOCTYPE html&gt;
-> &lt;html&gt;
-> &lt;head&gt;
-> &nbsp;&nbsp;&lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
-> &nbsp;&nbsp; &lt;link rel='stylesheet' href='/stylesheets/style.css' /&gt;
-> &nbsp;&lt;script type="text/javascript"&gt;
-> &nbsp; &nbsp;//Web页主线程
->&nbsp;
-> &nbsp;&nbsp;var worker =new Worker("/javascripts/test_worker.js"); 
-> &nbsp;&nbsp;//创建一个Worker对象并向它传递将在新线程中执行的脚本的URL
->&nbsp;
-> &nbsp;&nbsp;&nbsp;worker.postMessage("hello world");     
-> &nbsp;&nbsp;&nbsp;//向worker发送数据
->&nbsp;
-> &nbsp;&nbsp;&nbsp;worker.onmessage =function(evt){     
-> &nbsp;&nbsp;&nbsp;//接收worker传过来的数据函数
->&nbsp;
-> &nbsp;&nbsp;&nbsp;console.log(evt.data);              
-> &nbsp;&nbsp;&nbsp;//输出worker发送来的数据
->&nbsp;&nbsp;}
->&nbsp;&nbsp; &lt;/script&gt;
->&lt;/head&gt;
->&lt;body&gt;
->&nbsp;&nbsp;&nbsp;    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
->&nbsp;&nbsp;&nbsp;    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;
-> &lt;/body&gt;
->&lt;/html&gt;
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+//WEB页主线程
+var worker =new Worker("/javascripts/test_worker.js"); 
+//创建一个Worker对象并向它传递将在新线程中执行的脚本的URL
+ worker.postMessage("hello world");     
+//向worker发送数据
+ worker.onmessage =function(evt){     
+//接收worker传过来的数据函数
+   console.log(evt.data);              
+//输出worker发送来的数据
+var test=document.getElementById('test');
+test.innerHTML='worker say:'+evt.data;
+ }
+ </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p id="test"></p>
+    <img src="/public/html5-logo.jpg" />
+  </body>
+</html>
+
+```
 
 ###运行程序
 
