@@ -1,0 +1,22 @@
+{
+  "name": "lib-config",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Jun"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
