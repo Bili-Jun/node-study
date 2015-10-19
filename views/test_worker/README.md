@@ -1,7 +1,7 @@
 ﻿HTML5 Web worker 学习
 ====
 
-<img src="img/html5-logo.jpg"/>
+<img src="../../public/images/md/html5-logo.jpg"/>
 
 <br/>
 
@@ -10,19 +10,6 @@
 
 <br/>
 
-##文件目录
-* test_html5
- + .vscode
-   - launch.json   --Visual Studio Code Debug配置文件
- + img --README.md 图片文件夹
- + MarkDown  --MarkDown用法
-   - images   --MarkDown和Atom等实用工具学习笔记.md 图片文件夹
-   - MarkDown和Atom等实用工具学习笔记.md
-   - MarkDown和Atom等实用工具学习笔记.pdf
-   - test.md
-   - test.pdf
- + test_html5 --示例程序(Node.js program) 
-<br/>
 
 ##<a id="md_0" name="md_0"></a>目录##
 
@@ -114,7 +101,7 @@ index.html
 
 ###测试程序运行结果
 
-<img src="img/test-result1.jpg"/>
+<img src="../../public/images/md/test-result1.jpg"/>
 
 * Web页面主线程
 
@@ -159,7 +146,7 @@ Node.js需要Python支持，所以在安装Node.js之前，请先安装并配置
 
 如图所示：
 
-<img src="img/python-check.jpg"/>
+<img src="../../public/images/md/python-check.jpg"/>
 
 ###<a id="md_2_2_2" name="md_2_2_2"></a>安装Node.js###
 
@@ -171,13 +158,13 @@ Node.js[下载地址](https://nodejs.org/en/download/)
 >$ node -v
 
 
-<img src="img/node-check.jpg"/>
+<img src="../../public/images/md/node-check.jpg"/>
 
 
 >$ npm -v
 
 
-<img src="img/npm-check.jpg"/>
+<img src="../../public/images/md/npm-check.jpg"/>
 
 ###<a id="md_2_2_3" name="md_2_2_3"></a>安装Express.js###
 
@@ -193,7 +180,7 @@ Node.js[下载地址](https://nodejs.org/en/download/)
 >$ express -V   //注意大小写
 
 
-<img src="img/express-check.jpg"/>
+<img src="../../public/images/md/express-check.jpg"/>
 
 安装bower JavaScript库管理工具
 
@@ -227,8 +214,8 @@ Node.js[下载地址](https://nodejs.org/en/download/)
 >$ npm start
 
 
-<img src="img/run-app.jpg"/>
+<img src="../../public/images/md/run-app.jpg"/>
 
-<img src="img/debug-app.jpg"/>
+<img src="../../public/images/md/debug-app.jpg"/>
 
 [返回顶部](#md_0)
