@@ -32,7 +32,7 @@
 >$ npm install bower -g
 
 
-安装和部署示例程序
+安装程序依赖包
 
 >$ cd learn_html5
 
