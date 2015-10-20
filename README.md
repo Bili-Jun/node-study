@@ -35,7 +35,9 @@
 安装和部署示例程序
 
 >$ cd learn_html5
+
 >$ npm install
+
 >$ bower install
 
 运行示例程序
