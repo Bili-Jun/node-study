@@ -20,7 +20,7 @@ const config={
             test: /\.js$/,
             loader: 'babel',
             include: [SRC_PATH]
-        }]
+        },{ test: /\.css$/, loader: 'style-loader!css-loader' }]
     },
     resolve: {
         modulesDirectories: [
