@@ -4,8 +4,8 @@ window.onload = function() {
 
 ;
 (function(window) {
-    "use script"
-    debugger
+    "use script" 
+
     var waves = waves || {},
         el = document.querySelectorAll.bind(document);
 
