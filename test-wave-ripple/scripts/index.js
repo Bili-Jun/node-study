@@ -9,10 +9,7 @@ window.onload = function() {
     var waves = waves || {},
         el = document.querySelectorAll.bind(document);
 
-    document.addEventListener("DOMContentLoaded", function() {
-        //var ele=el("div");
-        waves.startEvent();
-    }, false);
+    
 
     waves.startEvent = function() {
         document.body.addEventListener("mousedown", function(e) {
@@ -56,4 +53,9 @@ window.onload = function() {
     function getWindow(elem) {
         return isWindow(elem) ? elem : elem.nodeType === 9 && elem.defaultView;
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        //var ele=el("div");
+        waves.startEvent();
+    }, false);
 })(window);
