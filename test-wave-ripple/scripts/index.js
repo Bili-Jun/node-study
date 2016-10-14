@@ -28,13 +28,6 @@ String.prototype.isNotEmpty = function (flag = false) {
 
 (function (window) {
     'use script'
-    // var [waves, el, event, isWindow, getWindow,disable] = [
-    //     waves || {},
-    //     document.querySelectorAll.bind(document),
-    //     event || {},
-    //     obj => obj !== null && obj === obj.window,
-    //     element => isWindow(element) ? element : element.nodeType === 9 && element.defaultView
-    // ];
 
     const [
         waves,
