@@ -292,6 +292,12 @@ String.prototype.isNotEmpty = function (flag = false) {
         let element = getWavesEventElement(e);
         if (element != null) {
             event.show(e, element);
+
+            if ('ontouchstart' in window) {
+                element.addEventListener('touchend', event.hide, false);
+                element.addEventListener('touchcancel', event.hide, false);
+            }
+
             element.addEventListener("mouseup", event.hide, false);
             element.addEventListener("mouseleave", event.hide, false);
         }
@@ -299,6 +305,10 @@ String.prototype.isNotEmpty = function (flag = false) {
     }
 
     waves.run = function () {
+        if ('ontouchstart' in window) {
+            document.body.addEventListener('touchstart', waves.effect, false);
+        }
+
         document.body.addEventListener("mousedown", waves.effect, false);
 
     }
