@@ -1,1 +1,386 @@
-!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="/",n(0)}([function(t,n){"use strict";function e(t,n){if(!(t instanceof n))throw new TypeError("Cannot call a class as a function")}var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=function(){function t(t,n){for(var e=0;e<n.length;e++){var r=n[e];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(n,e,r){return e&&t(n.prototype,e),r&&t(n,r),n}}();(function(){function t(){e(this,t)}return o(t,null,[{key:"convertStyle",value:function(t){var n="";for(var e in t)t.hasOwnProperty(e)&&(n+=e+":"+t[e]+";");return n}}]),t})();String.prototype.isEmpty=function(){var t=!0;return this.replace(/(^\s*)|(\s*$)/g,"").length>0&&(t=!1),t},String.prototype.isNotEmpty=function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];return t=this.toString().isEmpty(),!t},function(t){"use script";function n(t){var n=null,e=null;if(void 0!=t)for(e=t.target||t.srcElement;null!=e.parentElement;){if(e.className.indexOf("waves")!==-1){n=e;break}if(e.classList.contains("waves")){n=e;break}e=e.parentElement}return n}function e(t){var n="";for(var e in t)t.hasOwnProperty(e)&&(n+=e+":"+t[e]+";");return n}var o=[{},{duration:750},document.querySelectorAll.bind(document),function(t){return null!==t&&t===t.window},function(t){return u(t)?t:9===t.nodeType&&t.defaultView},function(t){return!t.button||2!==t.button}],i=o[0],a=o[1],u=(o[2],o[3]),s=o[4];o[5];a.show=function(t,n){if(t.button&&2===t.button)return!1;var o=[document.createElement("div"),n||this,{top:0,left:0},new Object,new Object,new Object,{},null,0,0],i=o[0],a=o[1],u=o[2],c=o[3],l=o[4],f=o[5],d=o[6],m=o[7],p=o[8],b=o[9];i.className="waves-ripple",a.appendChild(i),c=a&&a.ownerDocument,l=c.documentElement,f=s(c),void 0!==r(a.getBoundingClientRect)&&(u=a.getBoundingClientRect()),p=t.pageY-(u.top+f.pageYOffset-l.clientTop),b=t.pageX-(u.left+f.pageXOffset-l.clientLeft),m="scale("+a.clientWidth/100*10+")",d={top:p+"px",left:b+"px"},i.setAttribute("style",e(d)),i.setAttribute("data-start",Date.now()),i.setAttribute("data-scale",m),i.setAttribute("data-x",b),i.setAttribute("data-y",p),d["-webkit-transform"]=m,d["-moz-transform"]=m,d["-ms-transform"]=m,d["-o-transform"]=m,d.transform=m,d.opacity="1",d["-webkit-transition-duration"]="750ms",d["-moz-transition-duration"]="750ms",d["-o-transition-duration"]="750ms",d["transition-duration"]="750ms",d["-webkit-transition-timing-function"]="ease-in-out(0.250, 0.460, 0.450, 0.940)",d["-moz-transition-timing-function"]="cubic-bezier(0.250, 0.460, 0.450, 0.940)",d["-o-transition-timing-function"]="cubic-bezier(0.250, 0.460, 0.450, 0.940)",d["transition-timing-function"]="ease-in-out(0.250, 0.460, 0.450, 0.940)",i.setAttribute("style",e(d))},a.hide=function(t){var r=this,o=[new Object,r.getElementsByClassName("waves-ripple"),n(t),0,0,0],i=o[0],u=o[1],s=(o[2],o[3]),c=o[4],l=o[5],f=o[6];return u.length>0&&(i=u[u.length-1],l=i.getAttribute("data-y"),c=i.getAttribute("data-x"),f=i.getAttribute("data-scale"),s=350-(Date.now()-Number(i.getAttribute("data-start"))),s<0&&(s=0),void setTimeout(function(){var t={top:l+"px",left:c+"px",opacity:"0","-webkit-transition-duration":a.duration+"ms","-moz-transition-duration":a.duration+"ms","-o-transition-duration":a.duration+"ms","transition-duration":a.duration+"ms","-webkit-transform":f,"-moz-transform":f,"-ms-transform":f,"-o-transform":f,transform:f};i.setAttribute("style",e(t)),setTimeout(function(){try{r.removeChild(i)}catch(t){return!1}},a.duration)},s))},i.effect=function(t){var e=document.createElement("div");e.className="temp",document.body.appendChild(e),e.innerHTML=t.type;var r=n(t);null!=r&&(a.show(t,r),r.addEventListener("mouseup",a.hide,!1),r.addEventListener("mouseleave",a.hide,!1))},i.run=function(){document.body.addEventListener("mousedown",i.effect,!1)},t.waves=i,document.addEventListener("DOMContentLoaded",function(){i.run()},!1)}(window)}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Metcha = function () {
+	    function Metcha() {
+	        _classCallCheck(this, Metcha);
+	    }
+
+	    _createClass(Metcha, null, [{
+	        key: 'convertStyle',
+	        value: function convertStyle(object) {
+	            var style = '';
+
+	            for (var a in object) {
+	                if (object.hasOwnProperty(a)) {
+	                    style += a + ':' + object[a] + ';';
+	                }
+	            }
+
+	            return style;
+	        }
+	    }]);
+
+	    return Metcha;
+	}();
+
+	String.prototype.isEmpty = function () {
+	    var flag = true;
+	    if (this.replace(/(^\s*)|(\s*$)/g, "").length > 0) {
+	        flag = false;
+	    }
+	    return flag;
+	};
+	String.prototype.isNotEmpty = function () {
+	    var flag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+	    flag = this.toString().isEmpty();
+	    return !flag;
+	};
+
+	(function (window) {
+	    'use script';
+
+	    var _ref = [
+	    //waves:初始化waves
+	    {},
+
+	    //event:wave基本事件
+	    {
+	        duration: 750
+	    },
+
+	    //通过绑定document,获取document内的元素
+	    document.querySelectorAll.bind(document),
+
+	    //判断对象是否是window对象
+	    function (obj) {
+	        return obj !== null && obj === obj.window;
+	    },
+
+	    //获取window对象
+	    function (element) {
+	        return isWindow(element) ? element : element.nodeType === 9 && element.defaultView;
+	    },
+
+	    //禁用鼠标右键点击事件
+	    function (e) {
+	        return e.button && e.button === 2 ? false : true;
+	    }];
+	    var waves = _ref[0];
+	    var event = _ref[1];
+	    var el = _ref[2];
+	    var isWindow = _ref[3];
+	    var getWindow = _ref[4];
+	    var disableRightButton = _ref[5];
+
+	    /*获取className 含有'waves'的元素*/
+
+	    function getWavesEventElement(e) {
+	        var element = null;
+	        var target = null;
+
+	        if (e != undefined) {
+	            target = e.target || e.srcElement;
+	            while (target.parentElement != null) {
+	                if (target.className.indexOf('waves') !== -1) {
+	                    element = target;
+	                    break;
+	                } else if (target.classList.contains('waves')) {
+	                    element = target;
+	                    break;
+	                }
+	                target = target.parentElement;
+	            }
+	        }
+
+	        return element;
+	    }
+
+	    //Object to css string
+	    function convertStyle(obj) {
+	        var style = '';
+
+	        for (var a in obj) {
+	            if (obj.hasOwnProperty(a)) {
+	                style += a + ':' + obj[a] + ';';
+	            }
+	        }
+
+	        return style;
+	    }
+
+	    //waves 基本事件:显示ripple
+	    event.show = function (e, element) {
+
+	        //禁用鼠标右键点击触发
+	        if (e.button && e.button === 2) {
+	            return false;
+	        }
+
+	        var _ref2 = [
+	        //创建riiple div
+	        document.createElement('div'),
+
+	        //初始化class 含有'waves'的元素
+	        element || this,
+
+	        //初始化元素相对位置
+	        {
+	            top: 0,
+	            left: 0
+	        },
+
+	        //初始化document元素
+	        new Object(),
+
+	        //初始化documentElement
+	        new Object(),
+
+	        //初始化window对象
+	        new Object(),
+
+	        //初始化riiple 样式
+	        {},
+
+	        //css scale属性
+	        null,
+
+	        //鼠标实时点击元素的相对位置:Y轴
+	        0,
+
+	        //鼠标实时点击元素的相对位置:X轴
+	        0];
+	        var ripple = _ref2[0];
+	        var waveElem = _ref2[1];
+	        var basePos = _ref2[2];
+	        var baseDoc = _ref2[3];
+	        var docElem = _ref2[4];
+	        var win = _ref2[5];
+	        var rippleStyle = _ref2[6];
+	        var scale = _ref2[7];
+	        var relativeY = _ref2[8];
+	        var relativeX = _ref2[9];
+
+	        //设置ripple className属性    
+
+	        ripple.className = "waves-ripple";
+
+	        //将riiple插入waves element
+	        waveElem.appendChild(ripple);
+
+	        //设置document 对象
+	        baseDoc = waveElem && waveElem.ownerDocument;
+
+	        //设置documentElement
+	        docElem = baseDoc.documentElement;
+
+	        //获取并设置window对象
+	        win = getWindow(baseDoc);
+
+	        //绑定鼠标实时点击 clientRect
+	        if (_typeof(waveElem.getBoundingClientRect) !== undefined) {
+	            basePos = waveElem.getBoundingClientRect();
+	        }
+
+	        //设置鼠标实时点击元素的相对位置:Y轴
+	        relativeY = e.pageY - (basePos.top + win.pageYOffset - docElem.clientTop);
+
+	        //设置鼠标实时点击元素的相对位置:X轴
+	        relativeX = e.pageX - (basePos.left + win.pageXOffset - docElem.clientLeft);
+
+	        scale = 'scale(' + waveElem.clientWidth / 100 * 10 + ')';
+
+	        rippleStyle = {
+	            'top': relativeY + 'px',
+	            'left': relativeX + 'px'
+	        };
+
+	        //设置ripple 动态css样式
+	        ripple.setAttribute('style', convertStyle(rippleStyle));
+
+	        ripple.setAttribute('data-start', Date.now());
+	        ripple.setAttribute('data-scale', scale);
+	        ripple.setAttribute('data-x', relativeX);
+	        ripple.setAttribute('data-y', relativeY);
+
+	        rippleStyle['-webkit-transform'] = scale;
+	        rippleStyle['-moz-transform'] = scale;
+	        rippleStyle['-ms-transform'] = scale;
+	        rippleStyle['-o-transform'] = scale;
+	        rippleStyle.transform = scale;
+	        rippleStyle.opacity = '1';
+
+	        rippleStyle['-webkit-transition-duration'] = 750 + 'ms';
+	        rippleStyle['-moz-transition-duration'] = 750 + 'ms';
+	        rippleStyle['-o-transition-duration'] = 750 + 'ms';
+	        rippleStyle['transition-duration'] = 750 + 'ms';
+
+	        rippleStyle['-webkit-transition-timing-function'] = 'ease-in-out(0.250, 0.460, 0.450, 0.940)';
+	        rippleStyle['-moz-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+	        rippleStyle['-o-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+	        rippleStyle['transition-timing-function'] = 'ease-in-out(0.250, 0.460, 0.450, 0.940)';
+
+	        ripple.setAttribute('style', convertStyle(rippleStyle));
+	    };
+
+	    event.hide = function (e) {
+	        //当前指针
+	        var $this = this;
+
+	        var _ref3 = [new Object(),
+	        //获取ripples元素
+	        $this.getElementsByClassName('waves-ripple'),
+
+	        //获取waves 元素
+	        getWavesEventElement(e),
+
+	        //ripple 延迟消失时间初始化
+	        0,
+
+	        //设置鼠标实时点击元素的相对位置:Y轴
+	        0,
+
+	        //设置鼠标实时点击元素的相对位置:X轴
+	        0];
+	        var ripple = _ref3[0];
+	        var ripples = _ref3[1];
+	        var waveElem = _ref3[2];
+	        var delay = _ref3[3];
+	        var relativeX = _ref3[4];
+	        var relativeY = _ref3[5];
+	        var scale = _ref3[6];
+
+	        if (ripples.length > 0) {
+	            ripple = ripples[ripples.length - 1];
+	        } else {
+	            return false;
+	        }
+
+	        relativeY = ripple.getAttribute('data-y');
+	        relativeX = ripple.getAttribute('data-x');
+	        scale = ripple.getAttribute('data-scale');
+
+	        delay = 350 - (Date.now() - Number(ripple.getAttribute('data-start')));
+
+	        if (delay < 0) {
+	            delay = 0;
+	        }
+
+	        setTimeout(function () {
+	            var rippleStyle = {
+	                'top': relativeY + 'px',
+	                'left': relativeX + 'px',
+	                'opacity': '0',
+
+	                // Duration
+	                '-webkit-transition-duration': event.duration + 'ms',
+	                '-moz-transition-duration': event.duration + 'ms',
+	                '-o-transition-duration': event.duration + 'ms',
+	                'transition-duration': event.duration + 'ms',
+	                '-webkit-transform': scale,
+	                '-moz-transform': scale,
+	                '-ms-transform': scale,
+	                '-o-transform': scale,
+	                'transform': scale
+	            };
+
+	            ripple.setAttribute('style', convertStyle(rippleStyle));
+
+	            setTimeout(function () {
+	                try {
+	                    $this.removeChild(ripple);
+	                } catch (e) {
+	                    return false;
+	                }
+	            }, event.duration);
+	        }, delay);
+	    };
+
+	    waves.effect = function (e) {
+	        var temp = document.createElement('div');
+	        temp.className = 'temp';
+	        document.body.appendChild(temp);
+	        temp.innerHTML = e.type;
+	        var element = getWavesEventElement(e);
+	        if (element != null) {
+	            event.show(e, element);
+
+	            if ('ontouchstart' in window) {
+	                element.addEventListener('touchend', event.hide, false);
+	                element.addEventListener('touchcancel', event.hide, false);
+	            }
+
+	            element.addEventListener("mouseup", event.hide, false);
+	            element.addEventListener("mouseleave", event.hide, false);
+	        }
+	    };
+
+	    waves.run = function () {
+	        if ('ontouchstart' in window) {
+	            document.body.addEventListener('touchstart', waves.effect, false);
+	        }
+
+	        document.body.addEventListener("mousedown", waves.effect, false);
+	    };
+
+	    window.waves = waves;
+
+	    document.addEventListener('DOMContentLoaded', function () {
+	        waves.run();
+	    }, false);
+	})(window);
+
+/***/ }
+/******/ ]);

@@ -204,11 +204,10 @@ String.prototype.isNotEmpty = function (flag = false) {
         rippleStyle['-moz-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
         rippleStyle['-o-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
         rippleStyle['transition-timing-function'] = 'ease-in-out(0.250, 0.460, 0.450, 0.940)';
-
+  
         ripple.setAttribute('style', convertStyle(rippleStyle));
-
     }
-
+     
     event.hide = function (e) {
         //当前指针
         let $this = this;
@@ -301,7 +300,6 @@ String.prototype.isNotEmpty = function (flag = false) {
             element.addEventListener("mouseup", event.hide, false);
             element.addEventListener("mouseleave", event.hide, false);
         }
-
     }
 
     waves.run = function () {
