@@ -6,7 +6,7 @@ const SCRIPTS_PATH = path.resolve(ROOT_PATH, 'scripts');
 const DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 const MODULE_PATH = path.resolve(ROOT_PATH, 'node_modules');
 
-const config={
+const config = {
     entry: {
         'index': path.resolve(SCRIPTS_PATH, 'index'),
     },
@@ -16,6 +16,9 @@ const config={
         publicPath: '/'
     },
     module: {
+        preLoaders: [
+            { test: /\.js$/, loader: "eslint-loader", exclude: /scripts/ }
+        ],
         loaders: [{
             test: /\.js$/,
             loader: 'babel',
@@ -28,7 +31,9 @@ const config={
             'scripts'
         ],
     },
-
+    eslint: {
+        failOnWarning: true
+    }
 }
 
 module.exports = config;
