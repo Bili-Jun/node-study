@@ -103,7 +103,10 @@ String.prototype.isNotEmpty = function (flag = false) {
     //waves 基本事件:显示ripple
     event.show = function (e, element) {
 
-        disableRightButton(e);
+        //禁用鼠标右键点击触发
+        if(e.button && e.button === 2){
+            return false;
+        }
 
         let [
             ripple,
@@ -189,8 +192,8 @@ String.prototype.isNotEmpty = function (flag = false) {
 
         ripple.setAttribute('data-start', Date.now());
         ripple.setAttribute('data-scale', scale);
-        ripple.setAttribute('data-x', relativeY);
-        ripple.setAttribute('data-y', relativeX);
+        ripple.setAttribute('data-x', relativeX);
+        ripple.setAttribute('data-y', relativeY);
 
         rippleStyle['-webkit-transform'] = scale;
         rippleStyle['-moz-transform'] = scale;
@@ -204,10 +207,10 @@ String.prototype.isNotEmpty = function (flag = false) {
         rippleStyle['-o-transition-duration'] = 750 + 'ms';
         rippleStyle['transition-duration'] = 750 + 'ms';
 
-        rippleStyle['-webkit-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+        rippleStyle['-webkit-transition-timing-function'] = 'ease-in-out(0.250, 0.460, 0.450, 0.940)';
         rippleStyle['-moz-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
         rippleStyle['-o-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
-        rippleStyle['transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+        rippleStyle['transition-timing-function'] = 'ease-in-out(0.250, 0.460, 0.450, 0.940)';
 
         ripple.setAttribute('style', convertStyle(rippleStyle));
 
@@ -286,10 +289,13 @@ String.prototype.isNotEmpty = function (flag = false) {
                 }
             }, event.duration);
         }, delay);
-        console.log(delay);
     }
 
     waves.effect = function (e) {
+        var temp = document.createElement('div');
+        temp.className='temp';
+        document.body.appendChild(temp);
+        temp.innerHTML=e.type;
         let element = getWavesEventElement(e);
         if (element != null) {
             event.show(e, element);
