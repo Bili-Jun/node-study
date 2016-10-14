@@ -241,7 +241,7 @@ String.prototype.isNotEmpty = function (flag = false) {
             ripple = ripples[ripples.length - 1]
         } else {
             return false;
-        }
+        }   
 
         relativeY = ripple.getAttribute('data-y');
         relativeX = ripple.getAttribute('data-x');
