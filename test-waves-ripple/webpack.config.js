@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const ROOT_PATH = path.resolve(__dirname);
-const SCRIPTS_PATH = path.resolve(ROOT_PATH, 'scripts');
+const SCRIPTS_PATH = path.resolve(ROOT_PATH, 'src');
 const DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 const MODULE_PATH = path.resolve(ROOT_PATH, 'node_modules');
 
@@ -17,7 +17,7 @@ const config = {
     },
     module: {
         preLoaders: [
-            { test: /\.js$/, loader: "eslint-loader", exclude: /scripts/ }
+            { test: /\.js$/, loader: "eslint-loader", exclude: /src/ }
         ],
         loaders: [{
             test: /\.js$/,
