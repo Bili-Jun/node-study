@@ -37,7 +37,7 @@ Material design wave ripple(水墨) 效果实现
  ```
  let scale = 'scale(' + ((element.clientWidth / 100) * 10) + ')';
  ```
- 
+
  * set transform/transition-duration/transition-timing-function
    * PS: use `cubic-bezier(贝塞尔曲线)` of transition-timing-function
 
@@ -46,3 +46,7 @@ Material design wave ripple(水墨) 效果实现
  * mousedown/ontouchstart --> show the ripple;
  * mouseup/mouseleave/touchend/touchcancel -->hide the ripple
    * Set setTimeout to delay hide the ripple       
+
+### Other 其他
+
+webpack/eslint/gulp: these are just for some test :)   
