@@ -1,20 +1,22 @@
+const _ = require('lodash');
 const webpack = require('webpack');
 const gulp = require('gulp');
-const webpackConfig = require("./webpack.config.js");
+const webpackConfig = require('./webpack.config.js');
 const eslint = require('eslint');
+const path = require('path');
+
+const ROOT_PATH = path.resolve(__dirname);
+const SCRIPTS_PATH = path.resolve(ROOT_PATH, 'scripts');
+const DIST_PATH = path.resolve(ROOT_PATH, 'dist');
+const MODULE_PATH = path.resolve(ROOT_PATH, 'node_modules');
+
 gulp.task('default', ['webpack','watch']);
 
 gulp.task('webpack', function(callback) {
-  var myConfig = Object.create(webpackConfig);
-    // run webpack
-    webpack(
-        // configuration
-        myConfig
-    , function(err, stats) {
-        // if(err) throw new gutil.PluginError("webpack", err);
-        // gutil.log("[webpack]", stats.toString({
-        //     // output options
-        // }));
+  webpack(_.merge(webpackConfig, {
+        devtool: null
+    }), function(err, stats) {
+        //compileLogger(err, stats);
         callback();
     });
 });

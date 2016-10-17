@@ -23,6 +23,7 @@
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.7",
     "http-server": "^0.9.0",
+    "lodash": "^4.16.4",
     "webpack": "^1.13.2"
   }
 }
