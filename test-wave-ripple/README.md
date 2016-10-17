@@ -14,4 +14,4 @@ material design wave ripple(水墨) 效果实现
  $ npm run serve
  ```
 
-### 
+<img src="doc/img/waves-ripple.gif">
