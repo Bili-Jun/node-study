@@ -58,10 +58,39 @@ String.prototype.isNotEmpty = function (flag = false) {
             e => e.button && e.button === 2 ? false : true
         ];
 
+    var touchEvent = {
+        touches: 0,
+        allowEvent: function(e) {
+            var flag = true;
+            
+            if (e.type === 'touchstart') {
+                touchEvent.touches += 1; //push
+            } else if (e.type === 'touchend' || e.type === 'touchcancel') {
+                setTimeout(function() {
+                    if (touchEvent.touches > 0) {
+                        touchEvent.touches -= 1; //pop after 500ms
+                    }
+                }, 500);
+            } else if (e.type === 'mousedown' && touchEvent.touches > 0) {
+                flag = false;
+            }
+
+            return flag;
+        },
+        touchup: function(e) {
+            touchEvent.allowEvent(e);
+        }
+    };
+
     /*获取className 含有'waves'的元素*/
     function getWavesEventElement(e) {
         let [element, target] = [null, null];
         if (e != undefined) {
+
+            if (touchEvent.allowEvent(e) === false) {
+                return null;
+            }
+
             target = e.target || e.srcElement;
             while (target.parentElement != null) {
                 if (target.className.indexOf('waves') !== -1) {
@@ -92,6 +121,7 @@ String.prototype.isNotEmpty = function (flag = false) {
         return style;
     }
 
+    
 
     //waves 基本事件:显示ripple
     event.show = function (e, element) {
@@ -168,10 +198,10 @@ String.prototype.isNotEmpty = function (flag = false) {
         }
 
         //设置鼠标实时点击元素的相对位置:Y轴
-        relativeY = e.pageY - (basePos.top + win.pageYOffset - docElem.clientTop);
+        relativeY = (('touches'in e)?e.touches[0].pageY:e.pageY) - (basePos.top + win.pageYOffset - docElem.clientTop);
 
         //设置鼠标实时点击元素的相对位置:X轴
-        relativeX = e.pageX - (basePos.left + win.pageXOffset - docElem.clientLeft);
+        relativeX = (('touches'in e)?e.touches[0].pageX:e.pageX) - (basePos.left + win.pageXOffset - docElem.clientLeft);
 
         scale = 'scale(' + ((waveElem.clientWidth / 100) * 10) + ')';
 
@@ -208,7 +238,12 @@ String.prototype.isNotEmpty = function (flag = false) {
         ripple.setAttribute('style', convertStyle(rippleStyle));
     }
      
+     
+     
     event.hide = function (e) {
+
+        touchEvent.touchup(e);
+
         //当前指针
         let $this = this;
 
