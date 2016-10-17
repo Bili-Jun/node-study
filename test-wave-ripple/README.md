@@ -33,9 +33,11 @@ Material design wave ripple(水墨) 效果实现
 ##### Set element style 设置元素样式
 
  * calculate scale 计算scale值
+
  ```
  let scale = 'scale(' + ((element.clientWidth / 100) * 10) + ')';
  ```
+ 
  * set transform/transition-duration/transition-timing-function
    * PS: use `cubic-bezier(贝塞尔曲线)` of transition-timing-function
 
