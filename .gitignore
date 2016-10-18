@@ -2,6 +2,7 @@
 logs
 *.log
 
+
 # Runtime data
 pids
 *.pid
@@ -36,3 +37,4 @@ public/lib/*
 .idea
 node_modules
 npm-debug.log
+jsconfig.json
