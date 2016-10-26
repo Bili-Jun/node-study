@@ -24,25 +24,32 @@
 安装Express.js
 
 
->$ npm install express -g
-
+```
+$ npm install express -g
+```
 
 安装bower
 
->$ npm install bower -g
-
+```
+$ npm install bower -g
+```
 
 安装程序依赖包
 
->$ cd learn_html5
+```
+$ cd learn_html5
 
->$ npm install
+$ npm install
 
->$ bower install
-
+$ bower install
+```
 运行示例程序
 
->$ npm start
+```
+$ npm start
+```
 
 在浏览器输入：
->`http://localhost:3000/`
+```
+http://localhost:3000/
+```
