@@ -28,7 +28,7 @@ const config = {
     resolve: {
         modulesDirectories: [
             'node_modules',
-            'scripts'
+            'src'
         ],
     },
     eslint: {
