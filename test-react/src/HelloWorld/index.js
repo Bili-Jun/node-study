@@ -1,1 +1,3 @@
-// export default from './HelloWorld';
+import HelloWorld from './HelloWorld';
+
+export default HelloWorld;
