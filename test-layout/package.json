@@ -1,0 +1,20 @@
+{
+  "name": "test-layout",
+  "version": "0.0.1",
+  "description": "This is the grid layout test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jun",
+  "license": "ISC",
+  "dependencies": {
+    "less": "^2.7.1"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "webpack": "^1.13.3"
+  }
+}
