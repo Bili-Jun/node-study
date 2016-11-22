@@ -30,7 +30,7 @@ node_modules
 #bower install public lib for JavaScript/css
 #please install JavaScript/css lib to public/lib/...
 public/lib/*
-
+./dist/*
 # Users Environment Variables
 
 .lock-wscript
