@@ -1,0 +1,59 @@
+//Grid System
+
+//Init grid function
+
+//Init row
+.init-grid(@flex-wrap,@align-content){
+  .row{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: @flex-wrap;
+    -webkit-flex-wrap: @flex-wrap;
+		align-content: @align-content;
+    -webkit-align-content: @align-content;
+
+    .col{
+      padding: ~'@{base}px';
+    }
+  }
+  .create-grid-columns();
+}
+
+//Init grid
+.init-grid(wrap,flex-start);
+
+//Set columns flex order 0
+.set-default-columns-order{
+  .col{
+    order: 0;
+    -webkit-order:0;
+  }
+}
+
+//Init smail screen grid
+@media @smail-screen{
+    .row.small-full{
+      flex-flow: column;
+      -webkit-flex-flow: column;
+      flex-direction: column;
+      .set-default-columns-order();
+    }
+    
+}
+
+//Init smail screen grid
+@media @medium-screen{
+    .row.medium-full{
+      flex-flow: column;
+      -webkit-flex-flow: column;
+      flex-direction: column;
+      -webkit-flex-direction: column;
+      .set-default-columns-order();
+    }
+}
+
+//Init smail screen grid
+@media @large-screen{
+
+}
+

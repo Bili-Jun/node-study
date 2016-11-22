@@ -1,5 +1,20 @@
-/*
- variables.less
-*/
+//Variables
 
+//Base
 @base: 8;
+@column-num:12;
+
+@default:~'!important';
+
+// Media Query Ranges
+@smail-screen-max:600px; 
+@medium-screen-min:601px;
+@medium-screen-max:992px;
+@large-screen-min:993px;
+@large-screen-max:1200px;
+@desktop-screen-min:1201px;
+
+@smail-screen:~'only screen and (max-width :@{smail-screen-max})';
+@medium-screen:~'only screen and (min-width : @{medium-screen-min}) and (max-width : @{medium-screen-max})';
+@large-screen:~'only screen and (min-width : @{large-screen-min}) and (max-width : @{large-screen-max})';
+@desktop-screen:~'only screen and (min-width :@{desktop-screen-min})';
