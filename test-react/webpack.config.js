@@ -16,6 +16,10 @@ module.exports = {
       }
     ]
   },
+  externals: {    // 指定采用外部 CDN 依赖的资源，不被webpack打包
+            "react": "React",
+            "react-dom": "ReactDOM"
+  },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     // new webpack.optimize.UglifyJsPlugin(),

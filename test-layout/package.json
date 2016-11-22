@@ -12,9 +12,11 @@
     "less": "^2.7.1"
   },
   "devDependencies": {
+    "css-loader": "^0.26.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.3"
   }
 }

@@ -1,1 +1,0 @@
-import less from 'variables.less';

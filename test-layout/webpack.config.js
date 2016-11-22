@@ -1,14 +1,16 @@
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 let extractLESS = new ExtractTextPlugin('stylesheets/[name].less');
 
 module.exports = {
-    entry: path.resolve(__dirname, "./index.js"),
+    entry: {
+      'less':path.resolve(__dirname, './less/index.js'),
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "less.sourcemap.js"
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].build.js'
     },
     devtool: 'source-map',
     module: {
@@ -25,6 +27,6 @@ module.exports = {
     },
     plugins: [
         // extract inline css into separate 'styles.css'
-        new ExtractTextPlugin('styles.css')
+        new ExtractTextPlugin('style.css')
     ]
 }
