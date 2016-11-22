@@ -1,7 +1,6 @@
 # node-study
 ## study node.js
-* learn html5
-* babel and webpack
+* Babel and webpack
 * MD wave ripple
-* weixin program
+* Wixin program
 * Ant design demo
