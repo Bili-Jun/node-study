@@ -66,4 +66,4 @@ $ webpack -p
  ```
  * 如图所示
 
-  <img src="doc/img/tl01.png" />
+  <img src="doc/img/tl01.gif" />
