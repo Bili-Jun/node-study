@@ -31,22 +31,20 @@ $ webpack -p
  * 样式
  ```
  <style>
-		* {
-			margin: 0;
-			padding: 0;
-		}
-		
-		.box {
-			flex: 1;
-			height: 600px;
-			background: #ccc;
-		}
-		.col{
-			height: 45px;
-			background:#000;
-			color:#fff;
-		}
-		
+  * {
+	      margin: 0;
+       padding: 0;
+  }
+	 .box {
+          flex: 1;
+		 height: 600px;
+		 background: #ccc;
+	 }
+	 .col{
+		 height: 45px;
+		 background:#000;
+		 color:#fff;
+	 }
 	</style>
  ```
  
