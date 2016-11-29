@@ -2,11 +2,26 @@
 
 //Init grid function
 
+// Container
+.container,.container-full{
+  position: relative;
+  margin: 0 auto;
+}
+
+.container{
+  width: calc(~'100% - ( @{base-size} * 2 )');
+}
+
+.container-full{
+  width:100%;
+}
+
 //Init row
 .init-grid(@flex-wrap,@align-content){
   .row{
     display: flex;
     display: -webkit-flex;
+    position: relative;
     flex-wrap: @flex-wrap;
     -webkit-flex-wrap: @flex-wrap;
 		align-content: @align-content;
