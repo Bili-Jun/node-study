@@ -50,7 +50,7 @@ $ webpack -p
 	</style>
  ```
  
- * 元素
+ * 布局
 
  ```
  <body>
