@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: false,
   entry: {
     components: './src/js/components/index.js',
     testComponent: './src/js/components/Test/Test.js',

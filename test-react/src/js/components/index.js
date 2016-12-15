@@ -1,6 +1,6 @@
 // export HelloWorld from './HelloWorld';
-/* import React from 'react';
-import ReactDom from 'react-dom';*/
+import React from 'react';
+import ReactDom from 'react-dom';
 
 class index extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class index extends React.Component {
 }
 
 export default index;
-// import Test from './Test/Test';
+//import Test from './Test/Test';
 /* import HelloWorld from './HelloWorld/index';
 import CommentBox from './CommentBox/index';
 import NodeList from './NodeList/index';
