@@ -1,7 +1,16 @@
 // export HelloWorld from './HelloWorld';
-import React from 'react';
-import ReactDom from 'react-dom';
-import HelloWorld from './HelloWorld/index';
+/* import React from 'react';
+import ReactDom from 'react-dom';*/
+
+class index extends React.Component {
+  render() {
+    return <h2>this is a test</h2>;
+  }
+}
+
+export default index;
+// import Test from './Test/Test';
+/* import HelloWorld from './HelloWorld/index';
 import CommentBox from './CommentBox/index';
 import NodeList from './NodeList/index';
 import Input from './Input/index';
@@ -15,4 +24,4 @@ ReactDom.render(
   </NodeList>,
   document.getElementById('nodeList')
 );
-ReactDom.render(<Input />, document.getElementById('testInput'));
+ReactDom.render(<Input />, document.getElementById('testInput'));*/
