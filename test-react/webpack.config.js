@@ -4,33 +4,32 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
-
 module.exports = {
   devtool: false,
   entry: {
     components: './src/js/components/index.js',
     testComponent: './src/js/components/Test/Test.js',
-
-    /* input: './src/js/components/Input/index.js',
+    input: './src/js/components/Input/index.js',
     helloWorld: './src/js/components/HelloWorld/index.js',
     commentBox: './src/js/components/CommentBox/index.js',
     commentForm: './src/js/components/CommentForm/index.js',
     commentList: './src/js/components/CommentList/index.js',
-    nodeList: './src/js/components/NodeList/index.js',*/
+    nodeList: './src/js/components/NodeList/index.js',
 
     test: './src/js/scripts/test/test.js',
-    index: './src/js/scripts/index.js',
+    index: './src/js/scripts/index.js'
+    /* ,
     vendors: [
       'react',
       'react-dom'
-    ]
+    ]*/
     /* react: 'react',
     'react-dom': 'react-dom'*/
   },
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/dist/',
-    filename: 'js/[name]/[name].js',
+    filename: 'js/[name].js',
     chunkFilename: 'js/[id].chunk.js'
   },
   module: {
@@ -63,8 +62,17 @@ module.exports = {
   },
   plugins: [
 
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+    // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     /* new webpack.optimize.OccurenceOrderPlugin(),*/
+/*    new webpack.ProvidePlugin({ // 加载jq
+      react: 'react'
+    }),*/
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendors', // 将公共模块提取，生成名为`vendors`的chunk
+      chunks: ['index', 'test'], // 提取哪些模块共有的部分
+      minChunks: 3 // 提取至少3个模块共有的部分
+    }),
 
     new ExtractTextPlugin('css/[name].css'),
 
