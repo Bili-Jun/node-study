@@ -1,0 +1,111 @@
+// Style less
+
+// Import test.less
+@import 'Less/test.less';
+
+// First code
+@test: 'Hello World!';
+
+// Test Operation
+@base: 5;
+
+// Test selectors
+@item: test; 
+
+// Test color
+@test-blue: #5B83AD;
+
+// Hello World
+.test{
+  test: @test;
+}
+
+// Test normal css
+div{
+  position: relative;
+  width:100px;
+  height: 100px;
+  background-color: #000;
+} 
+
+div{
+  background-color: @test-blue;
+}
+
+// Test mixin
+.test-mixin{
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.element-1{
+  width:100px;
+  width:100px;
+  height: 100px;
+  background-color: #000;
+  .test-mixin;
+}
+
+.element-2{
+  width:100px;
+  width:100px;
+  height: 100px;
+  background-color: #fff;
+  .test-mixin;
+}
+
+// Test Nested
+.element{
+  position: relative;
+
+ .test-mixin;
+ .test-nested{
+   background-color: @test-blue;
+ }
+}
+
+// Test Operation
+.box{
+  width: 100px + @base;
+  color: @test-blue * @base;
+  margin: 100% / 2 - @base;
+}
+
+.box{
+  width: calc(~'100% - 5px');
+}
+
+// Test function
+.test-function(@value){
+  .box{
+    height: 10px * (@value + @base);
+  }
+}
+
+.test-function(20);
+
+// Test selectors
+.box-@{item}{
+  .box;
+}
+
+// test extend
+nav ul {
+  &:extend(.inline);
+  background: blue;
+}
+.inline {
+  color: red;
+}
+
+// Test loop
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1));    // next iteration
+  .box-@{item}@{counter}{
+    .inline;
+  } // code for each iteration
+}
+
+div {
+  .loop(5); // launch the loop
+}
