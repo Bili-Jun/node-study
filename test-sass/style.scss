@@ -5,8 +5,176 @@
  * Github https://github.com/Delete540 
  */
 
+//Test Hello world
  $test:'Hello world!';
 
 .test{
   content:$test;
+}
+
+// 1. normal css
+div{
+  position: relative;
+  width:100px;
+  height: 100px;
+  background-color: #000;
+} 
+
+// 2. variable
+$test-blue:#5B83AD;
+
+div{
+  background-color: $test-blue;
+}
+
+$left:left;
+
+.test-#{left}-div{
+  background-color: $test-blue;
+}
+
+// 3. calculate
+$base: 8;
+
+.test-#{left}-div{
+  width: 30px * $base;
+  margin:$base + 20%;
+  top:24px - 30px;
+}
+
+// 4. nested
+.test-#{left}-div h1{
+  font-size:1rem;
+}
+
+.test-#{left}-div {
+  h1{
+    font-size:1rem;
+  }
+}
+
+.test-#{left}-div{
+  border: {
+    color: blue;
+  }
+}
+
+.test-#{left}-div{
+  &{
+    border: {
+      width:1px;
+    }
+  }
+}
+
+.test-#{left}-div{
+  &:hover{
+    background-color: #000;
+  }
+}
+
+// 5. inherit
+$right:right;
+
+.test-#{right}-div{
+  @extend .test-#{left}-div;
+  position: relative;
+}
+
+// 6. mixin
+@mixin left {
+　float: left;
+　margin-left: 10px;
+}
+
+.test-#{left}-div{
+  @include left;
+}
+
+@mixin font-color($color: #ccc) {
+　color:$color
+}
+
+.test-#{left}-div{
+  @include font-color;
+}
+
+.test-#{right}-div{
+  @include font-color(red);
+}
+
+@mixin rounded($vert, $horz, $radius: 10px) {
+　border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+.test-#{right}-div{
+  @include rounded(top,left,50%);
+}
+
+// 7. color function
+.test-#{right}-div{
+  h1{
+    @include font-color(lighten($test-blue, 10%));
+  }
+
+  h2{
+    @include font-color(darken($test-blue, 10%));
+  }
+
+  h3{
+    @include font-color(grayscale($test-blue));
+  }
+
+  h4{
+    @include font-color(complement($test-blue));
+  }
+}
+
+// 8. import
+
+@import 'sass/test-import.scss';
+
+.test-#{left}-div{
+  content: $test-import-content;
+}
+
+// 9.if & else
+.test-#{left}-div{
+  a{
+    @if lightness($test-blue) > 30% {
+　　　　color: lightness($test-blue);} 
+    @else {
+　　　　color: #fff;}
+  }
+}
+
+// 10. for,while,each
+@for $i from 1 to $base {
+  .opacity-#{$i}-to{
+    opacity:$i * 10;
+  }
+}
+
+@for $i from 1 through $base {
+  .opacity-#{$i}-through{
+    opacity:$i * 10;
+  }
+}
+
+$j:6;
+
+@while $j > 0 {.z-index-#{$j} {z-index: $j * 10 } $j: $j - 2;}
+
+@each $member in relative, absolute, fixed, static {
+　.#{$member} {
+    position: $member;
+  }
+}
+
+// 11. function
+@function double($n) {
+ @return $n * 2;
+}
+.test-#{left}-div div {
+  width: double(5px);
 }

@@ -199,3 +199,529 @@ $ webpack
 ```
 $ webpack -p
 ```
+
+### 基本语法
+
+#### sass支持一般css写法
+
+```
+div{
+  position: relative;
+  width:100px;
+  height: 100px;
+  background-color: #000;
+} 
+```
+
+编译后
+
+```
+div {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: #000; }
+```
+
+#### 变量用法
+
+如上所示,修改"div"的的”backgroun-color”属性
+
+```
+$test-blue:#5B83AD;
+```
+
+```
+div{
+  background-color: $test-blue;
+}
+```
+
+
+编译后
+
+```
+div {
+  background-color: #5B83AD; }
+```
+
+在字符串中使用变量
+
+```
+$left:left
+```
+
+```
+.test-#{left}-div{
+  background-color: $test-blue;
+}
+```
+
+编译后
+
+```
+.test-left-div {
+  background-color: #5B83AD; }
+```
+
+#### 在Sass中使用计算
+
+```
+$base: 8;
+```
+
+```
+.test-#{left}-div{
+  width: 30px * $base;
+  margin:$base + 20%;
+  top:24px - 30px;
+}
+```
+
+编译后
+
+```
+.test-left-div {
+  width: 240px;
+  margin: 28%;
+  top: -6px; }
+```
+
+#### 嵌套用法
+
+可以使用如下两种方式
+
+1.
+
+```
+.test-#{left}-div h1{
+  font-size:1rem;
+}
+```
+
+2.
+
+```
+.test-#{left}-div {
+  h1{
+    font-size:1rem;
+  }
+}
+```
+
+编译后
+
+```
+.test-left-div h1 {
+  font-size: 1rem; }
+
+.test-left-div h1 {
+  font-size: 1rem; }
+```
+
+属性也可以嵌套,需要注意一些属性需要加`:`冒号
+
+```
+.test-#{left}-div{
+  border: {
+    color: blue;
+  }
+}
+```
+
+编译后
+
+```
+.test-left-div {
+  border-color: blue; }
+```
+
+自身及伪类调用,即`&`用法
+
+```
+.test-#{left}-div{
+  &{
+    border: {
+      width:1px;
+    }
+  }
+}
+```
+
+```
+.test-#{left}-div{
+  &:hover{
+    background-color: #000;
+  }
+}
+```
+
+编译后
+
+```
+.test-left-div {
+  border-width: 1px; }
+```
+
+```
+.test-left-div:hover {
+  background-color: #000; }
+```
+
+#### 继承
+
+一个选择器继承另一个选择器
+
+```
+$right:right;
+
+.test-#{right}-div{
+  @extend .test-#{left}-div;
+  position: relative;
+}
+```
+
+编译后
+
+```
+.test-left-div, .test-right-div {
+  background-color: #5B83AD; }
+
+.test-left-div, .test-right-div {
+  width: 240px;
+  margin: 28%;
+  top: -6px; }
+
+.test-left-div h1, .test-right-div h1 {
+  font-size: 1rem; }
+
+.test-left-div h1, .test-right-div h1 {
+  font-size: 1rem; }
+
+.test-left-div, .test-right-div {
+  border-color: blue; }
+
+.test-left-div, .test-right-div {
+  border-width: 1px; }
+
+.test-left-div:hover, .test-right-div:hover {
+  background-color: #000; }
+
+.test-right-div {
+  position: relative; }
+```
+
+显然`.test-right-div`继承了`.test-left-div`所有属性,是用逗号`,`隔开
+
+#### 混合(Mixin)用法
+
+Mixin可用于重用的代码块
+
+```
+@mixin left {
+　float: left;
+　margin-left: 10px;
+}
+```
+
+使用`@include`调用
+
+```
+.test-#{left}-div{
+  @include left;
+}
+```
+
+编译后
+
+```
+.test-left-div, .test-right-div {
+  　float: left;
+  　margin-left: 10px; }
+```
+
+mixin可以指定参数和缺省值
+
+```
+@mixin font-color($color: #ccc) {
+　color:$color
+}
+
+.test-#{left}-div{
+  @include font-color;
+}
+```
+
+编译后
+
+```
+.test-left-div, .test-right-div {
+  　color: #ccc; }
+```
+
+可传入参数
+
+```
+.test-#{right}-div{
+  @include font-color(red);
+}
+```
+
+编译后
+
+```
+.test-right-div {
+  　color: red; }
+```
+
+用这个方法可以轻松实现繁琐的css属性
+
+```
+@mixin rounded($vert, $horz, $radius: 10px) {
+　border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+.test-#{right}-div{
+  @include rounded(top,left,50%);
+}
+```
+
+编译后
+
+```
+.test-right-div {
+  border-top-left-radius: 50%; }
+```
+
+Sass和Less一样提供了一些颜色函数
+
+```
+.test-#{right}-div{
+  h1{
+    @include font-color(lighten($test-blue, 10%));
+  }
+
+  h2{
+    @include font-color(darken($test-blue, 10%));
+  }
+
+  h3{
+    @include font-color(grayscale($test-blue));
+  }
+
+  h4{
+    @include font-color(complement($test-blue));
+  }
+}
+```
+
+编译后
+
+```
+.test-right-div h1 {
+  　color: #7d9dbe; }
+
+.test-right-div h2 {
+  　color: #476a8e; }
+
+.test-right-div h3 {
+  　color: #848484; }
+
+.test-right-div h4 {
+  　color: #ad855b; }
+```
+
+#### 引入(import)其他scss文件
+
+使用`@import`关键字
+
+在`sass`目录新建`test-import.scss`文件,编写如下代码
+
+```
+$test-import-content:'This is test scss import';
+```
+
+在`style.scss`中编写如下代码
+
+```
+@import 'sass/test-import.scss';
+
+.test-#{left}-div{
+  content: $test-import-content;
+}
+```
+
+编译后
+
+```
+.test-left-div, .test-right-div {
+  content: "This is test scss import"; }
+```
+
+#### 条件语句
+
+使用@if和@else关键字
+
+```
+.test-#{left}-div{
+  a{
+    @if lightness($test-blue) > 30% {
+　　　　color: lightness($test-blue);} 
+    @else {
+　　　　color: #fff;}
+  }
+}
+```
+
+编译后
+
+```
+.test-left-div a, .test-right-div a {
+  　　　　color: 51.76471%; }
+```
+
+循环语句
+
+* for 循环
+
+for from to
+
+```
+@for $i from 1 to $base {
+  .opacity-#{$i}{
+    opacity:$i * 10;
+  }
+}
+```
+
+编译后
+
+```
+.opacity-1 {
+  opacity: 10; }
+
+.opacity-2 {
+  opacity: 20; }
+
+.opacity-3 {
+  opacity: 30; }
+
+.opacity-4 {
+  opacity: 40; }
+
+.opacity-5 {
+  opacity: 50; }
+
+.opacity-6 {
+  opacity: 60; }
+
+.opacity-7 {
+  opacity: 70; }
+```
+
+for from through
+
+```
+@for $i from 1 through $base {
+  .opacity-#{$i}-through{
+    opacity:$i * 10;
+  }
+}
+```
+
+编译后
+
+```
+.opacity-1-through {
+  opacity: 10; }
+
+.opacity-2-through {
+  opacity: 20; }
+
+.opacity-3-through {
+  opacity: 30; }
+
+.opacity-4-through {
+  opacity: 40; }
+
+.opacity-5-through {
+  opacity: 50; }
+
+.opacity-6-through {
+  opacity: 60; }
+
+.opacity-7-through {
+  opacity: 70; }
+
+.opacity-8-through {
+  opacity: 80; }
+```
+
+* while循环
+
+使用`@while`关键字
+
+```
+$j:6;
+
+@while $j > 0 {.z-index-#{$j} {z-index: $j * 10 } $j: $j - 2;}
+```
+
+编译后
+
+```
+.z-index-6 {
+  z-index: 60; }
+
+.z-index-4 {
+  z-index: 40; }
+
+.z-index-2 {
+  z-index: 20; }
+```
+
+* each循环
+
+```
+@each $member in relative, absolute, fixed, static {
+　.#{$member} {
+    position: $member;
+  }
+}
+```
+
+编译后
+
+```
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.fixed {
+  position: fixed; }
+
+.static {
+  position: static; }
+```
+
+#### 函数用法
+
+使用@function关键字
+
+```
+@function double($n) {
+ @return $n * 2;
+}
+.test-#{left}-div div {
+  width: double(5px);
+}
+```
+
+编译后
+
+```
+.test-left-div div, .test-right-div div {
+  width: 10px; }
+```
