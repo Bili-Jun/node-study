@@ -1,6 +1,5 @@
 # node-study
 ## study node.js
-<<<<<<< HEAD
 * The Grid layout
   
   This is a [grid layout program](https://github.com/Delete540/node-study/tree/alpha/test-layout).
@@ -25,7 +24,16 @@
 
   And [this](https://github.com/Delete540/node-study/tree/alpha/test-wexin-program) is my test demo program.
 
+* test-less
+
+  About how to use Less.
+ 
+  Click [here](https://github.com/Delete540/node-study/tree/alpha/test-less)
+
+* test-sass
+
+  About how to use Sass.
+ 
+  Click [here](https://github.com/Delete540/node-study/tree/alpha/test-sass)
+
 * Ant design demo
-=======
-学习HTML5.
->>>>>>> 0dbc44fc969136fbf840c83118c0161a1d8a08fa
