@@ -26,6 +26,11 @@ $ webpack
 $ webpack -p
 ```
 
+## Develop
+```
+$ npm run dev
+```
+
 ## Usage
 ```
 import React from 'react';
