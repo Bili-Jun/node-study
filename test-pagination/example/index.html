@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test pagination</title>
+  <meta name="description" content="test pagination" />
+  <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    ul {
+      width: 100%;
+    }
+    
+    ul,
+    li {
+      list-style: none;
+      float: left;
+    }
+    
+    li {
+      display: inline-block;
+      height: 24px;
+      border-radius: 2px;
+    }
+    
+    
+    .mc-pagination a {
+      cursor: pointer;
+      color: #444;
+      display: inline-block;
+      font-size: 1rem;
+      padding: 0 10px;
+      line-height: 24px;
+    }
+    
+    .mc-pagination-btn.mc-pagination-jump-next a,
+    .mc-pagination-btn.mc-pagination-jump-prev a {
+      letter-spacing: 2px;
+      color: #ccc;
+      font-size: 10px;
+    }
+    
+    .mc-pagination-btn.mc-pagination-btn-active {
+      background-color: #ee6e73;
+    }
+    
+    .mc-pagination-btn.mc-pagination-btn-active a {
+      color: #fff;
+    }
+    .mc-pagination .mc-pagination-input-go input{
+      width: 40px;
+    }
+    .mc-pagination .mc-pagination-options select{
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script src="http://localhost:3001/js/pagination.test.js"></script>
+
+</body>
+
+</html>

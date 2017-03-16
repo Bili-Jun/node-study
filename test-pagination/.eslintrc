@@ -1,0 +1,19 @@
+{
+    "env": {
+    "node": true,
+    "es6": true,
+    "jquery": true,
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "no-var": [
+      0
+    ],
+    "no-console": 1,
+    "no-unused-vars":1,
+    "no-param-reassign":1,
+    "react/jsx-no-bind":1
+  }
+}
