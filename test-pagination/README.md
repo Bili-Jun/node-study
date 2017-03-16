@@ -61,6 +61,23 @@ document.getElementById('example'));
 </html>
 ```
 
+#### Add the component
+```
+<!DOCTYPE>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Test pagination</title>
+    <meta name="description" content="test pagination" />
+    <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script src="http://localhost:3001/js/pagination.test.js"></script>
+  </body>
+</html>
+```
 
 ## API
 
