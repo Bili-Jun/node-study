@@ -27,6 +27,7 @@ class Test extends React.Component {
       // current={this.state.current}
       total={999}
       displayLength={5}
+      simplePager
     />);
   }
 }
@@ -35,8 +36,7 @@ ReactDom.render(
   <Test />,
   document.getElementById('example')
 );
+
 /* ReactDom.render(<Pagination
-  pageSize={10} total={999}
-  displayLength={5} // current={2}
+  pageSize={10} total={999} displayLength={5}
 />, document.getElementById('example'));*/
-// document.write('Hello world!11a');

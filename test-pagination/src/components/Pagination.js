@@ -227,6 +227,30 @@ class Pagination extends React.Component {
     const pageList = [];
     const totalPage = this._calcTotalPage();
     const { current, pageSize } = this.state;
+    let simplePager;
+    let pageSelect;
+
+    if (props.pageSelect) {
+      pageSelect = (<li
+        className={`${props.classNamePrefix}-options`}
+        key={`pageSelect`}
+        selectOptionsPageSize={props.selectOptionsPageSize}
+      >
+        <Select changeSize={this._changePageSize.bind(this)} />
+      </li>);
+    }
+
+
+    if (props.simplePager) {
+      simplePager = (<li
+        className={`${props.classNamePrefix}-input-go`}
+        key={`simplePager`}
+      >跳至
+      <input
+        type="text" onKeyUp={this._handleKeyEnter}
+      />页
+      </li>);
+    }
 
     pageList.push(<Buttons
       rootClassNamePrefix={props.classNamePrefix}
@@ -280,7 +304,7 @@ class Pagination extends React.Component {
       active={this.state.current === totalPage}
     />);
     return (
-      <ul className={props.classNamePrefix}>
+      <ul className={`${props.classNamePrefix} ${props.className}`}>
         <Buttons
           rootClassNamePrefix={props.classNamePrefix}
           title={`上一页`}
@@ -327,11 +351,8 @@ class Pagination extends React.Component {
           className={`${props.classNamePrefix}-btn-next ${this._hasNext() ? '' :
             `${props.classNamePrefix}-next-btn ${props.classNamePrefix}-btn-disabled`}`}
         />
-        <li className={`${props.classNamePrefix}-options`}>
-          <Select changeSize={this._changePageSize.bind(this)}/></li>
-        <li className={`${props.classNamePrefix}-input-go`}>跳至<input
-          type="text" onKeyUp={this._handleKeyEnter}
-        />页</li>
+        {pageSelect}
+        {simplePager}
       </ul>
     );
   }
@@ -346,6 +367,9 @@ Pagination.propTypes = {
   classNamePrefix: React.PropTypes.string,
   onChange: React.PropTypes.func,
   displayLength: React.PropTypes.number,
+  simplePager: React.PropTypes.bool,
+  pageSelect: React.PropTypes.bool,
+  selectOptionsPageSize: React.PropTypes.arrayOf(React.PropTypes.number),
 };
 
 Pagination.defaultProps = {
@@ -355,6 +379,8 @@ Pagination.defaultProps = {
   classNamePrefix: 'mc-pagination',
   onChange: temp,
   displayLength: 5,
+  simplePager: false,
+  pageSelect: false,
 };
 
 export default Pagination;
