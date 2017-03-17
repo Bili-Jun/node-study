@@ -85,9 +85,20 @@ document.getElementById('example'));
 
 | Parameter        | Description                        | Type          | Default                  |
 |------------------|------------------------------------|---------------|--------------------------|
-
+| defaultCurrent   | default current page               | Number        | 1                        |
+| current          | current page                       | Number        | undefined                |
+| total            | items total count                  | Number        | 0                        |
+| defaultPageSize  | default items per page             | Number        | 5                      |
+| pageSize         | items per page                     | Number        | 10                       |
+| onChange         | page change callback               | Function([changedTo])      | -                     |
+| pageSelect       | show page size select            | Bool          | false                    |
+| selectOptionsPageSize  | specify the sizeChanger selections | Array<Number> | [10, 20, 30, 40, 50] |
+| className        | className of pagination            | String        | -                         |
+| simplePager      | when set, show simple pager        | Bool          | false                     |
 
 
 
 ## 基于React实现的分页组件
+
+
 
