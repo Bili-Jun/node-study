@@ -100,5 +100,11 @@ document.getElementById('example'));
 
 ## 基于React实现的分页组件
 
+本项目是使用ECMAscript 2015的语法,并基于React 框架实现的分页组件.
+
+### 最终效果如下
+
+<img src="doc/img/pagination.gif">
+
 
 
