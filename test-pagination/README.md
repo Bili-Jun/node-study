@@ -137,5 +137,18 @@ document.getElementById('example'));
 │  webpack.config.js
 ```
 
+#### 目录结构说明
+
+* dist: 存放编译好的js文件,由webpack配置生成
+* doc/img: 存放文档资源文件
+* example: 存放demo/实例文件
+* node_modules: node依赖包,包含react/lodash/webpack等
+* src: 项目开发目录
+* src/components: 存放组件
+* src/lib: 其他工具库
+* .babelrc: babel编译工具配置文件
+* .eslintignore: eslint工具过滤器配置文件
+* .eslintrc: eslint工具配置文件
+* webpack.config.js: webpack配置文件
 
 

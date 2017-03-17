@@ -40,3 +40,5 @@ dist
 node_modules
 npm-debug.log
 jsconfig.json
+debug.log
+./debug.log
