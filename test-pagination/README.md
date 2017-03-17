@@ -106,5 +106,36 @@ document.getElementById('example'));
 
 <img src="doc/img/pagination.gif">
 
+### 项目完整目录结构如下
+```
+├─dist
+│  └─js
+│          pagination.js
+│          pagination.test.js
+├─doc
+│  └─img
+│          pagination.gif       
+├─example
+│      index.html
+├─node_modules
+├─src
+│   │  index.js
+│   │  index.test.js
+│   ├─components
+│   │      Buttons.js
+│   │      Pagination.js
+│   │      Select.js
+│   ├─lib
+│   │      mc-pagination-cal.js
+│  .babelrc
+│  .eslintignore
+│  .eslintrc
+│  debug.log
+│  package.json
+│  README.md
+│  tree.txt
+│  webpack.config.js
+```
+
 
 
