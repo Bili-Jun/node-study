@@ -9,7 +9,8 @@
     "build": "webpack -p --colors"
   },
   "keywords": [
-    "react"
+    "react",
+    "pagination"
   ],
   "author": "Jun",
   "license": "ISC",
