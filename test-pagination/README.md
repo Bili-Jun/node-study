@@ -403,6 +403,8 @@ node_modules
 
 #### webpack配置（项目构建）
 
+<img src="doc/img/webpack.jpg">
+
 如果完成前面的项目初始化配置,接下来可以配置webpack清单,配置明细如下
 
 引入`node` `path`模块,用于获取文件路径 

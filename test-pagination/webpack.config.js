@@ -1,15 +1,11 @@
 const path = require('path');
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const buildPath = path.resolve(__dirname, 'dist');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
-const enterFile = 'index.test.js';
 
 module.exports = {
   devtool: false,
   entry: {
-    'pagination.test': path.join(__dirname, 'src', enterFile),
+    'pagination.test': path.join(__dirname, 'src', 'index.test.js'),
     pagination: path.join(__dirname, 'src', 'index.js'),
   },
 
