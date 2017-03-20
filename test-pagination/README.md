@@ -155,7 +155,7 @@ document.getElementById('example'));
 
 ### 具体实现如下
 
-本项目主要基于`node.js`，由于使用`ECMAscript 2015`语法，所以需要`babel/webpack`等工具编译/压缩;用`Eslint`等工具进行语法检查和校验，所以再进行下一步操作之前，请确保系统含有`node.js`环境
+本项目主要基于`node.js`,由于使用`ECMAscript 2015`语法,所以需要`babel/webpack`等工具编译/压缩;用`Eslint`等工具进行语法检查和校验,所以再进行下一步操作之前,请确保系统含有`node.js`环境
 
 在本项目中需要
 ```
@@ -199,7 +199,7 @@ author: Jun // 作者
 license: (ISC) // 开源协议,可忽略
 ```
 
-至此完成`package.json`初始化配置，配置清单如下
+至此完成`package.json`初始化配置,配置清单如下
 ```
 {
   "name": "test-pagination",
@@ -295,10 +295,10 @@ license: (ISC) // 开源协议,可忽略
 
   | Command        | Description                        |
   |------------------|------------------------------------|
-  | webpack          | 主命令：执行编译/混合/CSS样式，开发模式，代码未压缩处理，并包含webpack相关编译代码  |
-  | -p         | 主命令：执行编译/压缩/混合/CSS样式，不包含webpack相关编译代码  |
-  | -w         | 执行编译/混合/CSS样式，开发模式，实时监听代码变化，并进行编译/压缩/混合等一系列热部署操作  |
-  | -p --color        | 主命令：执行编译/压缩/混合/CSS样式，不包含webpack相关编译代码，并高亮显示控制台输出结果  |
+  | webpack          | 主命令：执行编译/混合/CSS样式,开发模式,代码未压缩处理,并包含webpack相关编译代码  |
+  | -p         | 主命令：执行编译/压缩/混合/CSS样式,不包含webpack相关编译代码  |
+  | -w         | 执行编译/混合/CSS样式,开发模式,实时监听代码变化,并进行编译/压缩/混合等一系列热部署操作  |
+  | -p --color        | 主命令：执行编译/压缩/混合/CSS样式,不包含webpack相关编译代码,并高亮显示控制台输出结果  |
   | -h         | 查看更多webpack命令  |
 
 
@@ -307,14 +307,14 @@ license: (ISC) // 开源协议,可忽略
   | Command        | Description                        |
   |------------------|------------------------------------|
   | webpack-dev-server          | 主命令：启动`webpack`开发调试服务  |
-  | --devtool eval          | 启用开发者模式，编译后代码包含`sourcemap`等信息，可用于浏览器进行调试  |
+  | --devtool eval          | 启用开发者模式,编译后代码包含`sourcemap`等信息,可用于浏览器进行调试  |
   | --progress          | 显示`webpack` `building`进度  |
   | --colors          | 高亮显示控制台输出结果  |
   | --open          | 浏览器自动刷新  |
   | --hot          | `webpack`服务实时监听  |
   | --content-base ./example | `webpack`服务启动入口`html`文件目录设置,例如`example`目录  |
 
-至此`package.json`配置完成，在之后的开发中如果需要其他配置和依赖包，可按照如上步骤，以下是完整`package.json`清单
+至此`package.json`配置完成,在之后的开发中如果需要其他配置和依赖包,可按照如上步骤,以下是完整`package.json`清单
 ```
 {
   "name": "test-pagination",
@@ -361,7 +361,7 @@ license: (ISC) // 开源协议,可忽略
 
 配置编译工具babel
 
-如果`.babelrc`文件不存在，则新建,配置清单如下
+如果`.babelrc`文件不存在,则新建,配置清单如下
 ```
 {
     "presets": [
@@ -374,12 +374,12 @@ license: (ISC) // 开源协议,可忽略
 }
 ```
 
-由于并不需要让`babel`编译依赖包目录`node_modules`，所以需要进行配置，新建`.eslintignore`文件，配置如下
+由于并不需要让`babel`编译依赖包目录`node_modules`,所以需要进行配置,新建`.eslintignore`文件,配置如下
 ```
 node_modules
 ```
 
-接下来配置`js`语法校验工具，按照`ECMAscript 2015`标准对语法进行检验，在这里我们使用`Airbnb`的`eclint`的规则，在前面的`package.json`中有加入依赖包,配置清单如下
+接下来配置`js`语法校验工具,按照`ECMAscript 2015`标准对语法进行检验,在这里我们使用`Airbnb`的`eclint`的规则,在前面的`package.json`中已加入依赖包;新建`.eslintrc`,配置清单如下
 ```
 {
     "env": {
@@ -403,13 +403,171 @@ node_modules
 
 #### webpack配置（项目构建）
 
+如果完成前面的项目初始化配置,接下来可以配置webpack清单,配置明细如下
 
+引入`node` `path`模块,用于获取文件路径 
+引入`ExtractTextPlugin`外部加载文件插件
+初始化`node`依赖包路径
+```
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const nodeModulesPath = path.resolve(__dirname, 'node_modules');
+```
 
+* 这里使用`ECMAscript 2015`不可随意修改的变量类型`const`,具有块级作用域的作用,可避免`var`声明的变量存在变量提升和随意修改的问题 
 
+在这里使用`module.export`导出配置
+```
+module.exports = {
+  //webpack配置清单
+}
+```
 
+设置`devtool`属性为`false`,在`webpack`打包时不生成`sourcemap`信息,
+```
+module.exports = {
+  devtool: false
+}
+```
 
+设置`webpack`入口文件,即编译入口文件
+```
+entry: {
+  'pagination.test': path.join(__dirname, 'src', 'index.test.js'),// demo测试程序入口文件
+  pagination: path.join(__dirname, 'src', 'index.js'), // 分页组件入口文件
+}
+```
 
+设置输出文件目录以及`chunk`文件
+```
+output: {
+  path: path.join(__dirname, 'dist'), // 输出目录（编译生成文件目录）
+  publicPath: '',
+  filename: 'js/[name].js', // 编译生成的文件，文件名由前面入口文件配置确定
+  chunkFilename: 'js/[id].chunk.js',
+}
+```
 
+模块和插件配置
+
+配置`Eslint`预加载，用于语法检查
+```
+module: {
+  preLoaders: [
+    {
+      // Eslint loader
+      test: /\.(js|jsx)$/,
+      loader: 'eslint-loader',
+      include: [path.resolve(__dirname, 'src')],
+      exclude: [nodeModulesPath],
+    },
+  ]
+}
+```
+
+配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具，同时排除`node`依赖包的编译，且使用`babel`;在之后会补充`css/sass`模块插件
+```
+module: {
+  preLoaders: [
+    {
+      // Eslint loader
+      test: /\.(js|jsx)$/,
+      loader: 'eslint-loader',
+      include: [path.resolve(__dirname, 'src')],
+      exclude: [nodeModulesPath],
+    },
+  ]，
+  loaders: [
+    { 
+      test: /\.js?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+    },
+  ]
+}
+```
+
+为了便于更好的扩展性，且同时编译`react/react-dom`，生成的文件会很大，比较消耗资源，在页面中加载数MB的`js`文件并不理想，所以在这里进行如下配置，可以将`react/react-dom`通过`CDN`依赖等外部引入的方式加载至页面
+```
+externals: {    // 指定采用外部 CDN 依赖的资源，不被webpack打包
+  react: 'React',
+  'react-dom': 'ReactDOM',
+}
+```
+
+`webpack-dev-server`也可以在这里配置，包括服务监听端口号
+```
+devServer: {
+  hot: true,
+  inline: true, // webpack-dev-server有两种模式，默认是false，即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
+  progress: true,
+  port: '3001',
+}
+```
+
+加载`eslint`配置文件，由于上面进行`eslint`模块预加载，在这里需要加入`eslint`配置文件
+```
+eslint: {
+  configFile: '.eslintrc',
+}
+```
+
+完整`webpack`清单如下
+```
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const nodeModulesPath = path.resolve(__dirname, 'node_modules');
+
+module.exports = {
+  devtool: false,
+  entry: {
+    'pagination.test': path.join(__dirname, 'src', 'index.test.js'),
+    pagination: path.join(__dirname, 'src', 'index.js'),
+  },
+
+  output: {
+    path: path.join(__dirname, 'dist'),
+    publicPath: '',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[id].chunk.js',
+  },
+  module: {
+    preLoaders: [
+      {
+        // Eslint loader
+        test: /\.(js|jsx)$/,
+        loader: 'eslint-loader',
+        include: [path.resolve(__dirname, 'src')],
+        exclude: [nodeModulesPath],
+      },
+    ],
+    loaders: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+      },
+    ],
+  },
+  externals: {    // 指定采用外部 CDN 依赖的资源，不被webpack打包
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
+  devServer: {
+    hot: true,
+    inline: true,
+    progress: true,
+    port: '3001',
+  },
+  eslint: {
+    configFile: '.eslintrc',
+  },
+};
+```
+
+配置好`webpack`清单，基本上可以执行`webpack`相关命令了
+
+#### 组件具体实现
 
 本项目实现的分页组件由多个子组件组成,目前仅实现了基础子组件,之后会不断完善
 
