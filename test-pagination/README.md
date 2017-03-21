@@ -359,6 +359,11 @@ license: (ISC) // 开源协议,可忽略
 }
 ```
 
+安装上面配置好的依赖包(这一步执行完毕,才能继续下面的操作否则`eslint`等工具会提示报错)
+```
+$ npm install
+```
+
 配置编译工具babel
 
 如果`.babelrc`文件不存在,则新建,配置清单如下
@@ -445,14 +450,14 @@ entry: {
 output: {
   path: path.join(__dirname, 'dist'), // 输出目录（编译生成文件目录）
   publicPath: '',
-  filename: 'js/[name].js', // 编译生成的文件，文件名由前面入口文件配置确定
+  filename: 'js/[name].js', // 编译生成的文件,文件名由前面入口文件配置确定
   chunkFilename: 'js/[id].chunk.js',
 }
 ```
 
 模块和插件配置
 
-配置`Eslint`预加载，用于语法检查
+配置`Eslint`预加载,用于语法检查
 ```
 module: {
   preLoaders: [
@@ -467,7 +472,7 @@ module: {
 }
 ```
 
-配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具，同时排除`node`依赖包的编译，且使用`babel`;在之后会补充`css/sass`模块插件
+配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node`依赖包的编译,且使用`babel`;在之后会补充`css/sass`模块插件
 ```
 module: {
   preLoaders: [
@@ -478,7 +483,7 @@ module: {
       include: [path.resolve(__dirname, 'src')],
       exclude: [nodeModulesPath],
     },
-  ]，
+  ],
   loaders: [
     { 
       test: /\.js?$/,
@@ -489,25 +494,25 @@ module: {
 }
 ```
 
-为了便于更好的扩展性，且同时编译`react/react-dom`，生成的文件会很大，比较消耗资源，在页面中加载数MB的`js`文件并不理想，所以在这里进行如下配置，可以将`react/react-dom`通过`CDN`依赖等外部引入的方式加载至页面
+为了便于更好的扩展性,且同时编译`react/react-dom`,生成的文件会很大,比较消耗资源,在页面中加载数MB的`js`文件并不理想,所以在这里进行如下配置,可以将`react/react-dom`通过`CDN`依赖等外部引入的方式加载至页面
 ```
-externals: {    // 指定采用外部 CDN 依赖的资源，不被webpack打包
+externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
   react: 'React',
   'react-dom': 'ReactDOM',
 }
 ```
 
-`webpack-dev-server`也可以在这里配置，包括服务监听端口号
+`webpack-dev-server`也可以在这里配置,包括服务监听端口号
 ```
 devServer: {
   hot: true,
-  inline: true, // webpack-dev-server有两种模式，默认是false，即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
+  inline: true, // webpack-dev-server有两种模式,默认是false,即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
   progress: true,
   port: '3001',
 }
 ```
 
-加载`eslint`配置文件，由于上面进行`eslint`模块预加载，在这里需要加入`eslint`配置文件
+加载`eslint`配置文件,由于上面进行`eslint`模块预加载,在这里需要加入`eslint`配置文件
 ```
 eslint: {
   configFile: '.eslintrc',
@@ -551,7 +556,7 @@ module.exports = {
       },
     ],
   },
-  externals: {    // 指定采用外部 CDN 依赖的资源，不被webpack打包
+  externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
     react: 'React',
     'react-dom': 'ReactDOM',
   },
@@ -567,7 +572,7 @@ module.exports = {
 };
 ```
 
-配置好`webpack`清单，基本上可以执行`webpack`相关命令了
+配置好`webpack`清单,基本上可以执行`webpack`相关命令了
 
 #### 组件具体实现
 
@@ -579,7 +584,7 @@ module.exports = {
 | Pagination       | 分页组件主结构                       |
 | Select           | 分页组件选择每页显示的数目            |
 
-#### 在`components`目录中新建如下文件
+#### 在`src/components`目录中新建如下文件
 ```
 Buttons.js // 分页按钮组件
 Pagination.js // 分页组件主结构
@@ -614,10 +619,480 @@ class Buttons extends React.Component {
 }
 ```
 
+在上面的实现效果图中,分页按钮包括含有分页编号的按钮/上一页/下一页/向前几页跳转/向后几页跳转等.因此需要定义`Buttons` `props`如下默认属性
+
+| PropTypes        | Description                        |Type              | Default        |
+|------------------|------------------------------------|-------------------|----------------|
+| pageNumber       | 分页编号                            | number            |                |
+| active           | 是否是当前选中的分页                 | number            | false          |
+| className        | 按钮class属性                       | number            |                |
+
+代码如下：
+```
+Buttons.propTypes = {
+  pageNumber: React.PropTypes.number,
+  active: React.PropTypes.bool,
+  className: React.PropTypes.string,
+};
+
+Buttons.defaultProps = {
+  active: false,
+};
+```
+
+实现`render`方法,react.js渲染组件时执行的实现方法
+```
+render() {
+
+}
+```
+
+初始化`props`对象,`props`中包含上面定义的属性,包括react封装好的属性
+```
+render() {
+    const props = this.props;
+}
+```
+
+按钮组件需要继承父组件的属性包括`className`集合,即多个`class`值,所以这里初始化父组件父组件`class`值
+```
+render() {
+    const props = this.props;
+    const prefix = `${props.rootClassNamePrefix}-btn`; // 继承父组件class属性前缀
+    let tempClassName = `${prefix}`;
+}
+```
+
+组装`className`属性
+```
+render() {
+    const props = this.props;
+    const prefix = `${props.rootClassNamePrefix}-btn`;
+    let tempClassName = `${prefix}`;
+    if (props.pageNumber) {
+      tempClassName += ` ${prefix}-${props.pageNumber}`;
+    }
+    if (props.active) {
+      tempClassName += ` ${prefix}-active`; // 设置active标识
+    }
+    if (props.className) {
+      tempClassName += ` ${props.className}`;
+    }
+}
+```
+
+返回组件标签值
+```
+render() {
+    const props = this.props;
+    const prefix = `${props.rootClassNamePrefix}-btn`;
+    let tempClassName = `${prefix}`;
+    if (props.pageNumber) {
+      tempClassName += ` ${prefix}-${props.pageNumber}`;
+    }
+    if (props.active) {
+      tempClassName += ` ${prefix}-active`;
+    }
+    if (props.className) {
+      tempClassName += ` ${props.className}`;
+    }
+
+    return (
+      <li title={props.title} // 设置html title属性
+          className={tempClassName} // 
+          onClick={props.onClick}> // 对按钮设置点击事件属性
+        <a>{props.btnContent}</a>
+      </li>
+    );
+  }
+```
+
+至此按钮组件完成,接下来需要导出`Buttons`类供其他组件复用
+```
+export default Buttons;
+```
+
+这里使用ECMAscript 2015规范中的`export`,即暴露供外部调用的`class/function/变量`等,其他类如果需要使用,只需按如下方式,使用`import/from`等关键字 
+```
+import Buttons from './Buttons';
+```
+
+在`Pagination.js`中引入`react.js`
+```
+import React from 'react';
+```
+
+再按照上文所说引入`Buttons`组件
+
+定义父组件`Pagination`类,并继承React.Component
+```
+class Pagination extends React.Component {
+
+}
+```
+
+定义构造方法并继承`React.Component`的`this`对象
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+}
+```
+
+定义`Pagination` `props`属性(对外暴露)
+
+| PropTypes        | Description                        |Type              | Default        |
+|------------------|------------------------------------|-------------------|----------------|
+| current          | 当前页编号                          | number            |                 |
+| defaultCurrent   | 默认当前页                          | number            | 1               |
+| defaultPageSize  | 默认分页每页显示数目                 | number            | 5               |
+| total            | 数据总数                            | number            | 0               |
+| pageSize         | 分页每页显示数目                     | number            |                 |
+| classNamePrefix  | className属性前缀                   | string            | mc-pagination   |
+| onChange         | 页面是否变化                        | func               |                | 
+| displayLength    | 显示按钮数量                         | number            | 5               |
+| simplePager      | 是否手动跳转指定页面                  | bool              | false           | 
+| pageSelect       | 是否选择分页每页显示的数目            | bool               | false           | 
+| selectOptionsPageSize | 分页显示数目选项                | array              | (默认值取子组件) |
+
+代码如下
+```
+Pagination.propTypes = {
+  current: React.PropTypes.number,
+  defaultCurrent: React.PropTypes.number,
+  defaultPageSize: React.PropTypes.number,
+  total: React.PropTypes.number,
+  pageSize: React.PropTypes.number,
+  classNamePrefix: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  displayLength: React.PropTypes.number,
+  simplePager: React.PropTypes.bool,
+  pageSelect: React.PropTypes.bool,
+  selectOptionsPageSize: React.PropTypes.arrayOf(React.PropTypes.number),
+};
+
+Pagination.defaultProps = {
+  defaultCurrent: 1,
+  defaultPageSize: 5,
+  total: 0,
+  classNamePrefix: 'mc-pagination',
+  onChange: temp,
+  displayLength: 5,
+  simplePager: false,
+  pageSelect: false,
+};
+```
+
+本项目实现的分页算法如下
+
+在实际效果图中,分页组件由四个部分组成,如图所示
+
+<img src="doc/img/desc.jpg">
+ 
+> 上一页/下一页按钮(蓝色框) 
+
+> 第一页/最后一页按钮(绿色框)
+
+> 向前跳转更多页/向后跳转更多页(紫色框)
+
+> 页码按钮(红色框)
+
+* 首先定义数组容器,用于存放分页按钮 
+```
+const pageList = [];
+```
+
+* 第一页始终保持静态,但是当点击触发时该按钮状态变为`active`,即先默认初始化第一页的按钮
+```
+pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      title={1}
+      key={1}
+      onClick={this._handleChange.bind(this, 1)}
+      btnContent={1}
+      pageNumber={1}
+    />);
+```
+这里是`react` `jsx`语法的写法,配置`Buttons`组件即可,详细请看下面
+
+* 最后一页即为总页数,总页数由总数目决定,算法如下
+```
+this.props.total / pageSize
+```
+
+在这里是需要取整页数,且页码计算是从0开始,所以调整如下
+```
+Math.floor((this.props.total - 1) / pageSize) + 1;
+```
+
+* `props.displayLength`属性控制显示页码按钮数目,默认设置是5,即显示5个页码按钮
+* 接下来需要确定如何动态控制页码按钮,如效果图所示.设定两个锚点值,左锚与右锚.其中右锚由左锚加上`props.displayLength`再减去1得到,如下
+假设当前分页组件的页码状态如下
+```
+1 ... 6(锚) 7 8 9 10(锚) ... 200
+```
+
+点击第10页,如下
+```
+1 ... 10(锚) 11 12 13 14(锚) ... 200
+```
+
+点击第11页至第13页锚不发生改变
+```
+1 ... 10(锚) 11 12 13 14(锚) ... 200
+```
+
+点击向前或向后跳转回到第1页或最后一页,如下
+```
+1 2(锚) 3 4 5 6(锚) ... 200
+```
+```
+1 ... 195(锚) 196 197 198 199(锚) 200
+```
+
+* 由上可知,初始化如下参数
+```
+const anchor = this.state.leftAnchor; // 起始锚点,不可修改
+const length = this._calcTotalPage(); // 总长度(总页数),不可修改
+const dl = this.props.displayLength; // 步长(页码按钮数量),不可修改
+let start = 2; // 起始变化值(左锚点)
+let end = start + dl - 1; // 结束变化值(右锚点)
+```
+
+* 执行状态判断
+```
+// n 当前页码,如果当前页码小于等于0,则赋初始值1,即回到第一页
+if (n <= 0) {  
+  n = 1;
+}
+
+// 如果当前页码大于等于最后一页,则赋length给n,即回到最后一页
+if (n >= length) { 
+  n = length;
+}
+
+// 如果当前页码大于起始锚点(上一个状态的左锚点),则赋anchor给start,否则赋n给start,即确定左锚点
+if (n >= anchor) {
+  start = anchor;
+} else {
+  start = n;
+}
+
+// 右锚点就是左锚点加步长
+end = start + dl - 1;
+
+// 此时存在右锚点小于当前页码值的情况,因此重新确定左右锚点
+if (end <= n) {
+  start = n;
+  end = start + dl - 1;
+}
+
+// 此时起始锚点值(左锚点)被改变,存在小于1的情况,
+// 因此重新确定锚点,即回到第1页
+if (start <= 1) {
+  start = 2;
+  end = start + dl - 1;
+}
+
+// 如果起始锚点不存在小于1的情况,那么锚点结束位置存在大于总长度的情况,
+// 因此赋length - 1 给end,同时重新确定锚点
+if (end >= length - 1) {
+  end = length - 1;
+  start = end - dl + 1;
+  if (start <= 1) {
+    start = 2;
+  }
+}
+```
+
+至此状态判断完毕,接下来初始化`Pagination`组件`props`属性和状态处理
+
+根据react核心基本原理,当状态(state)发生改变时,立刻刷新组件,重新渲染dom元素.因此上面的算法实现的分页按钮点击事件操作都会用当前页码值改变组件状态,刷新组件.因此在这里做初始化state.current属性
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+
+    let current = props.defaultCurrent;
+
+    this.state = {
+      current,
+    }
+  }
+}
+```
+
+同时需要监听锚点状态,因此也需要初始化
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const start = 2;
+    const end = start + props.displayLength - 1;
+
+    let current = props.defaultCurrent;
+
+    this.state = {
+      current,
+      leftAnchor: start,
+      rightAnchor: end,
+    };
+  }
+}
+```
+
+接下来实现钩子函数用来改变事件状态
+```
+ _handleChange(n) {
+    const tempAnchor = this._calcPage(n); // 前面实现的_calcPage动态页码按钮计算函数
+ 
+    this.setState({
+      current: tempAnchor.n,
+      _current: tempAnchor.n,
+      leftAnchor: tempAnchor.start,
+      rightAnchor: tempAnchor.end,
+    });
+
+    return this.state.current;    
+ }
+```
+
+至此钩子函数实现,由以上算法和原理以及钩子函数,可以依次实现下一页/上一页/向前向后跳转按钮事件,例如
+```
+// 是否有上一页
+_hasPrev() {
+  return this.state.current > 1;  // this.state.current当前页(当前状态)
+}
+
+//是否有下一页
+_hasNext() {
+  return this.state.current < this._calcTotalPage(); // 由以上逻辑实现的,_calcTotalPage计算总页数函数
+}
+
+//上一页
+_prev() {
+  if (this._hasPrev()) {
+    this._handleChange(this.state.current - 1);
+  }
+}
+
+//下一页
+_next() {
+  if (this._hasNext()) {
+    this._handleChange(this.state.current + 1);
+  }
+}
+
+
+//向前/向后跳转displayLength长度的页面
+_leftMore() {
+  return this._handleChange((this.state.current - this.props.displayLength) <= 0 ? 
+    1 : (this.state.current - this.props.displayLength));
+}
+
+_rightMore() {
+  const totalPage = this._calcTotalPage();
+  return this._handleChange((this.state.current + this.props.displayLength) >= totalPage ?
+    totalPage : (this.state.current + this.props.displayLength));
+}
+```
+
+至此分页逻辑基本实现，但是需要做调整
+
+* 方法绑定父类`this`对象
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const start = 2;
+    const end = start + props.displayLength - 1;
+
+    let current = props.defaultCurrent;
+
+    this.state = {
+      current,
+      leftAnchor: start,
+      rightAnchor: end,
+    };
+
+    [
+      'render',
+      '_handleChange',
+      '_isValid',
+      '_leftMore',
+      '_rightMore',
+      '_hasPrev',
+      '_hasNext',
+      '_prev',
+      '_next',
+    ].forEach((method) => this[method] = this[method].bind(this));
+  }
+}
+```
+
+* 实现开放API接口
 
 
 
+实现`current`
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
 
+    const start = 2;
+    const end = start + props.displayLength - 1;
+
+    let current = props.defaultCurrent;
+
+    if ('current' in props) { // 初始化current属性
+      current = props.current;
+    }
+
+    this.state = {
+      current,
+      leftAnchor: start,
+      rightAnchor: end,
+    };
+
+    [
+      'render',
+      '_handleChange',
+      '_isValid',
+      '_leftMore',
+      '_rightMore',
+      '_hasPrev',
+      '_hasNext',
+      '_prev',
+      '_next',
+    ].forEach((method) => this[method] = this[method].bind(this));
+  }
+}
+
+_handleChange(n) {
+  const tempAnchor = this._calcPage(n);
+  if (this._isValid(n)) {
+    if (!('current' in this.props)) {
+      this.setState({
+        current: tempAnchor.n,
+        _current: tempAnchor.n,
+        leftAnchor: tempAnchor.start,
+        rightAnchor: tempAnchor.end,
+      });
+    }
+
+    const pageSize = this.state.pageSize;
+    this.props.onChange(n, pageSize);
+
+    return n;
+  }
+
+  return this.state.current;
+}
+```
 
 
 
