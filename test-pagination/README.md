@@ -610,7 +610,7 @@ class Buttons extends React.Component {
 * `ECMAscript 2015`标准,规定了`class`的用法与标准
 
 
-定义`Buttons`类的构造方法,用来在之后的方法中引用父类(`React.Component`)的`this`对象
+定义`Buttons`类的构造方法,构造函数，在创建组件的时候调用一次,用来在之后的方法中引用父类(`React.Component`)的`this`对象
 ```
 class Buttons extends React.Component {
   constructor(props) {
@@ -906,7 +906,7 @@ if (end >= length - 1) {
 }
 ```
 
-至此状态判断完毕,接下来初始化`Pagination`组件`props`属性和状态处理
+至此页面计算完毕,接下来初始化`Pagination`组件`props`属性和状态处理
 
 根据react核心基本原理,当状态(state)发生改变时,立刻刷新组件,重新渲染dom元素.因此上面的算法实现的分页按钮点击事件操作都会用当前页码值改变组件状态,刷新组件.因此在这里做初始化state.current属性
 ```
@@ -1035,43 +1035,101 @@ class Pagination extends React.Component {
 
 * 实现开放API接口
 
+到这里，`Pagination`组件暂时仅仅只能被react-dom渲染至页面，不能当作子组件复用，例如
 
+在`index.test.js`中编写如下代码,以渲染组件
+```
+import React from 'react';
+import ReactDom from 'react-dom';
+import Pagination from './components/Pagination';
 
-实现`current`
+ReactDom.render(<Pagination
+  pageSize={10} total={999} displayLength={5}
+/>, document.getElementById('example'));
+```
+
+在`example/index.html`中引用
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test pagination</title>
+  <meta name="description" content="test pagination" />
+  <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script src="http://localhost:3001/js/pagination.test.js"></script>
+
+</body>
+</html>
+```  
+> 本实例按照之前配置的webpack-dev-server启动，在浏览器中输入如下地址，即可查看demo和调试
+
+```
+http://localhost:3001/
+```
+
+如上所示，即使配置`current`也不起任何作用，无法满足复用，因此需要使用`react`组件生命周期`API`
+
+`props`是父组件传递给子组件的.父组件发生`render`的时候子组件就会调用`componentWillReceiveProps`(不管`props`有没有更新，也不管父子组件之间有没有数据交换)
+```
+componentWillReceiveProps(nextProps) {
+
+}
+``` 
+
+在`componentWillReceiveProps`方法内处理当前页状态和锚点状态变化
+```
+componentWillReceiveProps(nextProps) {
+
+  // 如果设置current属性，则先做页面分配计算
+  const n = nextProps.current; 
+  const tempAnchor = this._calcPage(n);
+
+  if ('current' in nextProps) {  // 改变页面状态
+    this.setState({
+      current: tempAnchor.n,
+      _current: tempAnchor.n,
+      leftAnchor: tempAnchor.start,
+      rightAnchor: tempAnchor.end,
+    });
+  }
+}
+```
+
+同时需要在构造函数中做初始化处理
 ```
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
-
-    const start = 2;
-    const end = start + props.displayLength - 1;
+    
+    // ...
 
     let current = props.defaultCurrent;
 
-    if ('current' in props) { // 初始化current属性
+    if ('current' in props) {
       current = props.current;
     }
 
-    this.state = {
-      current,
-      leftAnchor: start,
-      rightAnchor: end,
-    };
-
-    [
-      'render',
-      '_handleChange',
-      '_isValid',
-      '_leftMore',
-      '_rightMore',
-      '_hasPrev',
-      '_hasNext',
-      '_prev',
-      '_next',
-    ].forEach((method) => this[method] = this[method].bind(this));
+    // ...
   }
 }
+```
 
+需要补充页面校验函数
+```
+_isValid(num) {
+  return typeof num === 'number' && num >= 1 && num !== this.state.current;
+}
+```
+
+改进钩子函数`_handleChange`
+```
 _handleChange(n) {
   const tempAnchor = this._calcPage(n);
   if (this._isValid(n)) {
@@ -1093,6 +1151,419 @@ _handleChange(n) {
   return this.state.current;
 }
 ```
+
+实现`pageSize`选择组件
+
+同上`pageSize`改变引发状态改变，即重新渲染组件，所以做如下设置
+```
+//构造函数初始化pageSize
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // ...
+    let pageSize = props.defaultPageSize;
+    if ('pageSize' in props) {
+      pageSize = props.pageSize;
+    }
+
+    this.state = {
+      // ...
+      pageSize,
+      // ...
+    };
+
+    // ...
+  }
+}
+```
+
+同上在生命周期函数中需要对`pageSize`状态发生变化做处理，重新计算页面分配,改变当前页面状态
+```
+componentWillReceiveProps(nextProps) {
+  
+  // ...
+
+  if ('pageSize' in nextProps) {
+    const newState = {};
+    let current = this.state.current;
+    const newCurrent = this._calcTotalPage(nextProps.pageSize);
+    current = current > newCurrent ? newCurrent : current;
+    const tempAnchor2 = this._calcPage(current);
+    if (!('current' in nextProps)) {
+      newState.current = tempAnchor2.n;
+      newState._current = tempAnchor2.n;
+      newState.leftAnchor = tempAnchor2.start;
+      newState.rightAnchor = tempAnchor2.end;
+    }
+    newState.pageSize = nextProps.pageSize;
+    this.setState(newState);
+  }
+}
+```
+
+通过上面一系列调整，接下来可以实现`Select`组件的`_changePageSize`方法
+```
+_changePageSize(size) {
+  let current = this.state.current;
+  const newCurrent = this._calcTotalPage(size);
+  current = current > newCurrent ? newCurrent : current;
+  const tempAnchor = this._calcPage(current);
+  if (typeof size === 'number') {
+    if (!('pageSize' in this.props)) {
+      this.setState({
+        pageSize: size,
+      });
+    }
+
+    if (!('current' in this.props)) {
+      this.setState({
+        current: tempAnchor.n,
+        _current: tempAnchor.n,
+        leftAnchor: tempAnchor.start,
+        rightAnchor: tempAnchor.end,
+      });
+    }
+  }
+
+  return size;
+}
+```
+
+为`_changePageSize`方法绑定`this`对象
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+    [
+    // ... 
+    '_changePageSize',
+    ].forEach((method) => this[method] = this[method].bind(this));
+  }
+}
+```
+
+在Select.js中引入react
+```
+import React from 'react';
+```
+
+定义`Select`类，继承`React.Component`,并定义构造函数继承父类`this`对象
+```
+class Select extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+}
+```
+
+定义对外暴露属性，并设置默认值
+
+| PropTypes        | Description                        |Type              | Default        |
+|------------------|------------------------------------|-------------------|----------------|
+| pageSize         | 初始每页显示数目                    | number            |                |
+| changeSize         | select钩子函数用于pageSize状态改变                   | func            |                |
+| selectOptionsPageSize | 每页显示数目选项                    | array(number)            | [10, 20, 30, 40, 50]               |
+
+
+代码如下
+```
+Select.propTypes = {
+  pageSize: React.PropTypes.number,
+  changeSize: React.PropTypes.func,
+  selectOptionsPageSize: React.PropTypes.arrayOf(React.PropTypes.number),
+};
+
+Select.defaultProps = {
+  selectOptionsPageSize: [10, 20, 30, 40, 50],
+};
+```
+
+实现下拉框选择钩子函数监听选择事件改变`Pagination` `pageSize`状态
+```
+_changeSize(event) {
+  const value = event.target.value;
+  this.props.changeSize(Number(value));
+}
+```
+> 1
+
+实现render方法，返回并导出Select组件
+```
+render() {
+  const props = this.props; 
+  const pageSize = props.pageSize || props.selectOptionsPageSize[0]; //设置select初始默认值
+  const options = props.selectOptionsPageSize.map((o, i) => (
+    <option key={i} value={o}>{o}</option>
+  )); //根据selectOptionsPageSize组装options
+  return (
+    <select
+      onChange={this._changeSize}
+    >
+      {options}
+    </select>
+  );
+}
+
+// ...
+
+export default Select;
+```
+
+为实现方法绑定`this`对象
+```
+[
+  'render',
+  '_changeSize',
+].forEach((method) => this[method] = this[method].bind(this));
+```
+> 2
+
+在`Pagination`组件中引入`Select`组件
+```
+import Select from './Select';
+```
+
+
+实现`pageSelect`,即当`pageSelect`为`true`时显示分页展示数量选择框，如图所示
+
+<img src="doc/img/desc2.jpg">
+
+代码如下
+```
+render() {
+
+  // ...
+
+  let pageSelect; // Select 组件
+
+  // ...
+
+  if (props.pageSelect) {
+    pageSelect = (<li
+      className={`${props.classNamePrefix}-options`} //设置class
+
+      // 在react中如果渲染多个组件需要赋key值
+      key={`pageSelect`}  
+      selectOptionsPageSize={props.selectOptionsPageSize}
+      >
+      <Select changeSize={this._changePageSize.bind(this)} />
+      </li>);
+  }
+
+  // ...
+}
+```
+
+通过钩子函数实现手动输入指定页面并按回车键跳转至指定页面
+```
+_handleKeyEnter(event) {
+  const value = event.target.value;
+  let tempValue;
+  if (isNaN(Number(value))) {
+    tempValue = this.state.current;
+  } else {
+    tempValue = Number(value);
+  }
+  if (event.keyCode === 13) {
+    this._handleChange(tempValue);
+  }
+}
+```
+
+为`_handleKeyEnter`函数绑定`this`对象
+```
+class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+    [
+    // ... 
+    '_handleKeyEnter',
+    ].forEach((method) => this[method] = this[method].bind(this));
+  }
+}
+```
+
+在`render`方法中添加手动输入跳转指定页面的`input`组件，且当`simplePager`属性为`true`时做渲染
+```
+render() {
+
+  // ...
+
+  let simplePager; // input手动输入框组件
+
+  // ...
+
+  if (props.simplePager) {
+    simplePager = (<li
+      className={`${props.classNamePrefix}-input-go`}
+      key={`simplePager`}
+    >跳至
+    <input
+      type="text" onKeyUp={this._handleKeyEnter}
+    />页
+    </li>);
+  }
+}
+```
+
+至此，组件基本逻辑改进完成，接下来时组装和最后的导出组件
+
+组装分页页码按钮/下一页/上一页/向前跳转/向后跳转按钮
+```
+render() {
+  const props = this.props;
+  const pageList = [];
+  const totalPage = this._calcTotalPage(); //获取总页数
+  const { current, pageSize } = this.state;
+
+  // ...
+
+  // 第一页按钮，并设置onClick属性和钩子事件函数
+  pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      title={1}
+      key={1}
+      onClick={this._handleChange.bind(this, 1)}
+      btnContent={1}
+      pageNumber={1}
+      active={current === 1}
+    />);
+
+  // 向前跳转按钮，且当左锚点大于2(第2页)时，才渲染  
+  if (this.state.leftAnchor > 2) {
+    pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      className={`${props.classNamePrefix}-jump-prev`}
+      title={`•••`}
+      key={`leftMore`}
+      onClick={this._leftMore}
+      btnContent={`•••`}
+    />);
+  }
+
+  //根据锚点循环组装页码按钮
+  for (let i = this.state.leftAnchor; i <= this.state.rightAnchor; i++) {
+    const isActive = this.state.current === i;
+    pageList.push(
+      <Buttons
+        rootClassNamePrefix={props.classNamePrefix}
+        title={i}
+        key={i}
+        onClick={this._handleChange.bind(this, i)}
+        btnContent={i}
+        pageNumber={i}
+        active={isActive}
+      />);
+  }
+
+  //向后跳转,且当右锚点小于(totalPage - 1)(最后一页减一)时，才渲染  
+  if (this.state.rightAnchor < (totalPage - 1)) {
+    pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      className={`${props.classNamePrefix}-jump-next`}
+      title={`•••`}
+      key={`rightMore`}
+      onClick={this._rightMore}
+      btnContent={`•••`}
+    />);
+  }
+
+  //最后一页按钮
+  pageList.push(<Buttons
+    rootClassNamePrefix={props.classNamePrefix}
+    title={totalPage}
+    key={totalPage}
+    onClick={this._handleChange.bind(this, totalPage)}
+    btnContent={totalPage}
+    pageNumber={totalPage}
+    active={this.state.current === totalPage}
+  />);
+
+}
+```
+
+导出组件，这里用svg生成上一页下一页按钮样式
+```
+render() {
+
+  // ...
+
+  return (
+    // 设置组件class属性
+    <ul className={`${props.classNamePrefix} ${props.className}`}>
+
+      // 上一页按钮
+      <Buttons
+        rootClassNamePrefix={props.classNamePrefix}
+        title={`上一页`}
+        onClick={this._prev}
+
+        // 在这里使用svg,包括svg的样式
+        btnContent={<svg viewBox={`0 0 24 24`}
+          style={{
+            display: 'inline-block',
+            color: (this._hasPrev() ? 'rgba(0, 0, 0, 0.870588)' : '#ccc',
+            fill: 'currentcolor',
+            height: '24px',
+            width: '24px',
+            userSelect: 'none',
+            transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+          }}
+        >
+          <path
+            d={'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'}
+          ></path>
+        </svg>}
+        className={`${props.classNamePrefix}-btn-prev ${this._hasPrev() ? '' :
+            `${props.classNamePrefix}-btn-disabled`}`}
+      />
+      {pageList}
+
+      // 下一页按钮
+      <Buttons
+        rootClassNamePrefix={props.classNamePrefix}
+        title={`下一页`}
+        onClick={this._next}
+        btnContent={<svg
+          viewBox={`0 0 24 24`}
+          style={{
+            display: 'inline-block',
+            color: (this._hasNext() ? 'rgba(0, 0, 0, 0.870588)' : '#ccc'),
+            fill: 'currentcolor',
+            height: '24px',
+            width: '24px',
+            userSelect: 'none',
+            transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+          }}
+        >
+          <path
+            d={`M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z`}
+          >
+          </path></svg>}
+        className={`${props.classNamePrefix}-btn-next ${this._hasNext() ? '' :
+            `${props.classNamePrefix}-next-btn ${props.classNamePrefix}-btn-disabled`}`}
+      />
+
+      // 页面选择组件
+      {pageSelect}
+
+      // 手动输入页面组件
+      {simplePager}
+    </ul>
+  );
+}
+
+// ...
+
+// 导出Pagination组件
+export default Pagination;
+```
+
+到这里分页组件所有逻辑均已实现，接下来是用法以及开发环境的调试
+
+#### 用法
+
 
 
 

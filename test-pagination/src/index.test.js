@@ -28,6 +28,7 @@ class Test extends React.Component {
       total={999}
       displayLength={5}
       simplePager
+      pageSelect
     />);
   }
 }
