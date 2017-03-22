@@ -153,7 +153,7 @@ document.getElementById('example'));
 * README.md: 项目说明文档
 * package.json: 项目配置文件
 
-### 具体实现如下
+### 准备
 
 本项目主要基于`node.js`,由于使用`ECMAScript 2015`语法,所以需要`babel/webpack`等工具编译/压缩;用`ESLint`等工具进行语法检查和校验,所以再进行下一步操作之前,请确保系统含有`node.js`环境
 
