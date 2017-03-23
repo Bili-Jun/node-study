@@ -1910,6 +1910,74 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   import { rf as readFile } from 'fs';
   ```
 
+#### 关于React
+React是一个为数据提供渲染, HTML的视图的开源 JavaScript 库.React视图通常采用包含以自定义HTML 标记规定的其他组件的组件渲染.React 为开发者提供了一种子组件不能直接影响外层组件 ("data flows down") 的模型,数据改变时对HTML文档的有效更新,和现代单页应用中组件之间干净的分离  
+
+React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM节点，而是存在于内存之中的一种数据结构.只有当它插入文档以后,才会变成真实的DOM.根据React的设计,所有的DOM变动,都先在虚拟DOM上发生,然后再将实际发生变动的部分,反映在真实DOM上,这种算法叫做DOM diff,它可以极大提高网页的性能表现
+
+在本项目中的用法
+
+* HTML模板
+
+使用React定义的JSX语法实现HTML模板,例如
+```
+class Test extends React.Component {
+  render() {
+    return (){
+      <div>
+        <h1>Hello world!</h1>
+      </div>
+    }
+  }
+}
+```
+
+* PropTypes用法
+组件的属性可以接受任意值,字符串\对象\函数等等都可以.有时,我们需要一种机制,验证别人使用组件时,提供的参数是否符合要求.
+组件类的PropTypes属性,就是用来验证组件实例的属性是否符合要求
+```
+Test.propTypes = {
+  testA: React.PropTypes.number,
+  testB: React.PropTypes.string,
+  testC: React.PropTypes.bool,
+};
+```
+> 请注意在这里需要在Test类外部定义
+
+* this.props用法
+React组件基本属性可以获取html标签的所有属性,同时可以用于获取组件的自定义PropTypes属性
+
+* this.state状态用法
+组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化
+```
+class Test extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      testA:1
+    }
+
+    handleClick.bind(this);
+  }
+  handleClick: function(event) {
+    this.setState({testA: 2});
+  },
+  render: function() {
+    return (
+      <div>
+        <h1>Hello world!{this.state.testA}</h1>
+      </div>
+      <p onClick={this.handleClick}>
+         Click here.
+      </p>
+    );
+  }
+});
+```
+
+由于this.props 和 this.state 都用于描述组件的特性,可能会产生混淆.一个简单的区分方法是,this.props 表示那些一旦定义,就不再改变的特性,而 this.state 是会随着用户互动而产生变化的特性.
+
 ## 总结
 
 本文主要介绍了分页组件的实现(开发过程),包括开发环境搭建,开发工具的配置和使用,具体实现过程以及简单的用法介绍等.
