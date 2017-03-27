@@ -42,4 +42,10 @@
   
   Click [here](https://github.com/Delete540/node-study/blob/alpha/test-pagination)
 
+* test-dialog 
+
+  A dialog component base on react
+  
+  Click [here](https://github.com/Delete540/node-study/blob/alpha/test-dialog)
+
 * Ant design demo
