@@ -1,0 +1,1887 @@
+<h1 id="node-study">node-study</h1>
+<h2 id="test-pagination">test pagination</h2>
+<p>React component</p>
+<h2 id="install">Install</h2>
+<h4 id="install-node-module-package">Install node module package</h4>
+<pre><code>$ cd test-pagination
+$ npm install</code></pre>
+<h2 id="compile-and-build">Compile and build</h2>
+<pre><code>$ npm run build</code></pre>
+<h4 id="you-also-can-use-this-command">You also can use this command</h4>
+<pre><code>$ webpack</code></pre>
+<h4 id="build-with-press">Build with press</h4>
+<pre><code>$ webpack -p</code></pre>
+<h2 id="develop">Develop</h2>
+<pre><code>$ npm run dev</code></pre>
+<h2 id="usage">Usage</h2>
+<pre><code>//pagination.test.js
+
+import React from &#39;react&#39;;
+import ReactDom from &#39;react-dom&#39;;
+import Pagination from &#39;./components/Pagination&#39;;
+
+ReactDom.render(
+  &lt;Pagination 
+  pageSize={10} 
+  total={100}
+  /&gt;, 
+document.getElementById(&#39;example&#39;));</code></pre>
+<h4 id="add-react.jsreact-dom.js-in-your-html-files">Add react.js/react-dom.js in your html files</h4>
+<pre><code>&lt;!DOCTYPE&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Test pagination&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;test pagination&quot; /&gt;
+    &lt;script src=&quot;https://npmcdn.com/react@15.3.1/dist/react.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4 id="add-the-component">Add the component</h4>
+<pre><code>&lt;!DOCTYPE&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Test pagination&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;test pagination&quot; /&gt;
+    &lt;script src=&quot;https://npmcdn.com/react@15.3.1/dist/react.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;http://localhost:3001/js/pagination.test.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2 id="api">API</h2>
+<table>
+<colgroup>
+<col width="19%" />
+<col width="37%" />
+<col width="16%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>defaultCurrent</td>
+<td>default current page</td>
+<td>Number</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>current</td>
+<td>current page</td>
+<td>Number</td>
+<td>undefined</td>
+</tr>
+<tr class="odd">
+<td>total</td>
+<td>items total count</td>
+<td>Number</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>defaultPageSize</td>
+<td>default items per page</td>
+<td>Number</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>pageSize</td>
+<td>items per page</td>
+<td>Number</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>onChange</td>
+<td>page change callback</td>
+<td>Function([changedTo])</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>pageSelect</td>
+<td>show page size select</td>
+<td>Bool</td>
+<td>false</td>
+</tr>
+<tr class="even">
+<td>selectOptionsPageSize</td>
+<td>specify the sizeChanger selections</td>
+<td>Array<Number></td>
+<td>[10, 20, 30, 40, 50]</td>
+</tr>
+<tr class="odd">
+<td>className</td>
+<td>className of pagination</td>
+<td>String</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>simplePager</td>
+<td>when set, show simple pager</td>
+<td>Bool</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="react">基于React实现的分页组件</h2>
+<p>本项目是使用ECMAScript 2015的语法,并基于React 框架实现的分页组件.</p>
+<h3>最终效果如下</h3>
+<p><img src="doc/img/pagination.gif"></p>
+<h3>项目完整目录结构如下</h3>
+<pre><code>├─dist
+│  └─js
+│          pagination.js
+│          pagination.test.js
+├─doc
+│  └─img
+│          pagination.gif       
+├─example
+│      index.html
+├─node_modules
+├─src
+│   │  index.js
+│   │  index.test.js
+│   ├─components
+│   │      Buttons.js
+│   │      Pagination.js
+│   │      Select.js
+│   ├─lib
+│   │      mc-pagination-cal.js
+│  .babelrc
+│  .eslintignore
+│  .eslintrc
+│  package.json
+│  README.md
+│  webpack.config.js</code></pre>
+<h4>目录结构说明</h4>
+<ul>
+<li>dist: 存放编译好的js文件,由webpack配置生成</li>
+<li>doc/img: 存放文档资源文件</li>
+<li>example: 存放demo/实例文件</li>
+<li>node_modules: node依赖包,包含react/lodash/webpack等</li>
+<li>src: 项目开发目录</li>
+<li>src/components: 存放组件</li>
+<li>src/lib: 其他工具库</li>
+<li>src/index.js: 分页组件导出</li>
+<li>src/index.test.js: 分页组件demo实例</li>
+<li>.babelrc: babel编译工具配置文件</li>
+<li>.eslintignore: ESLint工具过滤器配置文件</li>
+<li>.eslintrc: ESLint工具配置文件</li>
+<li>webpack.config.js: webpack配置文件</li>
+<li>README.md: 项目说明文档</li>
+<li>package.json: 项目配置文件</li>
+</ul>
+<h3>准备</h3>
+<p>本项目主要基于<code>node.js</code>,由于使用<code>ECMAScript 2015</code>语法,所以需要<code>babel/webpack</code>等工具编译/压缩;用<code>ESLint</code>等工具进行语法检查和校验,所以再进行下一步操作之前,请确保系统含有<code>node.js</code>环境</p>
+<p>在本项目中需要</p>
+<pre><code>node.js v6.0+
+npm v3.0+</code></pre>
+<p><code>node.js</code>下载地址:</p>
+<pre><code>https://nodejs.org/en/</code></pre>
+<p>建议进行全局安装webpack工具</p>
+<pre><code>$ npm install webpack -g</code></pre>
+<h3>初始化和配置项目</h3>
+<p>新建项目目录</p>
+<pre><code>$ mkdir test-pagination</code></pre>
+<p>切换至项目目录下并初始化项目</p>
+<pre><code>$ cd test-pagination
+$ npm init</code></pre>
+<p>填写项目配置<code>package.json</code>,请注意不可忽略的选项</p>
+<pre><code>name: (test-pagination) //项目名称,可忽略
+version: (1.0.0) //项目版本,可忽略
+description: A pagination component base on React // 项目描述,可忽略
+entry point: (index.js) // 默认入口文件,可忽略
+test command: // 测试用命令,可忽略
+git repository: //git仓库,可忽略
+keywords: // 可忽略
+author: Jun // 作者
+license: (ISC) // 开源协议,可忽略</code></pre>
+<p>至此完成<code>package.json</code>初始化配置,配置清单如下</p>
+<pre><code>{
+  &quot;name&quot;: &quot;test-pagination&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;keywords&quot;: [
+    &quot;pagination&quot;,
+    &quot;react&quot;
+  ],
+  &quot;author&quot;: &quot;Jun&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}</code></pre>
+<p>接下来在<code>package.json</code>配置开发环境</p>
+<p>加入<code>React</code>依赖包</p>
+<pre><code>&quot;dependencies&quot;: {
+  &quot;lodash&quot;: &quot;4.16.4&quot;,
+  &quot;react&quot;: &quot;15.2.1&quot;,
+  &quot;react-dom&quot;: &quot;15.2.1&quot;
+}</code></pre>
+<p>加入<code>webpack</code>工具</p>
+<pre><code>&quot;devDependencies&quot;: {
+  &quot;extract-text-webpack-plugin&quot;: &quot;~0.8.2&quot;,
+  &quot;webpack&quot;: &quot;^1.7.3&quot;,
+  &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;
+}</code></pre>
+<p>由于需要使用<code>ES6</code>语法编写,加入<code>babel</code>编译工具</p>
+<pre><code>&quot;devDependencies&quot;: {
+  &quot;babel-core&quot;: &quot;^6.5.2&quot;,
+  &quot;babel-eslint&quot;: &quot;^4.1.8&quot;,
+  &quot;babel-loader&quot;: &quot;^6.2.2&quot;,
+  &quot;babel-plugin-add-module-exports&quot;: &quot;^0.1.2&quot;,
+  &quot;babel-plugin-transform-runtime&quot;: &quot;^6.15.0&quot;,
+  &quot;babel-preset-es2015&quot;: &quot;^6.18.0&quot;,
+  &quot;babel-preset-es2015-ie&quot;: &quot;6.x&quot;,
+  &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
+  &quot;babel-preset-stage-1&quot;: &quot;^6.16.0&quot;,
+  &quot;babel-register&quot;: &quot;^6.18.0&quot;,
+  &quot;extract-text-webpack-plugin&quot;: &quot;~0.8.2&quot;,
+  &quot;webpack&quot;: &quot;^1.7.3&quot;,
+  &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;
+}</code></pre>
+<p>加入代码校验工具<code>ESLint</code></p>
+<pre><code>&quot;devDependencies&quot;: {
+  &quot;babel-core&quot;: &quot;^6.5.2&quot;,
+  &quot;babel-eslint&quot;: &quot;^4.1.8&quot;,
+  &quot;babel-loader&quot;: &quot;^6.2.2&quot;,
+  &quot;babel-plugin-add-module-exports&quot;: &quot;^0.1.2&quot;,
+  &quot;babel-plugin-transform-runtime&quot;: &quot;^6.15.0&quot;,
+  &quot;babel-preset-es2015&quot;: &quot;^6.18.0&quot;,
+  &quot;babel-preset-es2015-ie&quot;: &quot;6.x&quot;,
+  &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
+  &quot;babel-preset-stage-1&quot;: &quot;^6.16.0&quot;,
+  &quot;babel-register&quot;: &quot;^6.18.0&quot;,
+  &quot;eslint&quot;: &quot;^1.10.3&quot;,
+  &quot;eslint-config-airbnb&quot;: &quot;^5.0.1&quot;,
+  &quot;eslint-loader&quot;: &quot;^1.6.3&quot;,
+  &quot;eslint-plugin-react&quot;: &quot;^3.16.1&quot;,
+  &quot;extract-text-webpack-plugin&quot;: &quot;~0.8.2&quot;,
+  &quot;webpack&quot;: &quot;^1.7.3&quot;,
+  &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;
+}</code></pre>
+<p>配置<code>webpack</code> <code>build</code>命令和<code>webpack-dev-server</code>开发环境,可用于实时调试和热部署项目</p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+  &quot;dev&quot;: &quot;webpack-dev-server --devtool eval --progress --colors --open --hot --content-base ./example&quot;,
+  &quot;build&quot;: &quot;webpack -p --colors&quot;
+}</code></pre>
+<ul>
+<li>在本项目中会用到的<code>webpack/webpack-dev-server</code>命令说明</li>
+</ul>
+<p><code>webpack</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>webpack</td>
+<td>主命令：执行编译/混合/CSS样式,开发模式,代码未压缩处理,并包含webpack相关编译代码</td>
+</tr>
+<tr class="even">
+<td>-p</td>
+<td>主命令：执行编译/压缩/混合/CSS样式,不包含webpack相关编译代码</td>
+</tr>
+<tr class="odd">
+<td>-w</td>
+<td>执行编译/混合/CSS样式,开发模式,实时监听代码变化,并进行编译/压缩/混合等一系列热部署操作</td>
+</tr>
+<tr class="even">
+<td>-p --color</td>
+<td>主命令：执行编译/压缩/混合/CSS样式,不包含webpack相关编译代码,并高亮显示控制台输出结果</td>
+</tr>
+<tr class="odd">
+<td>-h</td>
+<td>查看更多webpack命令</td>
+</tr>
+</tbody>
+</table>
+<p><code>webpack-dev-server</code></p>
+<table>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>webpack-dev-server</td>
+<td>主命令：启动<code>webpack</code>开发调试服务</td>
+</tr>
+<tr class="even">
+<td>--devtool eval</td>
+<td>启用开发者模式,编译后代码包含<code>sourcemap</code>等信息,可用于浏览器进行调试</td>
+</tr>
+<tr class="odd">
+<td>--progress</td>
+<td>显示<code>webpack</code> <code>building</code>进度</td>
+</tr>
+<tr class="even">
+<td>--colors</td>
+<td>高亮显示控制台输出结果</td>
+</tr>
+<tr class="odd">
+<td>--open</td>
+<td>浏览器自动刷新</td>
+</tr>
+<tr class="even">
+<td>--hot</td>
+<td><code>webpack</code>服务实时监听</td>
+</tr>
+<tr class="odd">
+<td>--content-base ./example</td>
+<td><code>webpack</code>服务启动入口<code>html</code>文件目录设置,例如<code>example</code>目录</td>
+</tr>
+</tbody>
+</table>
+<p>至此<code>package.json</code>配置完成,在之后的开发中如果需要其他配置和依赖包,可按照如上步骤,以下是完整<code>package.json</code>清单</p>
+<pre><code>{
+  &quot;name&quot;: &quot;test-pagination&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;react pagination&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;dev&quot;: &quot;webpack-dev-server --devtool eval --progress --colors --open --hot --content-base ./example&quot;,
+    &quot;build&quot;: &quot;webpack -p --colors&quot;
+  },
+  &quot;keywords&quot;: [
+    &quot;react&quot;,
+    &quot;pagination&quot;
+  ],
+  &quot;author&quot;: &quot;Jun&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.5.2&quot;,
+    &quot;babel-eslint&quot;: &quot;^4.1.8&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.2&quot;,
+    &quot;babel-plugin-add-module-exports&quot;: &quot;^0.1.2&quot;,
+    &quot;babel-plugin-transform-runtime&quot;: &quot;^6.15.0&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.18.0&quot;,
+    &quot;babel-preset-es2015-ie&quot;: &quot;6.x&quot;,
+    &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
+    &quot;babel-preset-stage-1&quot;: &quot;^6.16.0&quot;,
+    &quot;babel-register&quot;: &quot;^6.18.0&quot;,
+    &quot;eslint&quot;: &quot;^1.10.3&quot;,
+    &quot;eslint-config-airbnb&quot;: &quot;^5.0.1&quot;,
+    &quot;eslint-loader&quot;: &quot;^1.6.3&quot;,
+    &quot;eslint-plugin-react&quot;: &quot;^3.16.1&quot;,
+    &quot;extract-text-webpack-plugin&quot;: &quot;~0.8.2&quot;,
+    &quot;webpack&quot;: &quot;^1.7.3&quot;,
+    &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;lodash&quot;: &quot;4.16.4&quot;,
+    &quot;react&quot;: &quot;15.2.1&quot;,
+    &quot;react-dom&quot;: &quot;15.2.1&quot;
+  }
+}</code></pre>
+<p>安装上面配置好的依赖包(这一步执行完毕,才能继续下面的操作否则<code>ESLint</code>等工具会提示报错)</p>
+<pre><code>$ npm install</code></pre>
+<p>配置编译工具babel</p>
+<p>如果<code>.babelrc</code>文件不存在,则新建,配置清单如下</p>
+<pre><code>{
+    &quot;presets&quot;: [
+        &quot;es2015&quot;,
+        &quot;react&quot;
+    ],
+    &quot;plugins&quot;: [
+        &quot;transform-runtime&quot;
+    ]
+}</code></pre>
+<p>由于并不需要让<code>babel</code>编译依赖包目录<code>node_modules</code>,所以需要进行配置,新建<code>.eslintignore</code>文件,配置如下</p>
+<pre><code>node_modules</code></pre>
+<p>接下来配置<code>js</code>语法校验工具,按照<code>ECMAScript 2015</code>标准对语法进行检验,在这里我们使用<code>Airbnb</code>的<code>eclint</code>的规则,在前面的<code>package.json</code>中已加入依赖包;新建<code>.eslintrc</code>,配置清单如下</p>
+<pre><code>{
+    &quot;env&quot;: {
+    &quot;node&quot;: true,
+    &quot;es6&quot;: true,
+    &quot;browser&quot;: true
+  },
+  &quot;parser&quot;: &quot;babel-eslint&quot;,
+  &quot;extends&quot;: &quot;airbnb&quot;,
+  &quot;rules&quot;: {
+    &quot;no-var&quot;: [
+      0
+    ],
+    &quot;no-console&quot;: 1,
+    &quot;no-unused-vars&quot;:1,
+    &quot;no-param-reassign&quot;:1,
+    &quot;react/jsx-no-bind&quot;:1
+  }
+}</code></pre>
+<h3 id="webpack">webpack配置（项目构建）</h3>
+<p><img src="doc/img/webpack.jpg"></p>
+<p>如果完成前面的项目初始化配置,接下来可以配置webpack清单,配置明细如下</p>
+<p>引入<code>node</code> <code>path</code>模块,用于获取文件路径<br />
+引入<code>ExtractTextPlugin</code>外部加载文件插件<br />
+初始化<code>node</code>依赖包路径</p>
+<pre><code>const path = require(&#39;path&#39;);
+const ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;);
+const nodeModulesPath = path.resolve(__dirname, &#39;node_modules&#39;);</code></pre>
+<ul>
+<li>这里使用<code>ECMAScript 2015</code>不可随意修改的变量类型<code>const</code>,具有块级作用域的作用,可避免<code>var</code>声明的变量存在变量提升和随意修改的问题</li>
+</ul>
+<p>在这里使用<code>module.export</code>输出配置</p>
+<pre><code>module.exports = {
+  //webpack配置清单
+}</code></pre>
+<p>设置<code>devtool</code>属性为<code>false</code>,在<code>webpack</code>打包时不生成<code>sourcemap</code>信息,</p>
+<pre><code>module.exports = {
+  devtool: false
+}</code></pre>
+<p>设置<code>webpack</code>入口文件,即编译入口文件</p>
+<pre><code>entry: {
+  &#39;pagination.test&#39;: path.join(__dirname, &#39;src&#39;, &#39;index.test.js&#39;),// demo测试程序入口文件
+  pagination: path.join(__dirname, &#39;src&#39;, &#39;index.js&#39;), // 分页组件入口文件
+}</code></pre>
+<p>设置输出文件目录以及<code>chunk</code>文件</p>
+<pre><code>output: {
+  path: path.join(__dirname, &#39;dist&#39;), // 输出目录（编译生成文件目录）
+  publicPath: &#39;&#39;,
+  filename: &#39;js/[name].js&#39;, // 编译生成的文件,文件名由前面入口文件配置确定
+  chunkFilename: &#39;js/[id].chunk.js&#39;,
+}</code></pre>
+<p>模块和插件配置</p>
+<p>配置<code>ESLint</code>预加载,用于语法检查</p>
+<pre><code>module: {
+  preLoaders: [
+    {
+      // ESlint loader
+      test: /\.(js|jsx)$/,
+      loader: &#39;eslint-loader&#39;,
+      include: [path.resolve(__dirname, &#39;src&#39;)],
+      exclude: [nodeModulesPath],
+    },
+  ]
+}</code></pre>
+<p>配置加载模块插件,在本项目中仅编译<code>js</code>所以仅加载<code>js</code>的编译工具,同时排除<code>node</code>依赖包的编译,且使用<code>babel</code>;在之后会补充<code>css/sass</code>模块插件</p>
+<pre><code>module: {
+  preLoaders: [
+    {
+      // ESlint loader
+      test: /\.(js|jsx)$/,
+      loader: &#39;eslint-loader&#39;,
+      include: [path.resolve(__dirname, &#39;src&#39;)],
+      exclude: [nodeModulesPath],
+    },
+  ],
+  loaders: [
+    { 
+      test: /\.js?$/,
+      exclude: /node_modules/,
+      loader: &#39;babel&#39;,
+    },
+  ]
+}</code></pre>
+<p>为了便于更好的扩展性,且同时编译<code>react/react-dom</code>,生成的文件会很大,比较消耗资源,在页面中加载数MB的<code>js</code>文件并不理想,所以在这里进行如下配置,可以将<code>react/react-dom</code>通过<code>CDN</code>依赖等外部引入的方式加载至页面</p>
+<pre><code>externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
+  react: &#39;React&#39;,
+  &#39;react-dom&#39;: &#39;ReactDOM&#39;,
+}</code></pre>
+<p><code>webpack-dev-server</code>也可以在这里配置,包括服务监听端口号</p>
+<pre><code>devServer: {
+  hot: true,
+  inline: true, // webpack-dev-server有两种模式,默认是false,即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
+  progress: true,
+  port: &#39;3001&#39;,
+}</code></pre>
+<p>加载<code>ESLint</code>配置文件,由于上面进行<code>ESLint</code>模块预加载,在这里需要加入<code>ESLint</code>配置文件</p>
+<pre><code>eslint: {
+  configFile: &#39;.eslintrc&#39;,
+}</code></pre>
+<p>完整<code>webpack</code>清单如下</p>
+<pre><code>const path = require(&#39;path&#39;);
+const ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;);
+const nodeModulesPath = path.resolve(__dirname, &#39;node_modules&#39;);
+
+module.exports = {
+  devtool: false,
+  entry: {
+    &#39;pagination.test&#39;: path.join(__dirname, &#39;src&#39;, &#39;index.test.js&#39;),
+    pagination: path.join(__dirname, &#39;src&#39;, &#39;index.js&#39;),
+  },
+
+  output: {
+    path: path.join(__dirname, &#39;dist&#39;),
+    publicPath: &#39;&#39;,
+    filename: &#39;js/[name].js&#39;,
+    chunkFilename: &#39;js/[id].chunk.js&#39;,
+  },
+  module: {
+    preLoaders: [
+      {
+        // ESLint loader
+        test: /\.(js|jsx)$/,
+        loader: &#39;eslint-loader&#39;,
+        include: [path.resolve(__dirname, &#39;src&#39;)],
+        exclude: [nodeModulesPath],
+      },
+    ],
+    loaders: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: &#39;babel&#39;,
+      },
+    ],
+  },
+  externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
+    react: &#39;React&#39;,
+    &#39;react-dom&#39;: &#39;ReactDOM&#39;,
+  },
+  devServer: {
+    hot: true,
+    inline: true,
+    progress: true,
+    port: &#39;3001&#39;,
+  },
+  eslint: {
+    configFile: &#39;.eslintrc&#39;,
+  },
+};</code></pre>
+<p>配置好<code>webpack</code>清单,基本上可以执行<code>webpack</code>相关命令了</p>
+<h3>组件具体实现</h3>
+<p>本项目实现的分页组件由多个子组件组成,目前仅实现了基础子组件,之后会不断完善</p>
+<table>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Buttons</td>
+<td>分页按钮,包括每页按钮,下一页按钮,多页跳转按钮</td>
+</tr>
+<tr class="even">
+<td>Pagination</td>
+<td>分页组件主结构</td>
+</tr>
+<tr class="odd">
+<td>Select</td>
+<td>分页组件选择每页显示的数目</td>
+</tr>
+</tbody>
+</table>
+<h4 id="srccomponents">在<code>src/components</code>目录中新建如下文件</h4>
+<pre><code>Buttons.js // 分页按钮组件
+Pagination.js // 分页组件主结构
+Select.js // 下拉选择数目组件</code></pre>
+<h4 id="buttons">实现<code>Buttons</code>组件</h4>
+<p>引入react.js</p>
+<pre><code>import React from &#39;react&#39;;</code></pre>
+<ul>
+<li><code>ECMAScript 2015</code>标准,规定了在<code>js</code>文件中可以使用<code>import</code>/<code>from</code>关键字引入其他目录的<code>js</code>模块文件</li>
+</ul>
+<p>定义<code>Buttons</code>类,并继承<code>React</code> <code>Component</code>父类</p>
+<pre><code>class Buttons extends React.Component {
+
+}</code></pre>
+<ul>
+<li><code>ECMAScript 2015</code>标准,规定了<code>class</code>的用法与标准</li>
+</ul>
+<p>定义<code>Buttons</code>类的构造方法,构造函数,在创建组件的时候调用一次,用来在之后的方法中引用父类(<code>React.Component</code>)的<code>this</code>对象</p>
+<pre><code>class Buttons extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+}</code></pre>
+<p>在上面的实现效果图中,分页按钮包括含有分页编号的按钮/上一页/下一页/向前几页跳转/向后几页跳转等.因此需要定义<code>Buttons</code> <code>props</code>如下默认属性</p>
+<table>
+<thead>
+<tr class="header">
+<th>PropTypes</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pageNumber</td>
+<td>分页编号</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>active</td>
+<td>是否是当前选中的分页</td>
+<td>number</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>className</td>
+<td>按钮class属性</td>
+<td>number</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>代码如下：</p>
+<pre><code>Buttons.propTypes = {
+  pageNumber: React.PropTypes.number,
+  active: React.PropTypes.bool,
+  className: React.PropTypes.string,
+};
+
+Buttons.defaultProps = {
+  active: false,
+};</code></pre>
+<p>实现<code>render</code>方法,react.js渲染组件时执行的实现方法</p>
+<pre><code>render() {
+
+}</code></pre>
+<p>初始化<code>props</code>对象,<code>props</code>中包含上面定义的属性,包括react封装好的属性</p>
+<pre><code>render() {
+    const props = this.props;
+}</code></pre>
+<p>按钮组件需要继承父组件的属性包括<code>className</code>集合,即多个<code>class</code>值,所以这里初始化父组件父组件<code>class</code>值</p>
+<pre><code>render() {
+    const props = this.props;
+    const prefix = `${props.rootClassNamePrefix}-btn`; // 继承父组件class属性前缀
+    let tempClassName = `${prefix}`;
+}</code></pre>
+<p>组装<code>className</code>属性</p>
+<pre><code>render() {
+    const props = this.props;
+    const prefix = `${props.rootClassNamePrefix}-btn`;
+    let tempClassName = `${prefix}`;
+    if (props.pageNumber) {
+      tempClassName += ` ${prefix}-${props.pageNumber}`;
+    }
+    if (props.active) {
+      tempClassName += ` ${prefix}-active`; // 设置active标识
+    }
+    if (props.className) {
+      tempClassName += ` ${props.className}`;
+    }
+}</code></pre>
+<p>返回组件标签值</p>
+<pre><code>render() {
+    const props = this.props;
+    const prefix = `${props.rootClassNamePrefix}-btn`;
+    let tempClassName = `${prefix}`;
+    if (props.pageNumber) {
+      tempClassName += ` ${prefix}-${props.pageNumber}`;
+    }
+    if (props.active) {
+      tempClassName += ` ${prefix}-active`;
+    }
+    if (props.className) {
+      tempClassName += ` ${props.className}`;
+    }
+
+    return (
+      &lt;li title={props.title} // 设置html title属性
+          className={tempClassName} // 
+          onClick={props.onClick}&gt; // 对按钮设置点击事件属性
+        &lt;a&gt;{props.btnContent}&lt;/a&gt;
+      &lt;/li&gt;
+    );
+  }</code></pre>
+<p>至此按钮组件完成,接下来需要输出<code>Buttons</code>类供其他组件复用</p>
+<pre><code>export default Buttons;</code></pre>
+<p>这里使用ECMAScript 2015规范中的<code>export</code>,即暴露供外部调用的<code>class/function/变量</code>等,其他类如果需要使用,只需按如下方式,使用<code>import/from</code>等关键字</p>
+<pre><code>import Buttons from &#39;./Buttons&#39;;</code></pre>
+<p>在<code>Pagination.js</code>中引入<code>react.js</code></p>
+<pre><code>import React from &#39;react&#39;;</code></pre>
+<p>再按照上文所说引入<code>Buttons</code>组件</p>
+<p>定义父组件<code>Pagination</code>类,并继承React.Component</p>
+<pre><code>class Pagination extends React.Component {
+
+}</code></pre>
+<p>定义构造方法并继承<code>React.Component</code>的<code>this</code>对象</p>
+<pre><code>class Pagination extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+}</code></pre>
+<p>定义<code>Pagination</code> <code>props</code>属性(对外暴露)</p>
+<table>
+<thead>
+<tr class="header">
+<th>PropTypes</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>current</td>
+<td>当前页编号</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>defaultCurrent</td>
+<td>默认当前页</td>
+<td>number</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>defaultPageSize</td>
+<td>默认分页每页显示数目</td>
+<td>number</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>数据总数</td>
+<td>number</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>pageSize</td>
+<td>分页每页显示数目</td>
+<td>number</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>classNamePrefix</td>
+<td>className属性前缀</td>
+<td>string</td>
+<td>mc-pagination</td>
+</tr>
+<tr class="odd">
+<td>onChange</td>
+<td>页面是否变化</td>
+<td>func</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>displayLength</td>
+<td>显示按钮数量</td>
+<td>number</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>simplePager</td>
+<td>是否手动跳转指定页面</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr class="even">
+<td>pageSelect</td>
+<td>是否选择分页每页显示的数目</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>selectOptionsPageSize</td>
+<td>分页显示数目选项</td>
+<td>array</td>
+<td>(默认值取子组件)</td>
+</tr>
+</tbody>
+</table>
+<p>代码如下</p>
+<pre><code>Pagination.propTypes = {
+  current: React.PropTypes.number,
+  defaultCurrent: React.PropTypes.number,
+  defaultPageSize: React.PropTypes.number,
+  total: React.PropTypes.number,
+  pageSize: React.PropTypes.number,
+  classNamePrefix: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  displayLength: React.PropTypes.number,
+  simplePager: React.PropTypes.bool,
+  pageSelect: React.PropTypes.bool,
+  selectOptionsPageSize: React.PropTypes.arrayOf(React.PropTypes.number),
+};
+
+Pagination.defaultProps = {
+  defaultCurrent: 1,
+  defaultPageSize: 5,
+  total: 0,
+  classNamePrefix: &#39;mc-pagination&#39;,
+  onChange: temp,
+  displayLength: 5,
+  simplePager: false,
+  pageSelect: false,
+};</code></pre>
+<h4>本项目实现的分页算法如下</h4>
+<p>在实际效果图中,分页组件由四个部分组成,如图所示</p>
+<p><img src="doc/img/desc.jpg"></p>
+<blockquote>
+<p>上一页/下一页按钮(蓝色框)</p>
+</blockquote>
+<blockquote>
+<p>第一页/最后一页按钮(绿色框)</p>
+</blockquote>
+<blockquote>
+<p>向前跳转更多页/向后跳转更多页(紫色框)</p>
+</blockquote>
+<blockquote>
+<p>页码按钮(红色框)</p>
+</blockquote>
+<ul>
+<li><p>首先定义数组容器,用于存放分页按钮</p>
+<pre><code>const pageList = [];</code></pre></li>
+<li><p>第一页始终保持静态,但是当点击触发时该按钮状态变为<code>active</code>,即先默认初始化第一页的按钮</p>
+<pre><code>pageList.push(&lt;Buttons
+  rootClassNamePrefix={props.classNamePrefix}
+  title={1}
+  key={1}
+  onClick={this._handleChange.bind(this, 1)}
+  btnContent={1}
+  pageNumber={1}
+/&gt;);</code></pre>
+<p>这里是<code>react</code> <code>jsx</code>语法的写法,配置<code>Buttons</code>组件即可,详细请看下面</p></li>
+<li><p>最后一页即为总页数,总页数由总数目决定,算法如下</p>
+<pre><code>this.props.total / pageSize</code></pre></li>
+</ul>
+<p>在这里是需要取整页数,且页码计算是从0开始,所以调整如下</p>
+<pre><code>Math.floor((this.props.total - 1) / pageSize) + 1;</code></pre>
+<ul>
+<li><code>props.displayLength</code>属性控制显示页码按钮数目,默认设置是5,即显示5个页码按钮</li>
+<li><p>接下来需要确定如何动态控制页码按钮,如效果图所示.设定两个锚点值,左锚与右锚.其中右锚由左锚加上<code>props.displayLength</code>再减去1得到,如下<br />
+假设当前分页组件的页码状态如下</p>
+<pre><code>1 ... 6(锚) 7 8 9 10(锚) ... 200</code></pre></li>
+</ul>
+<p>点击第10页,如下</p>
+<pre><code>1 ... 10(锚) 11 12 13 14(锚) ... 200</code></pre>
+<p>点击第11页至第13页锚不发生改变</p>
+<pre><code>1 ... 10(锚) 11 12 13 14(锚) ... 200</code></pre>
+<p>点击向前或向后跳转回到第1页或最后一页,如下</p>
+<pre><code>1 2(锚) 3 4 5 6(锚) ... 200</code></pre>
+<pre><code>1 ... 195(锚) 196 197 198 199(锚) 200</code></pre>
+<ul>
+<li><p>由上可知,初始化如下参数</p>
+<pre><code>const anchor = this.state.leftAnchor; // 起始锚点,不可修改
+const length = this._calcTotalPage(); // 总长度(总页数),不可修改
+const dl = this.props.displayLength; // 步长(页码按钮数量),不可修改
+let start = 2; // 起始变化值(左锚点)
+let end = start + dl - 1; // 结束变化值(右锚点)</code></pre></li>
+<li><p>执行状态判断<br />
+```<br />
+// n 当前页码,如果当前页码小于等于0,则赋初始值1,即回到第一页<br />
+if (n &lt;= 0) {<br />
+n = 1;<br />
+}</p></li>
+</ul>
+<p>// 如果当前页码大于等于最后一页,则赋length给n,即回到最后一页<br />
+if (n &gt;= length) {<br />
+n = length;<br />
+}</p>
+<p>// 如果当前页码大于起始锚点(上一个状态的左锚点),则赋anchor给start,否则赋n给start,即确定左锚点<br />
+if (n &gt;= anchor) {<br />
+start = anchor;<br />
+} else {<br />
+start = n;<br />
+}</p>
+<p>// 右锚点就是左锚点加步长<br />
+end = start + dl - 1;</p>
+<p>// 此时存在右锚点小于当前页码值的情况,因此重新确定左右锚点<br />
+if (end &lt;= n) {<br />
+start = n;<br />
+end = start + dl - 1;<br />
+}</p>
+<p>// 此时起始锚点值(左锚点)被改变,存在小于1的情况,<br />
+// 因此重新确定锚点,即回到第1页<br />
+if (start &lt;= 1) {<br />
+start = 2;<br />
+end = start + dl - 1;<br />
+}</p>
+<p>// 如果起始锚点不存在小于1的情况,那么锚点结束位置存在大于总长度的情况,<br />
+// 因此赋length - 1 给end,同时重新确定锚点<br />
+if (end &gt;= length - 1) {<br />
+end = length - 1;<br />
+start = end - dl + 1;<br />
+if (start &lt;= 1) {<br />
+start = 2;<br />
+}<br />
+}</p>
+<pre><code>
+&gt; 至此页面计算完毕,接下来初始化`Pagination`组件`props`属性和状态处理
+
+根据react核心基本原理,当状态(state)发生改变时,立刻刷新组件,重新渲染dom元素.因此上面的算法实现的分页按钮点击事件操作都会用当前页码值改变组件状态,刷新组件.因此在这里做初始化state.current属性</code></pre>
+<p>class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>let current = props.defaultCurrent;
+
+this.state = {
+  current,
+}</code></pre>
+<p>}<br />
+}</p>
+<pre><code>
+同时需要监听锚点状态,因此也需要初始化</code></pre>
+<p>class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>const start = 2;
+const end = start + props.displayLength - 1;
+
+let current = props.defaultCurrent;
+
+this.state = {
+  current,
+  leftAnchor: start,
+  rightAnchor: end,
+};</code></pre>
+<p>}<br />
+}</p>
+<pre><code>
+接下来实现钩子函数用来改变事件状态</code></pre>
+<p>_handleChange(n) {<br />
+const tempAnchor = this._calcPage(n); // 前面实现的_calcPage动态页码按钮计算函数</p>
+<pre><code>this.setState({
+  current: tempAnchor.n,
+  _current: tempAnchor.n,
+  leftAnchor: tempAnchor.start,
+  rightAnchor: tempAnchor.end,
+});
+
+return this.state.current;    </code></pre>
+<p>}</p>
+<pre><code>
+至此钩子函数实现,由以上算法和原理以及钩子函数,可以依次实现下一页/上一页/向前向后跳转按钮事件,例如</code></pre>
+<p>// 是否有上一页<br />
+_hasPrev() {<br />
+return this.state.current &gt; 1; // this.state.current当前页(当前状态)<br />
+}</p>
+<p>// 是否有下一页<br />
+_hasNext() {<br />
+return this.state.current &lt; this._calcTotalPage(); // 由以上逻辑实现的,_calcTotalPage计算总页数函数<br />
+}</p>
+<p>// 上一页<br />
+_prev() {<br />
+if (this._hasPrev()) {<br />
+this._handleChange(this.state.current - 1);<br />
+}<br />
+}</p>
+<p>// 下一页<br />
+_next() {<br />
+if (this._hasNext()) {<br />
+this._handleChange(this.state.current + 1);<br />
+}<br />
+}</p>
+<p>// 向前/向后跳转displayLength长度的页面<br />
+_leftMore() {<br />
+return this._handleChange((this.state.current - this.props.displayLength) &lt;= 0 ?<br />
+1 : (this.state.current - this.props.displayLength));<br />
+}</p>
+<p>_rightMore() {<br />
+const totalPage = this._calcTotalPage();<br />
+return this._handleChange((this.state.current + this.props.displayLength) &gt;= totalPage ?<br />
+totalPage : (this.state.current + this.props.displayLength));<br />
+}</p>
+<pre><code>
+至此分页逻辑基本实现,但是需要做调整
+
+* 方法绑定父类`this`对象</code></pre>
+<p>class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>const start = 2;
+const end = start + props.displayLength - 1;
+
+let current = props.defaultCurrent;
+
+this.state = {
+  current,
+  leftAnchor: start,
+  rightAnchor: end,
+};
+
+[
+  &#39;render&#39;,
+  &#39;_handleChange&#39;,
+  &#39;_isValid&#39;,
+  &#39;_leftMore&#39;,
+  &#39;_rightMore&#39;,
+  &#39;_hasPrev&#39;,
+  &#39;_hasNext&#39;,
+  &#39;_prev&#39;,
+  &#39;_next&#39;,
+].forEach((method) =&gt; this[method] = this[method].bind(this));</code></pre>
+<p>}<br />
+}</p>
+<pre><code>
+* 实现开放API接口
+
+到这里,`Pagination`组件暂时仅仅只能被react-dom渲染至页面,不能当作子组件复用,例如
+
+在`index.test.js`中编写如下代码,以渲染组件</code></pre>
+<p>import React from 'react';<br />
+import ReactDom from 'react-dom';<br />
+import Pagination from './components/Pagination';</p>
+<p>ReactDom.render(<Pagination
+  pageSize={10} total={999} displayLength={5}
+/>, document.getElementById('example'));</p>
+<pre><code>
+在`example/index.html`中引用</code></pre>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test pagination</title>
+  <meta name="description" content="test pagination" />
+  <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script src="http://localhost:3001/js/pagination.test.js"></script>
+
+</body>
+</html>
+<pre><code>&gt; 本实例按照之前配置的webpack-dev-server启动,在浏览器中输入如下地址,即可查看demo和调试
+</code></pre>
+<p><a href="http://localhost:3001/" class="uri">http://localhost:3001/</a></p>
+<pre><code>
+如上所示,即使配置`current`也不起任何作用,无法满足复用,因此需要使用`react`组件生命周期`API`
+
+`props`是父组件传递给子组件的.父组件发生`render`的时候子组件就会调用`componentWillReceiveProps`(不管`props`有没有更新,也不管父子组件之间有没有数据交换)</code></pre>
+<p>componentWillReceiveProps(nextProps) {</p>
+<p>}</p>
+<pre><code>
+在`componentWillReceiveProps`方法内处理当前页状态和锚点状态变化</code></pre>
+<p>componentWillReceiveProps(nextProps) {</p>
+<p>// 如果设置current属性,则先做页面分配计算<br />
+const n = nextProps.current;<br />
+const tempAnchor = this._calcPage(n);</p>
+<p>if ('current' in nextProps) { // 改变页面状态<br />
+this.setState({<br />
+current: tempAnchor.n,<br />
+_current: tempAnchor.n,<br />
+leftAnchor: tempAnchor.start,<br />
+rightAnchor: tempAnchor.end,<br />
+});<br />
+}<br />
+}</p>
+<pre><code>
+同时需要在构造函数中做初始化处理</code></pre>
+<p>class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>// ...
+
+let current = props.defaultCurrent;
+
+if (&#39;current&#39; in props) {
+  current = props.current;
+}
+
+// ...</code></pre>
+<p>}<br />
+}</p>
+<pre><code>
+需要补充页面校验函数</code></pre>
+<p>_isValid(num) {<br />
+return typeof num === 'number' &amp;&amp; num &gt;= 1 &amp;&amp; num !== this.state.current;<br />
+}</p>
+<pre><code>
+改进钩子函数`_handleChange`</code></pre>
+<p>_handleChange(n) {<br />
+const tempAnchor = this._calcPage(n);<br />
+if (this._isValid(n)) {<br />
+if (!('current' in this.props)) {<br />
+this.setState({<br />
+current: tempAnchor.n,<br />
+_current: tempAnchor.n,<br />
+leftAnchor: tempAnchor.start,<br />
+rightAnchor: tempAnchor.end,<br />
+});<br />
+}</p>
+<pre><code>const pageSize = this.state.pageSize;
+this.props.onChange(n, pageSize);
+
+return n;</code></pre>
+<p>}</p>
+<p>return this.state.current;<br />
+}</p>
+<pre><code>
+实现`pageSize`选择组件,同上`pageSize`改变引发状态改变,即重新渲染组件,所以做如下设置</code></pre>
+<p>//构造函数初始化pageSize<br />
+class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>// ...
+
+let pageSize = props.defaultPageSize;
+if (&#39;pageSize&#39; in props) {
+  pageSize = props.pageSize;
+}
+
+this.state = {
+
+  // ...
+
+  pageSize,
+
+  // ...
+
+};
+
+// ...</code></pre>
+<p>}<br />
+}</p>
+<pre><code>
+同上在生命周期函数中需要对`pageSize`状态发生变化做处理,重新计算页面分配,改变当前页面状态</code></pre>
+<p>componentWillReceiveProps(nextProps) {</p>
+<p>// ...</p>
+<p>if ('pageSize' in nextProps) {<br />
+const newState = {};<br />
+let current = this.state.current;<br />
+const newCurrent = this._calcTotalPage(nextProps.pageSize);<br />
+current = current &gt; newCurrent ? newCurrent : current;<br />
+const tempAnchor2 = this._calcPage(current);<br />
+if (!('current' in nextProps)) {<br />
+newState.current = tempAnchor2.n;<br />
+newState._current = tempAnchor2.n;<br />
+newState.leftAnchor = tempAnchor2.start;<br />
+newState.rightAnchor = tempAnchor2.end;<br />
+}<br />
+newState.pageSize = nextProps.pageSize;<br />
+this.setState(newState);<br />
+}<br />
+}</p>
+<pre><code>
+在Select.js中引入react</code></pre>
+<p>import React from 'react';</p>
+<pre><code>
+定义`Select`类,继承`React.Component`,并定义构造函数继承父类`this`对象</code></pre>
+<p>class Select extends React.Component {<br />
+constructor(props) {<br />
+super(props);<br />
+}<br />
+}</p>
+<pre><code>
+定义对外暴露属性,并设置默认值
+
+| PropTypes        | Description                        |Type              | Default        |
+|------------------|------------------------------------|-------------------|----------------|
+| pageSize         | 初始每页显示数目                    | number            |                |
+| changeSize         | select钩子函数用于pageSize状态改变                   | func            |                |
+| selectOptionsPageSize | 每页显示数目选项                    | array(number)            | [10, 20, 30, 40, 50]               |
+
+
+代码如下</code></pre>
+<p>Select.propTypes = {<br />
+pageSize: React.PropTypes.number,<br />
+changeSize: React.PropTypes.func,<br />
+selectOptionsPageSize: React.PropTypes.arrayOf(React.PropTypes.number),<br />
+};</p>
+<p>Select.defaultProps = {<br />
+selectOptionsPageSize: [10, 20, 30, 40, 50],<br />
+};</p>
+<pre><code>
+实现下拉框选择钩子函数监听选择事件改变`Pagination` `pageSize`状态</code></pre>
+<p>_changeSize(event) {<br />
+const value = event.target.value;<br />
+this.props.changeSize(Number(value));<br />
+}</p>
+<pre><code>&gt; 这里由父组件传递`changeSize`方法
+
+实现render方法,返回并输出Select组件</code></pre>
+<p>render() {<br />
+const props = this.props;<br />
+const pageSize = props.pageSize || props.selectOptionsPageSize[0]; //设置select初始默认值<br />
+const options = props.selectOptionsPageSize.map((o, i) =&gt; (<br />
+<option key={i} value={o}>{o}</option><br />
+)); //根据selectOptionsPageSize组装options<br />
+return (<br />
+<select
+      onChange={this._changeSize}
+    ><br />
+{options}<br />
+</select><br />
+);<br />
+}</p>
+<p>// ...</p>
+<p>export default Select;</p>
+<pre><code>
+
+为实现方法绑定`this`对象</code></pre>
+<p>[<br />
+'render',<br />
+'_changeSize',].forEach((method) =&gt; this[method] = this[method].bind(this));</p>
+<pre><code>&gt; 至此`Select`组件实现
+
+通过一系列调整,接下来可以实现`Select`组件的`_changePageSize`方法</code></pre>
+<p>_changePageSize(size) {<br />
+let current = this.state.current;<br />
+const newCurrent = this._calcTotalPage(size);<br />
+current = current &gt; newCurrent ? newCurrent : current;<br />
+const tempAnchor = this._calcPage(current);<br />
+if (typeof size === 'number') {<br />
+if (!('pageSize' in this.props)) {<br />
+this.setState({<br />
+pageSize: size,<br />
+});<br />
+}</p>
+<pre><code>if (!(&#39;current&#39; in this.props)) {
+  this.setState({
+    current: tempAnchor.n,
+    _current: tempAnchor.n,
+    leftAnchor: tempAnchor.start,
+    rightAnchor: tempAnchor.end,
+  });
+}</code></pre>
+<p>}</p>
+<p>return size;<br />
+}</p>
+<pre><code>
+为`_changePageSize`方法绑定`this`对象</code></pre>
+<p>class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);<br />
+[<br />
+// ...<br />
+'_changePageSize',<br />
+].forEach((method) =&gt; this[method] = this[method].bind(this));<br />
+}<br />
+}</p>
+<pre><code>
+在`Pagination`组件中引入`Select`组件</code></pre>
+<p>import Select from './Select';</p>
+<pre><code>
+实现`pageSelect`,即当`pageSelect`为`true`时显示分页展示数量选择框,如图所示
+
+&lt;img src=&quot;doc/img/desc2.jpg&quot;&gt;
+
+代码如下</code></pre>
+<p>render() {</p>
+<p>// ...</p>
+<p>let pageSelect; // Select 组件</p>
+<p>// ...</p>
+<p>if (props.pageSelect) {<br />
+pageSelect = (<li
+      className={`${props.classNamePrefix}-options`} //设置class
+
+      // 在react中如果渲染多个组件需要赋key值
+      key={`pageSelect`}  
+      selectOptionsPageSize={props.selectOptionsPageSize}
+      ><br />
+<Select changeSize={this._changePageSize.bind(this)} /><br />
+</li>);<br />
+}</p>
+<p>// ...</p>
+<p>}</p>
+<pre><code>
+通过钩子函数实现手动输入指定页面并按回车键跳转至指定页面</code></pre>
+<p>_handleKeyEnter(event) {<br />
+const value = event.target.value;<br />
+let tempValue;<br />
+if (isNaN(Number(value))) {<br />
+tempValue = this.state.current;<br />
+} else {<br />
+tempValue = Number(value);<br />
+}<br />
+if (event.keyCode === 13) {<br />
+this._handleChange(tempValue);<br />
+}<br />
+}</p>
+<pre><code>
+为`_handleKeyEnter`函数绑定`this`对象</code></pre>
+<p>class Pagination extends React.Component {<br />
+constructor(props) {<br />
+super(props);<br />
+[<br />
+// ...<br />
+'_handleKeyEnter',<br />
+].forEach((method) =&gt; this[method] = this[method].bind(this));<br />
+}<br />
+}</p>
+<pre><code>
+在`render`方法中添加手动输入跳转指定页面的`input`组件,且当`simplePager`属性为`true`时做渲染</code></pre>
+<p>render() {</p>
+<p>// ...</p>
+<p>let simplePager; // input手动输入框组件</p>
+<p>// ...</p>
+<p>if (props.simplePager) {<br />
+simplePager = (<li
+      className={`${props.classNamePrefix}-input-go`}
+      key={`simplePager`}
+    >跳至<br />
+<input
+      type="text" onKeyUp={this._handleKeyEnter}
+    />页<br />
+</li>);<br />
+}<br />
+}</p>
+<pre><code>
+&gt; 至此,组件基本逻辑改进完成,接下来时组装和最后的输出组件
+
+组装分页页码按钮/下一页/上一页/向前跳转/向后跳转按钮</code></pre>
+<p>render() {<br />
+const props = this.props;<br />
+const pageList = [];<br />
+const totalPage = this._calcTotalPage(); //获取总页数<br />
+const { current, pageSize } = this.state;</p>
+<p>// ...</p>
+<p>// 第一页按钮,并设置onClick属性和钩子事件函数<br />
+pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      title={1}
+      key={1}
+      onClick={this._handleChange.bind(this, 1)}
+      btnContent={1}
+      pageNumber={1}
+      active={current === 1}
+    />);</p>
+<p>// 向前跳转按钮,且当左锚点大于2(第2页)时,才渲染<br />
+if (this.state.leftAnchor &gt; 2) {<br />
+pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      className={`${props.classNamePrefix}-jump-prev`}
+      title={`•••`}
+      key={`leftMore`}
+      onClick={this._leftMore}
+      btnContent={`•••`}
+    />);<br />
+}</p>
+<p>// 根据锚点循环组装页码按钮<br />
+for (let i = this.state.leftAnchor; i &lt;= this.state.rightAnchor; i++) {<br />
+const isActive = this.state.current === i;<br />
+pageList.push(<br />
+<Buttons
+        rootClassNamePrefix={props.classNamePrefix}
+        title={i}
+        key={i}
+        onClick={this._handleChange.bind(this, i)}
+        btnContent={i}
+        pageNumber={i}
+        active={isActive}
+      />);<br />
+}</p>
+<p>//向后跳转,且当右锚点小于(totalPage - 1)(最后一页减一)时,才渲染<br />
+if (this.state.rightAnchor &lt; (totalPage - 1)) {<br />
+pageList.push(<Buttons
+      rootClassNamePrefix={props.classNamePrefix}
+      className={`${props.classNamePrefix}-jump-next`}
+      title={`•••`}
+      key={`rightMore`}
+      onClick={this._rightMore}
+      btnContent={`•••`}
+    />);<br />
+}</p>
+<p>// 最后一页按钮<br />
+pageList.push(<Buttons
+    rootClassNamePrefix={props.classNamePrefix}
+    title={totalPage}
+    key={totalPage}
+    onClick={this._handleChange.bind(this, totalPage)}
+    btnContent={totalPage}
+    pageNumber={totalPage}
+    active={this.state.current === totalPage}
+  />);</p>
+<p>}</p>
+<pre><code>
+输出组件,这里用`svg`生成上一页下一页按钮样式</code></pre>
+<p>render() {</p>
+<p>// ...</p>
+<p>return (<br />
+// 设置组件class属性<br />
+<ul className={`${props.classNamePrefix} ${props.className}`}></p>
+<pre><code>  // 上一页按钮
+  &lt;Buttons
+    rootClassNamePrefix={props.classNamePrefix}
+    title={`上一页`}
+    onClick={this._prev}
+
+    // 在这里使用svg,包括svg的样式
+    btnContent={&lt;svg viewBox={`0 0 24 24`}
+      style={{
+        display: &#39;inline-block&#39;,
+        color: (this._hasPrev() ? &#39;rgba(0, 0, 0, 0.870588)&#39; : &#39;#ccc&#39;,
+        fill: &#39;currentcolor&#39;,
+        height: &#39;24px&#39;,
+        width: &#39;24px&#39;,
+        userSelect: &#39;none&#39;,
+        transition: &#39;all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms&#39;,
+      }}
+    &gt;
+      &lt;path
+        d={&#39;M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z&#39;}
+      &gt;&lt;/path&gt;
+    &lt;/svg&gt;}
+    className={`${props.classNamePrefix}-btn-prev ${this._hasPrev() ? &#39;&#39; :
+        `${props.classNamePrefix}-btn-disabled`}`}
+  /&gt;
+  {pageList}
+
+  // 下一页按钮
+  &lt;Buttons
+    rootClassNamePrefix={props.classNamePrefix}
+    title={`下一页`}
+    onClick={this._next}
+    btnContent={&lt;svg
+      viewBox={`0 0 24 24`}
+      style={{
+        display: &#39;inline-block&#39;,
+        color: (this._hasNext() ? &#39;rgba(0, 0, 0, 0.870588)&#39; : &#39;#ccc&#39;),
+        fill: &#39;currentcolor&#39;,
+        height: &#39;24px&#39;,
+        width: &#39;24px&#39;,
+        userSelect: &#39;none&#39;,
+        transition: &#39;all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms&#39;,
+      }}
+    &gt;
+      &lt;path
+        d={`M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z`}
+      &gt;
+      &lt;/path&gt;&lt;/svg&gt;}
+    className={`${props.classNamePrefix}-btn-next ${this._hasNext() ? &#39;&#39; :
+        `${props.classNamePrefix}-next-btn ${props.classNamePrefix}-btn-disabled`}`}
+  /&gt;
+
+  // 页面选择组件
+  {pageSelect}
+
+  // 手动输入页面组件
+  {simplePager}
+&lt;/ul&gt;</code></pre>
+<p>);<br />
+}</p>
+<p>// ...</p>
+<p>// 输出Pagination组件<br />
+export default Pagination;</p>
+<pre><code>
+&gt; 到这里分页组件所有逻辑均已实现,接下来是用法以及开发环境的调试
+
+#### 用法
+
+&gt; 为了便于组件的复用,且`Pagination`组件使用了多个子组件,因此对`Pagination`组件做最终出口文件处理
+
+在`src/index.js`中做如下处理</code></pre>
+<p>import Pagination from './components/Pagination';</p>
+<p>export default {<br />
+Pagination,<br />
+};</p>
+<pre><code>
+接下来用webpack编译出可以供外部使用的完整`Pagination.js`组件
+
+切换至项目目录下,执行如下命令</code></pre>
+<p>$ npm run build</p>
+<pre><code>
+或者直接执行`webpack`命令</code></pre>
+<p>$ webpack</p>
+<pre><code>
+webpack编译过程如下
+
+&lt;img src=&quot;doc/img/webpack-build.jpg&quot;&gt;
+
+&gt; 出现`warning`是因为`ESLint`在校验过程中发现存在符合规则但可以忽略的警告,可以在`.eslintrc`中编写过滤规则,过滤不需要的规则,关于ESLint规则,下面会作介绍.
+
+可以使用如下命令对`Pagination.js`进行压缩处理</code></pre>
+<p>$ webpack -p</p>
+<pre><code>
+最终生成的文件路径(可在webpack.config.js清单中修改)如下</code></pre>
+<p>dist\js\</p>
+<pre><code>
+在其他页面中使用`Pagination`组件,并进行开发调试
+
+如果按照上面的步骤配置了`webpack-dev-server`,那么即可执行如下命令启动webpack-dev-server,否则请按照上面的步骤进行配置</code></pre>
+<p>$ npm run dev</p>
+<pre><code>
+启动成功后浏览器与`webpack-dev-server`服务建立实时通信,`webpack-dev-server`实时监听项目js文件变动,并进行编译/压缩/混合等等一系列操作,完成操作后进行热部署,通知浏览器自动刷新页面,即可进行实时调试.打开`chrome`浏览器的调试工具可以看到控制台实时反馈`webpack-dev-server`服务操作过程,如图所示
+
+&lt;img src=&quot;doc/img/chrome-debug.jpg&quot;&gt;
+
+`Pagination`组件在外部引用中的用法
+
+在`index.test.js`中按照如下方式编写</code></pre>
+<p>import React from 'react'; // 引入react,用于创建<code>Test</code>类(组件)<br />
+import ReactDom from 'react-dom'; // 引入react-dom,用于渲染组件<br />
+import Pagination from './components/Pagination'; // 引入<code>Pagination</code>组件(尚未编译)</p>
+<p>class Test extends React.Component {</p>
+<p>//初始化构造函数<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>// 初始化状态
+this.state = {
+  current: 2,
+};
+
+// 为方法绑定this对象
+[
+  &#39;render&#39;,
+  &#39;onChange&#39;,
+].forEach((method) =&gt; this[method] = this[method].bind(this));</code></pre>
+<p>}</p>
+<p>// 设置onChange方法用于改变子组件当前页面状态<br />
+onChange(page) {<br />
+this.setState({<br />
+current: page,<br />
+});<br />
+}</p>
+<p>// 输出组件,并填写配置信息<br />
+render() {<br />
+return (<Pagination
+      onChange={this.onChange} 
+      // current={this.state.current} //初始化当前页面,可选
+      total={999} // 所有页面总数目
+      displayLength={5}  // 设置显示页码按钮个数
+      simplePager // 启用手动输入跳转指定页面,默认true
+      pageSelect // 启用选择页面显示数目,动态修改pageSize,默认true
+    />);<br />
+}<br />
+}</p>
+<p>ReactDom.render( // 渲染组件<br />
+<Test />,<br />
+document.getElementById('example') // 通过ID属性获取html中的存放组件的容器<br />
+);</p>
+<pre><code>
+接下来需要编写测试用的入口html
+
+在`example/index.html`编写如下代码</code></pre>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">  <!-- 默认编码格式-->
+  <title>Test pagination</title>
+  <meta name="description" content="test pagination" /> <!-- 描述-->
+
+  <!-- 由于在上面的webpack配置中我们并没有将react.js/react-dom.js打包到pagination.js/pagination.test.js中而是通过外部CDN资源引入-->
+  <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+  <style>
+    /* 自定义组件样式,在之后会使用sass控制样式*/
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    ul {
+      margin: 5%;
+    }
+    
+    ul,
+    li {
+      list-style: none;
+      float: left;
+    }
+    
+    li {
+      display: inline-block;
+      height: 24px;
+      border-radius: 2px;
+    }
+    
+    
+    .mc-pagination a {
+      cursor: pointer;
+      color: #444;
+      display: inline-block;
+      font-size: 1rem;
+      padding: 0 10px;
+      line-height: 24px;
+    }
+    
+    .mc-pagination-btn.mc-pagination-jump-next a,
+    .mc-pagination-btn.mc-pagination-jump-prev a {
+      letter-spacing: 2px;
+      color: #ccc;
+      font-size: 10px;
+    }
+    
+    .mc-pagination-btn.mc-pagination-btn-active {
+      background-color: #ee6e73;
+    }
+    
+    .mc-pagination-btn.mc-pagination-btn-active a {
+      color: #fff;
+    }
+    .mc-pagination .mc-pagination-input-go input{
+      width: 40px;
+    }
+    .mc-pagination .mc-pagination-options select{
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--定义存放pagination组件的容器-->
+  <div id="example"></div>
+  <!--在这里要引入编译好的pagination.test.js,且必须保证react.js/react-dom.js先加载,否则会报错-->
+  <script src="http://localhost:3001/js/pagination.test.js"></script>
+
+</body>
+
+</html>
+<pre><code>&gt; 请注意,此时是运行在服务端的开发模式资源文件(pagination.test.js)存在于服务端缓存中需要使用服务端动态地址(url)
+
+运行效果图如下
+
+&lt;img src=&quot;doc/img/chrome-debug2.jpg&quot;&gt;
+
+#### 关于ESLint
+
+`ESLint` 是一个开源的 `JavaScript` 代码检查工具.代码检查是一种静态的分析,常用于寻找有问题的模式或者代码,并且不依赖于具体的编码风格。对大多数编程语言来说都会有代码检查,一般来说编译程序会内置检查工具。
+
+`JavaScript` 是一个动态的弱类型语言,在开发中比较容易出错。且是实时编译,为了改变开发方式,提升开发效率,需要一种语法检查工具.
+
+`ESLint` 为了让开发者可以创建自己的检测规则,所有规则都被设计成可插入的。`ESLint` 的默认规则与其他的插件无太大区别,规则本身和测试可以依赖于同样的模式。在项目中可以使用`ESLint` 内置规则,也可以在使用过程中自定义规则。
+
+`ESLint`是基于`Node.js`,使用node.js安装部署。
+
+所有规则都是可拔插的
+
+* 内置规则和自定义规则共用一套规则 API
+* 内置的格式化方法和自定义的格式化方法共用一套格式化 API
+* 额外的规则和格式化方法能够在运行时指定
+* 规则和对应的格式化方法并不强制捆绑使用
+
+每条规则:
+
+* 各自独立
+* 可以开启或关闭
+* 可以将结果设置成警告或者错误
+* ESLint 规则可根据需要自由定制
+* 所有内置规则都是泛化的
+* 在本项目中使用Airbnb规则
+
+关于`eslint-config-airbnb`规则
+
+`eslint-config-airbnb`规则是Airbnb公司开源的基于`ESLint`的规则,使用起来较为方便,且可以更好的保持代码风格一致性,可读性,可维护性
+
+#### 关于ECMAScript
+
+ECMAScript 的第六版修订,于 2015 年完成标准化.这个标准被部分实现于大部分现代浏览器.
+
+在本项目使用了ECMAScript 2015规范中的语法,并使用babel工具进行编译,以便于在大部分浏览器中能够稳定运行.
+
+* 关于babel
+
+Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代码转为ECMAScript 5代码,从而在现有环境执行.
+
+* 在本项目中用到的一些语法特性
+
+&gt;`const\let` 用法
+
+&gt; 不同于`var`,`const/let`更加严格,具有块级作用域性质;可以避免`var`变量提升,局部变量不可控等一系列问题,例如
+  ```
+  // ES6
+  let sum=0;
+  for(let i=0; i&lt;5;i++){
+    sum+=i;
+  }
+  console.log(&#39;sum = &#39;+sum);
+  console.log(&#39;i = &#39;+i)
+
+  // error
+
+  // Uncaught SyntaxError: Identifier &#39;sum&#39; has already been declared
+  ```
+
+  ```
+  // ES6
+  const sum = 1;
+  console.log(sum);
+
+  // error
+  // Uncaught SyntaxError: Identifier &#39;sum&#39; has already been declared
+  ```
+&gt; babel编译后  
+  ```
+  // ES5
+  var sum=0;
+  for(var i=0; i&lt;5;i++){
+    sum+=i;
+  }
+  console.log(&#39;sum = &#39;+sum);
+  console.log(&#39;i = &#39;+i)
+
+  // sum = 10
+  // i = 5
+  ```
+
+&gt; 箭头函数用法
+  ```
+  // ES6
+  let f = v =&gt; v;
+  ```
+&gt; babel编译后  
+  ```
+  &quot;use strict&quot;;
+
+  var f = function f(v) {
+    return v;
+  };
+  ```
+
+&gt; class\extends\constructor\super用法
+  
+&gt; JavaScript语言的传统方法是通过构造函数,定义并生成新对象,例如
+  ```
+  function test(value){
+   this.value = value
+  }
+  test.prototype.testFunc = function () {
+   console.log(this.value);
+  }
+  var t = new test(1);
+  ```
+&gt; 使用class
+  ```
+  class test{
+   constructor(value){
+     this.value = value
+   }
+   testFunc = function () {
+     console.log(this.value);
+   }
+  }
+  ```  
+&gt; `class`之间可以通过`extends`关键字实现继承,这比ES5的通过修改原型链实现继承,要清晰和方便很多,例如在本项目中继承react的Component类
+  ```
+  class Pagination extends React.Component {
+  
+  }
+  ```  
+&gt; 用`super`继承父类`this`,但是创造父类的实例对象`this`(所以必须先调用`super`方法),然后再用子类构造函数修改`this`
+
+&gt; import/export模块功能用法
+
+&gt; 模块功能主要由两个命令构成:export和import。export命令用于规定模块的对外接口,import命令用于输入他模块提供的功能
+
+&gt; 一个模块就是一个独立的文件,该文件内部的所有变量,外部无法获取.如果希望外部能够读取模块内部的某个变量/方法/类等,就必须使用export关键字输出
+  ```
+  var firstName = &#39;Michael&#39;;
+  var lastName = &#39;Jackson&#39;;
+  var year = 1958;
+
+  export {firstName, lastName, year};
+  ```
+&gt; 指定模块输出`export default`  
+
+&gt; 使用export命令定义了模块的对外接口以后,其他 JS 文件就可以通过import命令加载这个模块.
+  ```
+  import { stat, exists, readFile } from &#39;fs&#39;; // 引入node 内置fs模块
+  ```
+
+&gt; import命令接受一对大括号,里面指定要从其他模块导入的变量名.大括号里面的变量名,必须与被导入模块对外接口的名称相同
+
+&gt; 如果想为输入的变量重新取一个名字,import命令要使用as关键字,将输入的变量重命名
+  ```
+  import { rf as readFile } from &#39;fs&#39;;
+  ```
+
+#### 关于React
+React是一个为数据提供渲染, HTML的视图的开源 JavaScript 库.React视图通常采用包含以自定义HTML 标记规定的其他组件的组件渲染.React 为开发者提供了一种子组件不能直接影响外层组件 (&quot;data flows down&quot;) 的模型,数据改变时对HTML文档的有效更新,和现代单页应用中组件之间干净的分离  
+
+React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM节点，而是存在于内存之中的一种数据结构.只有当它插入文档以后,才会变成真实的DOM.根据React的设计,所有的DOM变动,都先在虚拟DOM上发生,然后再将实际发生变动的部分,反映在真实DOM上,这种算法叫做DOM diff,它可以极大提高网页的性能表现
+
+在本项目中的用法
+
+* HTML模板
+
+使用React定义的JSX语法实现HTML模板,例如</code></pre>
+<p>class Test extends React.Component {<br />
+render() {<br />
+return (){<br />
+<div><br />
+<h1>Hello world!</h1><br />
+</div><br />
+}<br />
+}<br />
+}</p>
+<pre><code>
+* PropTypes用法
+组件的属性可以接受任意值,字符串\对象\函数等等都可以.有时,我们需要一种机制,验证别人使用组件时,提供的参数是否符合要求.
+组件类的PropTypes属性,就是用来验证组件实例的属性是否符合要求</code></pre>
+<p>Test.propTypes = {<br />
+testA: React.PropTypes.number,<br />
+testB: React.PropTypes.string,<br />
+testC: React.PropTypes.bool,<br />
+};</p>
+<pre><code>&gt; 请注意在这里需要在Test类外部定义
+
+* this.props用法
+React组件基本属性可以获取html标签的所有属性,同时可以用于获取组件的自定义PropTypes属性
+
+* this.state状态用法
+组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化</code></pre>
+<p>class Test extends React.Component {<br />
+constructor(props) {<br />
+super(props);</p>
+<pre><code>this.state = {
+  testA:1
+}
+
+handleClick.bind(this);</code></pre>
+<p>}<br />
+handleClick: function(event) {<br />
+this.setState({testA: 2});<br />
+},<br />
+render: function() {<br />
+return (<br />
+<div><br />
+<h1>Hello world!{this.state.testA}</h1><br />
+</div><br />
+<p onClick={this.handleClick}><br />
+Click here.<br />
+</p><br />
+);<br />
+}<br />
+});</p>
+<pre><code>
+由于this.props 和 this.state 都用于描述组件的特性,可能会产生混淆.一个简单的区分方法是,this.props 表示那些一旦定义,就不再改变的特性,而 this.state 是会随着用户互动而产生变化的特性.
+
+## 总结
+
+本文主要介绍了分页组件的实现(开发过程),包括开发环境搭建,开发工具的配置和使用,具体实现过程以及简单的用法介绍等.
+
+本项目主要用于学习和研究,在整个过程中收获颇丰,从基础知识到功能设计与完善以及最后的文档编写都是反复巩固和学习的过程,尤其是对Javascript语法(ECMAScript 2015)更加熟练一些,同时对React的理解也更进一步;在设计思想上更加感觉站在了一个全新的角度.
+
+当然依然有很多很多不足,比如说算法还是需要改进,从体验的角度来说,多少有些瑕疵;代码结构和习惯还是需要改进;对react的设计思想多少还是需要更加一步理解,不能单纯的站在传统dom结构的操作的思维方式
+
+下面是需要待完善的功能点
+
+* 样式：接下来需要加入sass更加动态灵活高效控制组件css样式
+* 实现更加完整的分页功能组件,包括引入fetch这种新的ajax模式
+* 增加更多配置选项,增强复用性和扩展性
+
+## 开发工具及环境
+</code></pre>
+<p>IDE：Visual Studio Code<br />
+plugin：ESLint/Webpack/Babel<br />
+node.js：6.x +<br />
+browser: chrome v50+<br />
+```</p>
+<h2>参考</h2>
+<ul>
+<li><a href="https://facebook.github.io/react/">React英文官网</a></li>
+<li><a href="http://reactjs.cn/react/docs/getting-started-zh-CN.html">React中文官网</a></li>
+<li><a href="https://github.com/facebook/react">React Github</a></li>
+<li><a href="http://es6.ruanyifeng.com/">ECMAScript 6 入门</a></li>
+<li><a href="http://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015</a></li>
+<li><a href="https://babeljs.io">Babel</a></li>
+<li><a href="http://babeljs.cn/">Babel 中文</a></li>
+<li><a href="https://babeljs.io/repl/">Babel 在线工具</a></li>
+<li><a href="http://eslint.org/">ESLint</a></li>
+<li><a href="https://github.com/eslint/eslint">ESLint Github</a></li>
+<li><a href="http://eslint.cn">ESLint 中文</a></li>
+<li><a href="https://webpack.github.io/">Webpack</a></li>
+<li><a href="https://github.com/webpack/webpack">Webpack Github</a></li>
+<li><a href="https://cnodejs.org">CNode 社区</a></li>
+<li><a href="https://github.com/react-component">react-component</a></li>
+<li><a href="https://ant.design/">ant design</a></li>
+<li><a href="https://github.com/airbnb/javascript">airbnb javascript</a></li>
+</ul>

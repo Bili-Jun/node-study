@@ -33,7 +33,7 @@ $ npm run dev
 
 ## Usage
 ```
-//pagination.test.js
+//index.test.js
 
 import React from 'react';
 import ReactDom from 'react-dom';
@@ -98,9 +98,9 @@ document.getElementById('example'));
 
 
 
-## 基于React实现的分页组件
+## 基于`React`实现的分页组件
 
-本项目是使用ECMAScript 2015的语法,并基于React 框架实现的分页组件.
+本项目是使用`ECMAScript 2015`的语法,并基于`React`框架实现的分页组件.
 
 ### 最终效果如下
 
@@ -1992,14 +1992,7 @@ class Test extends React.Component {
 * 实现更加完整的分页功能组件,包括引入fetch这种新的ajax模式
 * 增加更多配置选项,增强复用性和扩展性
 
-## 开发工具及环境
 
-```
-IDE：Visual Studio Code
-plugin：ESLint/Webpack/Babel
-node.js：6.x +
-browser: chrome v50+
-```
 
 ## 参考
 

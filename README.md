@@ -36,7 +36,7 @@
  
   Click [here](https://github.com/Delete540/node-study/tree/alpha/test-sass)
 
-* test pagination 
+* test-pagination 
 
   A pagination component base on react
   
