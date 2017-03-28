@@ -19,6 +19,7 @@ class Dialog extends Component {
       show,
       _show: show,
     };
+
     [
       'render',
       '_handleClose',

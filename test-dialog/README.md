@@ -99,7 +99,7 @@ document.getElementById('example'));
 
 <head>
   <meta charset="UTF-8">
-  <title>Test pagination</title>
+  <title>Test dialog</title>
   <meta name="description" mc-content="test dialog" />
 
   <!-- Add react-with-addons.js and react-dom.js -->
@@ -360,7 +360,7 @@ class Test extends Component {
     });
   }
 
-// 渲染(导出)组件
+// 渲染(导出)组件,当点击按钮时触发显示弹出层,请注意为按钮绑定点击事件
   render() {
     return (
       <div>
@@ -384,7 +384,7 @@ document.getElementById('example'));
 
 <head>
   <meta charset="UTF-8">
-  <title>Test pagination</title>
+  <title>Test dialog</title>
   <meta name="description" mc-content="test dialog" />
 
 <!-- 引入react-with-addons.js and react-dom.js -->
@@ -633,7 +633,8 @@ license: (ISC) // 开源协议,可忽略
 "dependencies": {
   "lodash": "4.16.4",
   "react": "15.2.1",
-  "react-dom": "15.2.1"
+  "react-dom": "15.2.1",
+  "react-addons-css-transition-group": "^15.2.1",
 }
 ```
 
@@ -727,9 +728,9 @@ license: (ISC) // 开源协议,可忽略
 ##### 完整`package.json`清单
 ```
 {
-  "name": "test-pagination",
+  "name": "test-dialog",
   "version": "0.0.1",
-  "description": "react pagination",
+  "description": "react dialog",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -738,7 +739,7 @@ license: (ISC) // 开源协议,可忽略
   },
   "keywords": [
     "react",
-    "pagination"
+    "dialog"
   ],
   "author": "Jun",
   "license": "ISC",
@@ -764,7 +765,8 @@ license: (ISC) // 开源协议,可忽略
   "dependencies": {
     "lodash": "4.16.4",
     "react": "15.2.1",
-    "react-dom": "15.2.1"
+    "react-dom": "15.2.1",
+    "react-addons-css-transition-group": "^15.2.1",
   }
 }
 ```
@@ -828,7 +830,7 @@ node_modules
 
 如果完成前面的项目初始化配置,接下来可以配置webpack清单,
 
-#### webpack清单
+#### 配置webpack
 
 ##### 初始化
 
@@ -921,7 +923,7 @@ eslint: {
 }
 ```
 
-##### 完整`webpack`清单如下
+#### 完整`webpack`清单如下
 ```
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -930,8 +932,8 @@ const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 module.exports = {
   devtool: false,
   entry: {
-    'pagination.test': path.join(__dirname, 'src', 'index.test.js'),
-    pagination: path.join(__dirname, 'src', 'index.js'),
+    'dialog.test': path.join(__dirname, 'src', 'index.test.js'),
+    dialog: path.join(__dirname, 'src', 'index.js'),
   },
 
   output: {
@@ -985,11 +987,563 @@ module.exports = {
 | DialogChild      | 弹出层组件子结构                     |
 | Mask             | 弹出层组件遮罩层                     |
 
-#### 实现`Dialog`组件
+#### 实现`Mask`组件
+
+弹出层有一个遮罩层,可避免误操作,同时点击遮罩层可关闭弹出层
+
+##### 引入React
+```
+import React, { Component } from 'react';
+```
+
+##### 定义`Mask`类,并继承React的Component父类
+```
+class Mask extends Component {
+
+}
+```
+
+##### 定义构造方法以继承`this`对象
+```
+class Mask extends Component {
+  constructor(props) {
+    super(props);
+  }
+}
+```
+
+##### 定义`Mask`类`propTypes`属性
+```
+Mask.propTypes = {
+  className: React.PropTypes.string, //Mask组件class属性
+  handleChange: React.PropTypes.func, // Mask组件点击事件
+};
+```
+
+##### 设定`propTypes`属性默认值
+```
+Mask.defaultProps = {
+  className: 'mc-mask',
+};
+```
+
+##### 定义`reader`方法,并初始化变量
+```
+render() {
+  const props = this.props;
+}
+```
+
+##### 实现点击事件钩子函数`_handleChange`
+```
+_handleChange() {
+    this.props.handleChange(); // 这里由上层父组件传递事件函数至Mask组件
+  }
+```
+
+##### 接下来实现`Mask`组件`render`返回值,即`Mask`组件主体,并设置点击事件
+```
+render() {
+    const props = this.props;
+    // 组装className属性;style属性;点击事件
+    return (
+        <div
+          className = {`${props.rootClassNamePrefix}-mask ` +
+          `${props.className}`}
+          style={props.style}
+          onClick = {this._handleChange}
+        ></div>
+    );
+  }
+```
+
+##### 为`render`方法和`_handleChange`方法绑定`this`对象
+```
+class Mask extends Component {
+  constructor(props) {
+    super(props);
+
+    [
+      'render',
+      '_handleChange',
+    ].forEach((method) => this[method] = this[method].bind(this));
+  }
+
+  // ...
+
+}
+```
+
+##### 导出组件
+```
+export default Mask;
+```
+
+> 至此`Mask`组件实现,用法请看在下面`Dialog`组件的中用法,API请看下面
+
+##### `Mask`组件API
+
+| Parameter        | Description                        | Type          | Default                  |
+|------------------|------------------------------------|---------------|--------------------------|
+| className        | class属性                          | string         | mc-mask                 |
+| handleChange     | 点击事件钩子函数(可关闭或打开Mask组件)  | func        |                         |
+| style            | 组件样式                            | object         |                        |
 
 #### 实现`DialogChild`组件
 
-#### 实现`Mask`组件
+弹出层主体组件,包含组件具体内容,可通过传入子组件实现多种不同功能的弹出层,即使用React.Children.map方法,详细如下
+
+##### 引入React
+```
+import React, { Component } from 'react';
+```
+
+##### 定义`DialogChild`类,并继承React的Component父类
+```
+class DialogChild extends Component {
+
+}
+```
+
+##### 定义构造方法以继承`this`对象
+```
+class DialogChild extends Component {
+  constructor(props) {
+    super(props);
+  }
+}
+```
+
+##### 定义`DialogChild`类`propTypes`属性
+```
+Mask.propTypes = {
+  className: React.PropTypes.string, // Mask组件class属性
+  handleChange: React.PropTypes.func, // Mask组件点击事件
+  content: React.PropTypes.string, // 若外部未引入自定义子组件,则启用默认组件,这里是设置默认组件的内容信息
+  title: React.PropTypes.string, // 若外部未引入自定义子组件,则启用默认组件,这里是设置默认组件的标题信息 
+};
+```
+
+##### 设定`propTypes`属性默认值
+```
+Mask.defaultProps = {
+  content: 'Title', // 默认标题
+  title: 'This is content', // 默认内容
+};
+```
+
+##### 定义`reader`方法,并初始化变量
+```
+render() {
+  const props = this.props;
+  const preFix = `${props.rootClassNamePrefix}-child`;
+}
+```
+
+##### 设置子组件,这里引入`reatc` `this.props.children`
+
+如果未定义子组件,则设置默认子组件,并组装class
+```
+const children = (
+  <div className={`${preFix}-content mc-content`}>
+    <h3>{props.title}</h3>
+    <p>{props.content}</p>
+    <div className={`${preFix}-foot mc-foot`}>
+      <button 
+        className={`${preFix}-btn mc-btn close`}
+        onClick={props.handleChange}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+);
+```
+
+否则使用自定义子组件,clone
+```
+const children = (React.Children.map(props.children, (child) => React.cloneElement(child))); 
+```
+
+> `React.Children.map`可以获取和遍历子组件,返回组件数组;
+> `React.cloneElement` `clone`自定义子组件并返回组件数组;
+> 请注意在这里使用了箭头函数
+
+整理代码
+```
+const children = (('children' in props) && props.children !== undefined) ? (React.Children.map(props.children, (child) => React.cloneElement(child))) :
+      (<div className={`${preFix}-content mc-content`}>
+        <h3>{props.title}</h3>
+          <p>{props.content}</p>
+          <div className={`${preFix}-foot mc-foot`}>
+            <button className={`${preFix}-btn mc-btn close`}
+              onClick={props.handleChange}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      );
+```
+
+##### 接下来实现`DialogChild`组件`render`返回值,即`DialogChild`组件主体,并组装上面完成的子组件
+```
+return (
+  <div
+    className = {`${preFix} ${('className' in props) ? props.className : ''} `}
+    style={props.style}
+  >
+    {children}
+  </div>
+);
+```
+
+##### 为`render`方法绑定`this`对象
+```
+class DialogChild extends Component {
+  constructor(props) {
+    super(props);
+
+    [
+      'render',
+    ].forEach((method) => this[method] = this[method].bind(this));
+  }
+
+  // ...
+
+}
+```
+
+##### 导出组件
+```
+export default DialogChild;
+```
+
+> 至此`DialogChild`组件实现,用法请看在下面`Dialog`组件的中用法,API请看下面
+
+##### `DialogChild`组件API
+
+| Parameter        | Description                        | Type          | Default                  |
+|------------------|------------------------------------|---------------|--------------------------|
+| className        | class属性                          | string         |                         |
+| handleChange     | 点击事件钩子函数(可关闭或打开Mask组件)  | func        |                         |
+| style            | 组件样式                            | object         |                        |
+| content          | 组件的内容信息                       | string         | Title                  |
+| title            | 组件的标题信息                       | string         | This is content        |
+
+
+#### 实现`Dialog`组件
+
+弹出层组件主体,涉及点击事件,子组件方法传递,组件动画效果,组件复用性和可扩展性等
+
+##### 定义`Dialog`类,并继承React的Component父类
+```
+class Dialog extends Component {
+
+}
+```
+
+##### 定义构造方法以继承`this`对象
+```
+class Dialog extends Component {
+  constructor(props) {
+    super(props);
+  }
+}
+```
+
+##### 定义`Dialog`类`propTypes`属性
+```
+Dialog.propTypes = {
+  className: React.PropTypes.string, // Mask组件class属性
+  show: React.PropTypes.bool, // 是否打开弹出层
+  defaultShow: React.PropTypes.bool, // 默认弹出层是否打开
+  classNamePrefix: React.PropTypes.string, // 弹出层class前缀
+  isMaskOpen: React.PropTypes.bool, // 是否显示遮罩
+  handleClose: React.PropTypes.func, // 关闭弹出层钩子函数
+  handleOpen: React.PropTypes.func, // 打开弹出层钩子函数
+  dialogTitle: React.PropTypes.string, // 弹出层标题,传入DialogChild组件
+  dialogCOntent: React.PropTypes.string, // 弹出层内容,传入DialogChild组件
+  style: React.PropTypes.object, // 组件样式
+};
+```
+
+##### `React.PropTypes.func`类型的属性默认值不能为空,所以需要初始化一个无操作无返回值的函数
+```
+function onChange() {
+}
+```
+
+##### 设定`propTypes`属性默认值
+```
+Dialog.defaultProps = {
+  defaultShow: false,
+  classNamePrefix: 'mc-dialog',
+  isMaskOpen: true, // 遮罩层默认开启
+  handleClose: onChange,
+  handleOpen: onChange,
+};
+```
+
+##### 实现打开/关闭弹出层钩子函数
+
+打开弹出层
+```
+_handleOpen() {
+    if ('handleOpen' in this.props) {
+      this.props.handleOpen(); // 开放API接口
+    } else {
+      this.setState({ show: true }); // 改变状态
+    }
+  }
+```
+
+关闭弹出层
+```
+_handleClose() {
+    if ('handleClose' in this.props) {
+      this.props.handleClose();
+    } else {
+      this.setState({ show: false });
+    }
+  }
+```
+
+##### 处理接口和状态
+
+初始化`props.show`接口
+```
+class Dialog extends Component {
+  constructor(props) {
+    super(props);
+    let show = this.props.defaultShow; // 初始化默认值
+
+    if ('show' in props) {
+      show = this.props.show;
+    }
+  }
+}
+```
+
+设置状态
+```
+class Dialog extends Component {
+  constructor(props) {
+    super(props);
+    let show = this.props.defaultShow; // 初始化默认值
+
+    if ('show' in props) {
+      show = this.props.show;
+    }
+
+    this.state = {
+      show,
+      _show: show,
+    };
+  }
+}
+```
+
+##### 处理组件生命周期
+
+当组件重新`render`前,`this.props.show`接收到新的值时,改变状态
+```
+componentWillReceiveProps(nextProps) {
+  if ('show' in nextProps) {
+    this.setState({
+      show: nextProps.show,
+    });
+  }
+}
+```
+
+> 请注意当外部复用`Dialog`组件时,只有配置`show`,且时已经改变的状态值才能触发该生命周期函数,即
+> ```
+> show = {this.state.show}
+> ```
+
+##### 为钩子函数和`render`方法绑定`this`对象
+```
+class Dialog extends Component {
+  constructor(props) {
+    super(props);
+  
+  // ...
+
+    [
+      'render',
+      '_handleClose',
+      '_handleOpen',
+    ].forEach((method) => this[method] = this[method].bind(this));
+
+  }
+}
+```
+
+##### 在`render`方法里初始化变量并组装组件
+
+初始化
+```
+render() {
+  const props = this.props;
+  const _state = this.state;
+  let mask = null;
+  let dialogChild = null;
+}
+```
+
+如果当前状态`show`为`true`显示弹出层主体组件`DialogChild`
+```
+if (_state.show) {
+  dialogChild = (
+    <DialogChild
+      rootClassNamePrefix = {`${props.classNamePrefix}`}
+      handleChange = {this._handleClose}
+      title = {props.dialogTitle}
+      content = {props.dialogCOntent}
+    >
+
+    </DialogChild>
+}
+```
+
+往`DialogChild`装入子组件`props.children`,使用`React.Children.map`获取和遍历子组件,用`React.cloneElement` `clone`和重新渲染子组件,并为子组件设置`key`标识符
+```
+if (_state.show) {
+  dialogChild = (
+    <DialogChild
+      rootClassNamePrefix = {`${props.classNamePrefix}`}
+      handleChange = {this._handleClose}
+      title = {props.dialogTitle}
+      content = {props.dialogCOntent}
+    >
+      {
+        React.Children.map(props.children, (child, i) =>
+          React.cloneElement(child, {
+            key: i,
+        }))
+      }
+    </DialogChild>
+}
+```
+
+如果`props.isMaskOpen`为`true`则启用遮罩层`Mask`组件
+```
+if (_state.show) {
+
+  // ...
+
+  if (props.isMaskOpen) {
+    mask = (
+      <Mask
+        rootClassNamePrefix = {`${props.classNamePrefix}`}
+        handleChange = {this._handleClose}
+      />
+    );
+  }
+}
+```
+
+##### 装载动画效果
+
+在这里需要引入使用含插件版本的`react.js`,使用`react`动画组件`ReactCSSTransitionGroup`
+```
+<ReactCSSTransitionGroup
+  component="div" // 渲染组件类型
+  transitionName="mc-dialog-child" // 动画效果class前缀,(动画效果类)
+  transitionEnterTimeout={500} // 动画效果时间
+  transitionLeaveTimeout={500}
+>
+  {dialogChild}  // 装载需要展示动画效果的组件
+</ReactCSSTransitionGroup>
+```
+
+请注意定义了动画类(class前缀),需要在外部定义对应的css属性
+```
+<style>
+  // index.html
+
+  // 进入DOM时装载class
+  .mc-dialog-child-enter {
+    opacity: 0;
+    transform: translate(0px, -64px);
+  }
+
+  // 进入DOM时处于active状态装载css
+  .mc-dialog-child-enter-active {
+    opacity: 1;
+    transform: translate(0px, 0);
+    transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  // 离开DOM时装载class
+  .mc-dialog-child-leave {
+    opacity: 1;
+    transform: translate(0px, 0);
+  }
+
+  // 离开DOM时处于active状态装载css
+  .mc-dialog-child-leave-active {
+    opacity: 0;
+    transform: translate(0px, -64px);
+    transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+</style>
+```
+
+为`Mask`组件同样装载动画,并定义动画类(class)
+```
+<ReactCSSTransitionGroup
+  component="div"
+  transitionName="mc-dialog-mask"
+  transitionEnterTimeout={500}
+  transitionLeaveTimeout={500}
+>
+  {mask}
+</ReactCSSTransitionGroup>
+```
+
+```
+.mc-dialog-mask-enter {
+  background-color: rgba(0, 0, 0, 0);
+  transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mc-dialog-mask-enter.mc-dialog-mask-enter-active {
+  background-color: rgba(0, 0, 0, .57);
+}
+
+.mc-dialog-mask-leave {
+  background-color: rgba(0, 0, 0, .57);
+  transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.mc-dialog-mask-leave.mc-dialog-mask-leave-active {
+  background-color: rgba(0, 0, 0, 0);
+}
+```
+
+##### 导出组件
+```
+export default Dialog;
+```
+
+> 至此`Dialog`组件完成,接下来按照上面的用法和webpack相关用法即可运行查看实际效果
+
+##### `Dialog`组件API
+
+| Parameter        | Description                        | Type          | Default                  |
+|------------------|------------------------------------|---------------|--------------------------|
+| show             | 是否显示弹出层                      | bool          |                          | 
+| defaultShow      | 默认是否显示弹出层                   | bool          | false                    | 
+| classNamePrefix  | class属性前缀                       | string        | mc-dialog                | 
+| isMaskOpen       | 是否显示遮罩                        | bool          | true                     | 
+| handleClose      | 关闭弹出层                          | func          | onChange                 | 
+| handleOpen       | 打开弹出层                          | func          | onChange                 | 
+| dialogTitle      | 弹出层标题                          | string        |                          | 
+| dialogCOntent    | 弹出层内容                          | string        |                          | 
+| style            | 弹出层样式                          | object        |                          | 
+| className        | 弹出层class属性                     | string        |                          | 
 
 #### 关于ESLint
 
@@ -1111,7 +1665,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   ```  
 > `class`之间可以通过`extends`关键字实现继承,这比ES5的通过修改原型链实现继承,要清晰和方便很多,例如在本项目中继承react的Component类
   ```
-  class Pagination extends React.Component {
+  class dialog extends React.Component {
   
   }
   ```  
@@ -1143,10 +1697,25 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   import { rf as readFile } from 'fs';
   ```
 
+> 字符串模板
+使用 两个反引号\`包裹字符串
+```
+`Hello world`
+```
+
+使用`${}`包裹需要嵌入字符串模板的变量
+```
+let number = 111
+let str = `the number is ${number}`
+console.log(str);
+
+// the number is 111
+```
+
 #### 关于React
 React是一个为数据提供渲染, HTML的视图的开源 JavaScript 库.React视图通常采用包含以自定义HTML 标记规定的其他组件的组件渲染.React 为开发者提供了一种子组件不能直接影响外层组件 ("data flows down") 的模型,数据改变时对HTML文档的有效更新,和现代单页应用中组件之间干净的分离  
 
-React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM节点，而是存在于内存之中的一种数据结构.只有当它插入文档以后,才会变成真实的DOM.根据React的设计,所有的DOM变动,都先在虚拟DOM上发生,然后再将实际发生变动的部分,反映在真实DOM上,这种算法叫做DOM diff,它可以极大提高网页的性能表现
+React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM节点,而是存在于内存之中的一种数据结构.只有当它插入文档以后,才会变成真实的DOM.根据React的设计,所有的DOM变动,都先在虚拟DOM上发生,然后再将实际发生变动的部分,反映在真实DOM上,这种算法叫做DOM diff,它可以极大提高网页的性能表现
 
 在本项目中的用法
 
@@ -1181,7 +1750,7 @@ Test.propTypes = {
 React组件基本属性可以获取html标签的所有属性,同时可以用于获取组件的自定义PropTypes属性
 
 ##### this.state状态用法
-组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化
+组件免不了要与用户互动,React 的一大创新,就是将组件看成是一个状态机,一开始有一个初始状态,然后用户互动,导致状态变化
 ```
 class Test extends React.Component {
   constructor(props) {
@@ -1211,6 +1780,18 @@ class Test extends React.Component {
 
 由于this.props 和 this.state 都用于描述组件的特性,可能会产生混淆.一个简单的区分方法是,this.props 表示那些一旦定义,就不再改变的特性,而 this.state 是会随着用户互动而产生变化的特性.
 
+##### 组件生命周期方法`componentWillReceiveProps`
+
+
+当组件状态发生改变时,接收到新的`props`属性,在`render`方法之前触发此函数,在此方法结束之后再触发`render`方法,使用此方法请注意组件状态的变化`this.state`
+```
+componentWillReceiveProps(nextProps) {
+  console.log(nextProps);
+
+  // ...
+}
+```
+
 ### 开发工具及环境
 
 ```
@@ -1219,6 +1800,8 @@ plugin：ESLint/Webpack/Babel
 node.js：6.x +
 browser: chrome v50+
 ```
+
+
 
 ## 参考
 

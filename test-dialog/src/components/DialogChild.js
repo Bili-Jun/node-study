@@ -12,7 +12,7 @@ class DialogChild extends Component {
   render() {
     const props = this.props;
     const preFix = `${props.rootClassNamePrefix}-child`;
-    const children = (('children' in props) && props.children !== undefined) ? 
+    const children = (('children' in props) && props.children !== undefined) ?
       (React.Children.map(props.children, (child) =>
         React.cloneElement(child))) :
       (<div className={`${preFix}-content mc-content`}>
