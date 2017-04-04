@@ -24,6 +24,12 @@
 
   And [this](https://github.com/Delete540/node-study/tree/alpha/test-wexin-program) is my test demo program.
 
+* test-react
+
+  Study react
+  
+  Click [here](https://github.com/Delete540/node-study/blob/alpha/test-react)
+
 * test-less
 
   About how to use Less.
