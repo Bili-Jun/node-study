@@ -39,6 +39,11 @@ $ npm run dev
 ### 目录·
   1. [准备](#1)
   1. [关于`ECMAScript 2015`(`Javascript`)](#2)
+
+      2.1  [关于`ECMAScript 2015`(`Javascript`)](#2.1)
+      
+      2.2  [关于`Eslint`](#2.2)
+
   1. [关于React](#3)
   1. [关于`Webpack`](#4)
   1. [初始化项目准备](#5)
@@ -69,7 +74,7 @@ babel:  ES6/ES7(ECMAScript)编译工具
 browser: chrome v50+
 ```
 
-[返回](#0)
+[返回目录](#0)
 
 <a name="2"></a>
 ### 关于`ECMAScript 2015`(`Javascript`)
@@ -80,6 +85,9 @@ browser: chrome v50+
 
 它的目标,是使得 `JavaScript` 语言可以用来编写复杂的大型应用程序,成为企业级开发语言.
 
+[返回目录](#0)
+
+<a name="2.1"></a>
 #### 关于`Babel`
 
 `Babel` 是一个广泛使用的 `ES6`(`ECMAScript 2015`) 转码器,可以将`ES6`代码转为`ES5`代码,从而在现有环境中运行.
@@ -179,6 +187,9 @@ https://babeljs.io/docs/plugins/preset-es2015/
 https://babeljs.io/repl/
 ```
 
+[返回](#2)
+
+<a name="2.2"></a>
 #### 关于`Eslint`
 
 `ESLint` 是一个开源的 `JavaScript` 代码检查工具.代码检查是一种静态的分析,常用于寻找有问题的模式或者代码,并且不依赖于具体的编码风格.对大多数编程语言来说都会有代码检查,一般来说编译程序会内置检查工具.
@@ -214,6 +225,8 @@ https://babeljs.io/repl/
 https://github.com/airbnb/javascript
 ```
 
+[返回目录](#0)
+
 ##### `eslint`使用
 
 安装`eslint`,在这里使用全局的方式,也可以仅在项目中安装
@@ -244,11 +257,15 @@ $ npm i -g eslint-config-airbnb
 }
 ```
 
+[返回](#2)
+
 <a name="3"></a>
 ### 关于React
 React是一个为数据提供渲染,HTML的视图的开源 JavaScript 库.React视图通常采用包含以自定义HTML 标记规定的其他组件的组件渲染.React 为开发者提供了一种子组件不能直接影响外层组件 ("data flows down") 的模型,数据改变时对HTML文档的有效更新,和现代单页应用中组件之间干净的分离  
 
 React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM节点,而是存在于内存之中的一种数据结构.只有当它插入文档以后,才会变成真实的DOM.根据React的设计,所有的DOM变动,都先在虚拟DOM上发生,然后再将实际发生变动的部分,反映在真实DOM上,这种算法叫做DOM diff,它可以极大提高网页的性能表现
+
+[返回目录](#0)
 
 <a name="4"></a>
 ### 关于`Webpack`
@@ -256,6 +273,8 @@ React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM
 `Webpack`是一个模块打包器.它将根据模块的依赖关系进行静态分析,然后将这些模块按照指定的规则生成对应的静态资源.
 
 <img src="doc/img/webpack.jpg">
+
+[返回目录](#0)
 
 #### Webpack特点
 
@@ -281,10 +300,14 @@ React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM
 
 接下来是在本项目中的应用
 
-[返回](#0)
+[返回目录](#0)
 
 <a name="5"></a>
 ### 初始化项目
+
+新建项目目录，并配置项目(package.json)
+
+[返回目录](#0)
 
 #### 创建项目目录,并初始化
 ```
@@ -840,6 +863,8 @@ dist/js/
 │  webpack.config.js
 ```
 
+[返回目录](#0)
+
 #### 目录结构说明
 
 * dist: 存放编译好的js文件,由webpack配置生成
@@ -862,6 +887,8 @@ dist/js/
 ### 具体实现
 
 接下来是react基本用法和简单组件的实现
+
+[返回目录](#0)
 
 #### Hello World
 
