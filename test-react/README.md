@@ -35,6 +35,17 @@ $ npm run dev
 
 本项目是对`React`和`Webpack`工具的基本用法的简单应用,并且整个项目均使用`ECMAScript 2015`规定的`Javascript`语法,欢迎指正错误,欢迎补充,欢迎`fork` :)
 
+<a name="0"></a>
+### 目录·
+  1. [准备](#1)
+  1. [关于`ECMAScript 2015`(`Javascript`)](#2)
+  1. [关于React](#3)
+  1. [关于`Webpack`](#4)
+  1. [初始化项目准备](#5)
+  1. [项目目录结构](#6)
+  1. [具体实现](#7)
+
+<a name="1"></a>
 ### 准备
 
 在使用本项目之前,请配置好如下开发环境
@@ -58,6 +69,9 @@ babel:  ES6/ES7(ECMAScript)编译工具
 browser: chrome v50+
 ```
 
+[返回](#0)
+
+<a name="2"></a>
 ### 关于`ECMAScript 2015`(`Javascript`)
 
 `ECMAScript`是一种由`ECMA`国际(前身为欧洲计算机制造商协会)通过`ECMA-262`标准化的脚本程序设计语言.
@@ -82,7 +96,7 @@ var test = (str) => {
 // 编译后
 "use strict";
 
-var test = function test(str) {
+var test = function(str) {
   console.log(str);
 };
 ```
@@ -230,11 +244,13 @@ $ npm i -g eslint-config-airbnb
 }
 ```
 
+<a name="3"></a>
 ### 关于React
 React是一个为数据提供渲染,HTML的视图的开源 JavaScript 库.React视图通常采用包含以自定义HTML 标记规定的其他组件的组件渲染.React 为开发者提供了一种子组件不能直接影响外层组件 ("data flows down") 的模型,数据改变时对HTML文档的有效更新,和现代单页应用中组件之间干净的分离  
 
 React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM节点,而是存在于内存之中的一种数据结构.只有当它插入文档以后,才会变成真实的DOM.根据React的设计,所有的DOM变动,都先在虚拟DOM上发生,然后再将实际发生变动的部分,反映在真实DOM上,这种算法叫做DOM diff,它可以极大提高网页的性能表现
 
+<a name="4"></a>
 ### 关于`Webpack`
 
 `Webpack`是一个模块打包器.它将根据模块的依赖关系进行静态分析,然后将这些模块按照指定的规则生成对应的静态资源.
@@ -265,6 +281,9 @@ React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM
 
 接下来是在本项目中的应用
 
+[返回](#0)
+
+<a name="5"></a>
 ### 初始化项目
 
 #### 创建项目目录,并初始化
@@ -274,7 +293,7 @@ $ cd test-react
 $ npm init 
 ```
 
-#### 执行完`npm init`命令，需要填写项目配置`package.json`,请注意不可忽略的选项
+#### 执行完`npm init`命令,需要填写项目配置`package.json`,请注意不可忽略的选项
 ```
 name: (test-react) //项目名称,可忽略
 version: (1.0.0) //项目版本,可忽略
@@ -791,7 +810,10 @@ $ webpack -p
 dist/js/
 ```
 
-### 项目目录结构如下
+[返回](#0)
+
+<a name="6"></a>
+### 项目目录结构
 ```
 ├─dist
 │  └─js
@@ -836,7 +858,8 @@ dist/js/
 * README.md: 项目说明文档
 * package.json: 项目配置文件
 
-### 开始
+<a name="7"></a>
+### 具体实现
 
 接下来是react基本用法和简单组件的实现
 
@@ -1257,9 +1280,9 @@ ReactDOM.render(
 
 #### 组件类的`PropTypes`属性
 
-在组件的属性(`props`)可以接受任意类型值，字符串、对象、函数等，所以需要做约束并且可以赋默认值,如果类型不符合`PropTypes`已设定好的类型则报错
+在组件的属性(`props`)可以接受任意类型值,字符串、对象、函数等,所以需要做约束并且可以赋默认值,如果类型不符合`PropTypes`已设定好的类型则报错
 
-在`components/props`目录下新建`PropTypes.js`,并定义`PropTypes`组件类，继承`React.Component`父类，定义构造方法，继承`this`对象，实现上面`Props`示例组件中的render方法
+在`components/props`目录下新建`PropTypes.js`,并定义`PropTypes`组件类,继承`React.Component`父类,定义构造方法,继承`this`对象,实现上面`Props`示例组件中的render方法
 ```
 import React, { Component } from 'react';
 
@@ -1322,7 +1345,7 @@ ReactDOM.render(
 
 #### 获取真实的`DOM`节点
 
-上面所有组件均不是真实的DOM,是存在于内存中的虚拟`DOM`,只有真正插入至文档中才是真实的`DOM`.`react`的核心原理是所有的`DOM`结构变化均是内存中虚拟`DOM`结构变化，然后将实际变动结构渲染至文档真实`DOM`结构中,此时如果需要获取真实的`DOM`结构，需要使用`ref`属性
+上面所有组件均不是真实的DOM,是存在于内存中的虚拟`DOM`,只有真正插入至文档中才是真实的`DOM`.`react`的核心原理是所有的`DOM`结构变化均是内存中虚拟`DOM`结构变化,然后将实际变动结构渲染至文档真实`DOM`结构中,此时如果需要获取真实的`DOM`结构,需要使用`ref`属性
 
 定义`RealDOM` `react`组件类,并定义`ref`属性为`test`如下所示
 ```
@@ -1346,7 +1369,7 @@ class RealDOM extends Component {
 export default RealDOM;
 ```
 
-在这里，定义点击事件钩子函数获取`ref`属性为的`test`的真实`DOM`结构的`innerHTML`值(`This is real DOM `),如下所示
+在这里,定义点击事件钩子函数获取`ref`属性为的`test`的真实`DOM`结构的`innerHTML`值(`This is real DOM `),如下所示
 ```
 // 定义钩子函数_handleClick,并绑定
 class RealDOM extends Component {
@@ -1383,7 +1406,7 @@ render() {
   }
 ```
 
-> 在这里`h3`的`ref`值是`test`,用`this.refs`就能取得真实的`DOM`结构,但是请注意根据以上逻辑，只有当虚拟`DOM`真正插入文档中时才能获取，即可通过事件获取
+> 在这里`h3`的`ref`值是`test`,用`this.refs`就能取得真实的`DOM`结构,但是请注意根据以上逻辑,只有当虚拟`DOM`真正插入文档中时才能获取,即可通过事件获取
 
 页面最终效果
 
@@ -1393,7 +1416,7 @@ render() {
 
 `react`核心思想之一就是监听状态变化(即状态机)引发组件重新渲染,且根据需要设置初始状态
 
-即使用`this.state`,`this.state`初始值是一个空对象，即可以给`this.state`赋任意属性,并设置初始状态，使用`this.setState()`方法改变状态
+即使用`this.state`,`this.state`初始值是一个空对象,即可以给`this.state`赋任意属性,并设置初始状态,使用`this.setState()`方法改变状态
 ```
 // 设置初始状态
 this.state.isDone = false 
@@ -1406,7 +1429,7 @@ this.setState({
 });
 ```
 
-下面用一个组件例子说明，定义`State`组件类
+下面用一个组件例子说明,定义`State`组件类
 ```
 class State extends Component {
   constructor(props) {
@@ -1430,7 +1453,7 @@ State.defaultProps = {
 export default State;
 ```
 
-加入`button`标签，通过点击事件改变组件状态
+加入`button`标签,通过点击事件改变组件状态
 ```
 return (
       <div>
@@ -1443,7 +1466,7 @@ return (
     );
 ```
 
-定义`props`属性，`text`,并设置默认值为`start`,同时在构造函数中初始化状态
+定义`props`属性,`text`,并设置默认值为`start`,同时在构造函数中初始化状态
 ```
 class State extends Component {
   constructor(props) {
@@ -1479,7 +1502,7 @@ State.defaultProps = {
 export default State;
 ```
 
-定义点击事件钩子函数，用于改变状态
+定义点击事件钩子函数,用于改变状态
 ```
 _handleClick() {
     let state = '';
@@ -1527,7 +1550,7 @@ ReactDOM.render(
 
 #### 组件生命周期
 
-根据`react`原理，每个组件均有生命周期.组件生命周期包括如下三种状态
+根据`react`原理,每个组件均有生命周期.组件生命周期包括如下三种状态
 ```
 * Mounting：已插入真实 DOM
 * Updating：正在被重新渲染
@@ -1555,7 +1578,7 @@ shouldComponentUpdate(object nextProps, object nextState) // 组件判断是否�
 
 示例如下
 
-定义`ComponentWillMount`组件类，定义构造方法,声明`componentWillMount`方法,设置初始状态`test`为`start`
+定义`ComponentWillMount`组件类,定义构造方法,声明`componentWillMount`方法,设置初始状态`test`为`start`
 ```
 class ComponentWillMount extends Component {
   constructor(props) {
@@ -1570,7 +1593,7 @@ class ComponentWillMount extends Component {
 export default ComponentWillMount;
 ```
 
-实现`componentWillMount`方法,打印初始状态，然后再改变状态，将状态`test`改为`end`
+实现`componentWillMount`方法,打印初始状态,然后再改变状态,将状态`test`改为`end`
 ```
 componentWillMount() {
    console.log(`[Method] componentWillMount\n[State test] ${this.state.test}`);
@@ -1614,7 +1637,7 @@ ReactDOM.render(
 
 ##### componentDidMount用法
 
-当组件完成插入真实`DOM`后执行，请注意此处不能使用'this.setState'方法,否则会陷入死循环，组件会被不停地改变状态刷新组件
+当组件完成插入真实`DOM`后执行,请注意此处不能使用'this.setState'方法,否则会陷入死循环,组件会被不停地改变状态刷新组件
 
 示例如下
 
@@ -1665,11 +1688,11 @@ ReactDOM.render(
  
 ##### componentWillUpdate
 
-组件即将被渲染之前执行,可以通过事件触发状态改变，刷新组件
+组件即将被渲染之前执行,可以通过事件触发状态改变,刷新组件
 
 示例如下
 
-定义`ComponentWillUpdate`组件类，定义构造方法,声明`ComponentWillUpdate`方法,设置初始状态`test`为`start`,实现`ComponentDidMount`方法和`render`方法,并打印前后状态
+定义`ComponentWillUpdate`组件类,定义构造方法,声明`ComponentWillUpdate`方法,设置初始状态`test`为`start`,实现`ComponentDidMount`方法和`render`方法,并打印前后状态
 ```
 class ComponentWillUpdate extends Component {
   constructor(props) {
@@ -1698,7 +1721,7 @@ class ComponentWillUpdate extends Component {
 }
 ```
 
-实现点击事件钩子函数，并给按钮绑定钩子函数
+实现点击事件钩子函数,并给按钮绑定钩子函数
 ```
 class ComponentWillUpdate extends Component {
   constructor(props) {
@@ -1768,7 +1791,7 @@ ReactDOM.render(
 
 组件完成渲染后执行
 
-定义`ComponentDidUpdate`组件类，按照上面的`ComponentWillUpdate`组件实现类似的方法和配置
+定义`ComponentDidUpdate`组件类,按照上面的`ComponentWillUpdate`组件实现类似的方法和配置
 ```
 class ComponentDidUpdate extends Component {
   constructor(props) {
@@ -1830,7 +1853,7 @@ class ComponentDidUpdate extends Component {
 
 移除真实`DOM`时执行
 
-定义`ComponentWillUnmount`组件类，用`ReactDOM.unmountComponentAtNode`移除组件
+定义`ComponentWillUnmount`组件类,用`ReactDOM.unmountComponentAtNode`移除组件
 ```
 class ComponentWillUnmount extends Component {
   constructor(props) {
@@ -1882,7 +1905,7 @@ ReactDOM.unmountComponentAtNode(document.getElementById('example6_5'));
 
 示例如下
 
-定义`ComponentWillReceiveProps`组件类,并定义`props.test`属性,初始化`state`，并将`props.test`传递给`this.state.test`,通过点击事件触发状态改变，同时需要外部调用`ComponentWillReceiveProps`组件类，并且将点击事件传递至`ComponentWillReceiveProps`组件类，且使该组件接收到新的`props`
+定义`ComponentWillReceiveProps`组件类,并定义`props.test`属性,初始化`state`,并将`props.test`传递给`this.state.test`,通过点击事件触发状态改变,同时需要外部调用`ComponentWillReceiveProps`组件类,并且将点击事件传递至`ComponentWillReceiveProps`组件类,且使该组件接收到新的`props`
 ```
 class ComponentWillReceiveProps extends Component {
   constructor(props) {
@@ -1918,7 +1941,7 @@ class ComponentWillReceiveProps extends Component {
     }
   }
 
-  // 定义钩子函数，由外部传递事件函数
+  // 定义钩子函数,由外部传递事件函数
   _handleClick() {
     document.getElementById('contentId_7')
            .append(`[Method] _handleClick\n[State test] ${this.state.test}\n`);
@@ -1943,7 +1966,7 @@ ComponentWillReceiveProps.propTypes = {
   _handleClick: React.PropTypes.func,
 };
 
-// 函数类型的propTypes必须有默认值，这里赋空函数
+// 函数类型的propTypes必须有默认值,这里赋空函数
 ComponentWillReceiveProps.defaultProps = {
   _handleClick: () => (null),
 };
@@ -2004,7 +2027,7 @@ ReactDOM.render(
 
 示例如下
 
-定义`ShouldComponentUpdate`,初始化状态，并用事件触发改变状态，在`shouldComponentUpdate`方法和`render`中打印状态
+定义`ShouldComponentUpdate`,初始化状态,并用事件触发改变状态,在`shouldComponentUpdate`方法和`render`中打印状态
 ```
 class ShouldComponentUpdate extends Component {
   constructor(props) {
@@ -2061,7 +2084,7 @@ class ShouldComponentUpdate extends Component {
 
 <img src="doc/img/show18.jpg">
 
-请注意此方法要设置返回值，否则会提示如下警告
+请注意此方法要设置返回值,否则会提示如下警告
 ```
 Warning: ShouldComponentUpdate.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.
 ```
@@ -2069,6 +2092,8 @@ Warning: ShouldComponentUpdate.shouldComponentUpdate(): Returned undefined inste
 如果返回值是`false`,那么下一个`render`不会执行
 
 <img src="doc/img/show19.jpg">
+
+[返回](#0)
 
 ## 参考
 
