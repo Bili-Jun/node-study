@@ -6,28 +6,28 @@ React.js\ECMAScript 2015\Webpack usage
 ## Install
 
 #### Install node module package
-```
+```shell
 $ cd test-dialog
 $ npm install
 ```
 
 ## Compile and build
-```
+```shell
 $ npm run build
 ```
 
 #### You also can use this command
-```
+```shell
 $ webpack
 ```
 
 #### Build with press
-```
+```shell
 $ webpack -p
 ```
 
 ## Develop
-```
+```shell
 $ npm run dev
 ```
 
@@ -145,7 +145,7 @@ $ npm run dev
 ### 准备
 
 在使用本项目之前,请配置好如下开发环境
-```
+```shell
 node.js: v6.x/v7.x
 ```
 
@@ -210,7 +210,7 @@ $ npm install -g babel-cli
 `Babel`使用命令如下
 
 > 转码结果输出到标准输出
-```
+```shell
 $ babel example.js
 ```
 
@@ -241,7 +241,7 @@ $ babel src -d lib -s
 在项目中使用需要配置`babel`配置文件:`.babelrc`
 
 > `.babelrc`存放在项目的根目录下,并需要按照如下格式配置
-```
+```javascript
 {
   "presets": [],
   "plugins": []
@@ -332,7 +332,7 @@ $ npm i -g eslint-config-airbnb
 ```
 
 在项目的根目录下新建一个.eslintrc文件,配置ESLint,格式如下
-```
+```javascript
 {
   "extends": "eslint-config-airbnb",
   "rules": {}
@@ -340,7 +340,7 @@ $ npm i -g eslint-config-airbnb
 ```
 
 `rules`可以配置需要过滤的规则
-```
+```javascript
 {
   "extends": "eslint-config-airbnb",
   "rules": {
@@ -414,7 +414,7 @@ $ npm init
 #### 初始化`package.json`
 
 执行完`npm init`命令,需要填写项目配置`package.json`,请注意不可忽略的选项
-```
+```javascript
 name: (test-react) //项目名称,可忽略
 version: (1.0.0) //项目版本,可忽略
 description: Study react.js // 项目描述,可忽略
@@ -430,7 +430,7 @@ license: (ISC) // 开源协议,可忽略
 
 <a name="5.2.1"></a>
 ##### `package.json`初始化配置清单
-```
+```json
 {
   "name": "test-react",
   "version": "1.0.0",
@@ -453,7 +453,7 @@ license: (ISC) // 开源协议,可忽略
 ##### 配置项目完整清单
 
 加入`React`依赖包
-```
+```json
 "dependencies": {
   "lodash": "4.16.4",
   "react": "15.2.1",
@@ -462,7 +462,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 加入`webpack`工具
-```
+```json
 "devDependencies": {
   "extract-text-webpack-plugin": "~0.8.2",
   "webpack": "^1.7.3",
@@ -471,7 +471,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 加入`babel`编译工具
-```
+```json
 "devDependencies": {
   "babel-core": "^6.5.2",
   "babel-eslint": "^4.1.8",
@@ -490,7 +490,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 加入代码校验工具`ESLint`
-```
+```json
 "devDependencies": {
   "babel-core": "^6.5.2",
   "babel-eslint": "^4.1.8",
@@ -518,7 +518,7 @@ license: (ISC) // 开源协议,可忽略
 ##### 配置`Webpack`开发环境(`webpack-dev-server`)
 
 在`package.json`中按下配置
-```
+```json
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "webpack-dev-server --devtool eval --progress --colors --open --hot --content-base ./example",
@@ -559,7 +559,7 @@ license: (ISC) // 开源协议,可忽略
 
 <a name="5.3"></a>
 #### 完整`package.json`清单
-```
+```json
 {
   "name": "test-react",
   "version": "0.0.1",
@@ -613,7 +613,7 @@ $ npm install
 #### 配置编译工具`Babel`
 
 新建`.babelrc`文件,配置清单如下
-```
+```json
 {
     "presets": [
         "es2015",
@@ -636,7 +636,7 @@ node_modules
 
 <a name="5.3"></a>
 #### 配置语法检查工具`eclint`
-```
+```json
 {
     "env": {
     "node": true,
@@ -656,7 +656,7 @@ node_modules
 
 <a name="5.4"></a>
 #### 新建工程目录`src`
-```
+```shell
 $ mkdir src
 ```
 
@@ -664,7 +664,7 @@ $ mkdir src
 ##### 新建静态资源目录
 
 在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`
-```
+```shell
 $ mkdir src
 $ mkdir src/components
 $ mkdir src/img
@@ -675,7 +675,7 @@ $ mkdir src/view
 ##### 配置出口文件
 
 在`src`新建出口文件`index.js`和用于测试的出口文件`index.test.js`
-```
+```shell
 $ touch index.js
 $ touch index.test.js
 ```
@@ -694,7 +694,7 @@ $ touch index.test.js
 #### 初始化
 
 引入`node` `path`模块,用于获取文件路径,引入`ExtractTextPlugin`外部加载文件插件,初始化`node`依赖包路径
-```
+```javascript
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = path.resolve(__dirname,'node_modules');
@@ -703,21 +703,21 @@ const nodeModulesPath = path.resolve(__dirname,'node_modules');
 > 这里使用`ECMAScript 2015`不可随意修改的变量类型`const`,具有块级作用域的作用,可避免`var`声明的变量存在变量提升和随意修改的问题 
 
 使用`module.export`输出配置
-```
+```javascript
 module.exports = {
   //webpack配置清单
 }
 ```
 
 设置`devtool`属性为`false`,在`webpack`打包时不生成`sourcemap`信息
-```
+```javascript
 module.exports = {
   devtool: false
 }
 ```
 
 设置`webpack`入口文件,即编译入口文件
-```
+```javascript
 entry: {
   'TestReact.test': path.join(__dirname,'src','index.test.js'),// demo测试程序入口文件
   TestReact: path.join(__dirname,'src','index.js'),
@@ -725,7 +725,7 @@ entry: {
 ```
 
 设置输出文件目录以及`chunk`文件
-```
+```javascript
 output: {
   path: path.join(__dirname,'dist'),// 输出目录（编译生成文件目录）
   publicPath: '',
@@ -741,7 +741,7 @@ output: {
 
 <a name="6.2.1"></a>
 ##### 配置`ESLint`预加载,用于语法检查
-```
+```javascript
 module: {
   preLoaders: [
     {
@@ -761,7 +761,7 @@ module: {
 ##### 配置模块插件
 
 配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node.js`依赖包的编译
-```
+```javascript
 module: {
   preLoaders: [
     {
@@ -788,7 +788,7 @@ module: {
 ##### 外部引入`react/react-dom`
 
 为了便于更好的扩展性,且同时编译`react/react-dom`,生成的文件会很大,比较消耗资源,在页面中加载数MB的`js`文件并不理想,所以在这里进行如下配置,可以将`react/react-dom`通过`CDN`依赖等外部引入的方式加载至页面
-```
+```javascript
 externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -801,7 +801,7 @@ externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
 ##### 配置`webpack-dev-server`服务端口
 
 `webpack-dev-server`也可以在这里配置,包括服务监听端口号
-```
+```javascript
 devServer: {
   hot: true,
   inline: true,// webpack-dev-server有两种模式,默认是false,即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
@@ -816,7 +816,7 @@ devServer: {
 ##### 加载`ESLint`配置文件
 
 在上面步骤中已预加载`ESLint`模块,在这里需要加入`ESLint`配置文件
-```
+```javascript
 eslint: {
   configFile: '.eslintrc',
 }
@@ -826,7 +826,7 @@ eslint: {
 
 <a name="6.3"></a>
 #### 完整`webpack`清单
-```
+```javascript
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = path.resolve(__dirname,'node_modules');
@@ -886,7 +886,7 @@ module.exports = {
 #### 配置`webpack-dev-server`入口html页面
 
 在`package.json`中有如下配置
-```
+```json
 "scripts": {
     // ...
     "dev": "webpack-dev-server --devtool eval --progress --colors --open --hot --content-base ./example",
@@ -899,7 +899,7 @@ $ touch index.html
 ```
 
 在`index.html`中用CDN链接引入`react.js`\ `react-dom.js`
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -919,19 +919,19 @@ $ touch index.html
 ```
 
 定义存放`react`组件的容器
-```
+```html
 <div id="example" ></div>
 ```
 
 接下来引入编译好的`TestReact.test.js`,请注意根据前面配置的`webpack`清单,`index.test.js`编译后生成`TestReact.test.js`,且运行在`webpack-dev-server`服务缓存中,所以在这里需要使用服务url地址
-```
+```html
 <script src="http://localhost:3001/js/TestReact.test.js"></script>
 ```
 
 > 请注意`react.js`/`react-dom.js`加载顺序
 
 组件js代码一定要在容器之后引入,否则会报错
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1076,7 +1076,7 @@ $ touch HelloWorld.js
 ##### 具体实现
 
 在`HelloWorld.js`中引入`react.js`
-```
+```javascript
 import React,{ Component } from 'react';
 ```
 
@@ -1084,24 +1084,24 @@ import React,{ Component } from 'react';
 > import命令接受一对大括号,里面指定要从其他模块导入的变量名.大括号里面的变量名,必须与被导入模块对外接口的名称相同
 
 定义`HelloWorld`类,并继承React.Component,请注意在react/`ECMAScript 2015`中定义组件(声明组件)时,组件名称(类名)首字母要大写,遵循驼峰命名
-```
+```javascript
 class HelloWorld extends Component {
 
 }
 ```
 
 > 请注意这里使用`ECMAScript 2015`标准规定的类(`class`)的用法,在`ES5`中声明类即是原型
-```
+```javascript
 function Test(){}
 ```
 
 > 类的属性即是对原型的操作
-```
+```javascript
 Test.prototype.method = {}
 ```
 
 > 继承父类就是对原型赋值
-```
+```javascript
 function fatherClass(){
   this.flag = true; // 父类属性
 }
@@ -1120,7 +1120,7 @@ t.method();
 ```
 
 > 子类继承父类属性,且子类不能向父类传值;ES6(ECMAScript 2015)是同样的,但是需要写构造方法继承父类的`this`对象
-```
+```javascript
 class HelloWorld extends Component {
   constructor(props){
     super(props)
@@ -1131,7 +1131,7 @@ class HelloWorld extends Component {
 接下来渲染组件,使用`react`的`JSX`模板语言,在`render`方法中`return` `html` `DOM`标签
 
 > 请注意`react`单一组件包含多个子组件(标签)时需要设置`key`作为标识符
-```
+```javascript
 class HelloWorld extends Component {
   render() {
     return (
@@ -1145,7 +1145,7 @@ class HelloWorld extends Component {
 ```
 
 最后导出HelloWorld组件类
-```
+```javascript
 export default HelloWorld;
 ```
 
@@ -1154,7 +1154,7 @@ export default HelloWorld;
 > 使用export命令定义了模块的对外接口以后,其他 JS 文件就可以通过import命令加载这个模块
 
 > 导出多个变量
-```
+```javascript
 var firstName = 'Michael';
 var lastName = 'Jackson';
 var year = 1958;
@@ -1163,21 +1163,21 @@ export {firstName,lastName,year};
 ```
 
 > 在本例中,使用默认指定模块导出
-```
+```javascript
 export default ...
 ```
 
 接下来使用`ReactDOM`将`HelloWorld`组件渲染至页面
 
 在`index.test.js`中引入`react`/`react-dom`以及`HelloWorld`组件
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HelloWorld from './components/test/HelloWorld';
 ```
 
 渲染组件,将组件绑定到容器中
-```
+```javascript
 ReactDOM.render(
   <HelloWorld />,
   document.getElementById('example1')
@@ -1212,7 +1212,7 @@ $ touch Example.js
 ```
 
 同上引入`react`并新建`JSX`类
-```
+```javascript
 import React,{ Component } from 'react';
 
 class JSX extends Component {
@@ -1221,7 +1221,7 @@ class JSX extends Component {
 ```
 
 在`render`方法里面写如下`html`标签
-```
+```javascript
 class JSX extends Component {
   render() {
     return (
@@ -1236,7 +1236,7 @@ class JSX extends Component {
 ```
 
 > 请注意`render`方法不可以返回多个`html`标签,必须由父节点包裹子节点,如下代码是错误的
-```
+```javascript
 render() {
     return (
       <div title={1}></div>
@@ -1247,7 +1247,7 @@ render() {
 ```
 
 在`JSX`模板加入`js`变量`value`
-```
+```javascript
 class JSX extends Component {
   render() {
     const value = 'This is a js value';
@@ -1264,7 +1264,7 @@ class JSX extends Component {
 ```
 
 如果变量是数组,则会遍历数组然后均显示出来,加入number数组`array`变量和`DOM`数组`arrDOM`变量
-```
+```javascript
 class JSX extends Component {
   render() {
     const value = 'This is a js value';
@@ -1291,11 +1291,11 @@ class JSX extends Component {
 
 > 在这里使用了`ES6`语法中的模板字符串,用法如下
 > 上面的字符串拼接代码在`ES5`中可以这样写
-```
+```javascript
 '[' + array.join(',') + ']';
 ```
 > 在`ES6`中使用两个反引号\` \`将字符串内容包裹起来,同时使用`${ }`包裹`js`表达式,例如
-```
+```javascript
 var a = 17.5;
 var b = 9;
 console.log(`a*b=${a*b} a+b=${a+b} a/b=${a/b}`);
@@ -1304,12 +1304,12 @@ console.log(`a*b=${a*b} a+b=${a+b} a/b=${a/b}`);
 ```
 
 导出组件
-```
+```javascript
 export default JSX;
 ```
 
 渲染至页面
-```
+```javascript
 // src/index.test.js
 
 import React from 'react';
@@ -1324,7 +1324,7 @@ ReactDOM.render(
 );
 ```
 
-```
+```html
 <!--  example/index.html -->
 
 <!DOCTYPE html>
@@ -1358,7 +1358,7 @@ ReactDOM.render(
 #### 组件属性:props用法
 
 在`component/props`目录中新建`Props.js`文件,并定义组件,添加构造方法来继承`React.Component`父类`this`对象包括`this.props`属性
-```
+```javascript
 import React,{ Component } from 'react';
 
 class Props extends Component {
@@ -1374,7 +1374,7 @@ export default Props;
 ```
 
 在`render`方法中对`props`按如下方式处理,请注意react中封装了html标签的基本属性,例如`onClick`,`type`,`title`等,像标签的`class`属性即为`className`,即`class`作为关键字不可以作为组件属性名使用
-```
+```javascript
 render() {
     const props = this.props;
     return (
@@ -1388,7 +1388,7 @@ render() {
 ```
 
 在使用`ReactDOM.render`渲染组件的时候可以自行配置`props`,即组件对外提供`API`实现一系列的操作,在这里定义`className` props属性为`test`
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1404,7 +1404,7 @@ ReactDOM.render(
 );
 ```
 
-```
+```html
 <!--  example/index.html -->
 
 <!DOCTYPE html>
@@ -1438,7 +1438,7 @@ ReactDOM.render(
 ##### `this.props.children`属性
 
 `this.props.children`它表示组件的所有子节点,可以使用React.Children.map遍历子节点,在回调函数中返回结果集
-```
+```javascript
 import React,{ Component } from 'react';
 
 class Props extends Component {
@@ -1468,7 +1468,7 @@ export default Props;
 > 这里需要注意,`this.props.children` 的值有三种可能：如果当前组件没有子节点,它就是 `undefined`;如果有一个子节点,数据类型是 object;如果有多个子节点,数据类型就是 `array`.所以,处理 `this.props.children` 的时候要小心
 
 `ReactDOM.render`渲染组件,即是将子组件嵌入`Props`组件中
-```
+```javascript
 // index.test.js
 
 ReactDOM.render(
@@ -1494,7 +1494,7 @@ ReactDOM.render(
 在组件的属性(`props`)可以接受任意类型值,字符串、对象、函数等,所以需要做约束并且可以赋默认值,如果类型不符合`PropTypes`已设定好的类型则报错
 
 在`components/props`目录下新建`PropTypes.js`,并定义`PropTypes`组件类,继承`React.Component`父类,定义构造方法,继承`this`对象,实现上面`Props`示例组件中的render方法
-```
+```javascript
 import React, { Component } from 'react';
 
 class PropTypes extends Component {
@@ -1525,7 +1525,7 @@ export default PropTypes;
 ```
 
 定义`PropTypes`属性
-```
+```javascript
 PropTypes.PropTypes = {
   test: React.PropTypes.string, // 规定test属性类型为string
   num: React.PropTypes.number, // 规定num属性类型为number
@@ -1533,7 +1533,7 @@ PropTypes.PropTypes = {
 ```
 
 定义`PropTypes` 默认值
-```
+```javascript
 PropTypes.defaultProps = {
   test: 'test',
   num: 1,
@@ -1541,7 +1541,7 @@ PropTypes.defaultProps = {
 ```
 
 渲染组件
-```
+```javascript
 ReactDOM.render(
   <PropTypes className = {'test'} num={2} />,
   document.getElementById('example3_1')
@@ -1562,7 +1562,7 @@ ReactDOM.render(
 上面所有组件均不是真实的DOM,是存在于内存中的虚拟`DOM`,只有真正插入至文档中才是真实的`DOM`.`react`的核心原理是所有的`DOM`结构变化均是内存中虚拟`DOM`结构变化,然后将实际变动结构渲染至文档真实`DOM`结构中,此时如果需要获取真实的`DOM`结构,需要使用`ref`属性
 
 定义`RealDOM` `react`组件类,并定义`ref`属性为`test`如下所示
-```
+```javascript
 import React, { Component } from 'react';
 
 class RealDOM extends Component {
@@ -1584,7 +1584,7 @@ export default RealDOM;
 ```
 
 在这里,定义点击事件钩子函数获取`ref`属性为的`test`的真实`DOM`结构的`innerHTML`值(`This is real DOM `),如下所示
-```
+```javascript
 // 定义钩子函数_handleClick,并绑定
 class RealDOM extends Component {
   constructor(props) {
@@ -1606,7 +1606,7 @@ class RealDOM extends Component {
 }
 ```
 
-```
+```javascript
 // 定义button按钮设置onClick事件
 
 render() {
@@ -1634,7 +1634,7 @@ render() {
 `react`核心思想之一就是监听状态变化(即状态机)引发组件重新渲染,且根据需要设置初始状态
 
 即使用`this.state`,`this.state`初始值是一个空对象,即可以给`this.state`赋任意属性,并设置初始状态,使用`this.setState()`方法改变状态
-```
+```javascript
 // 设置初始状态
 this.state.isDone = false 
 
@@ -1647,7 +1647,7 @@ this.setState({
 ```
 
 下面用一个组件例子说明,定义`State`组件类
-```
+```javascript
 class State extends Component {
   constructor(props) {
     super(props);
@@ -1671,7 +1671,7 @@ export default State;
 ```
 
 加入`button`标签,通过点击事件改变组件状态
-```
+```javascript
 return (
       <div>
         <h3 key={`title0`}>Example 5. State</h3>
@@ -1684,7 +1684,7 @@ return (
 ```
 
 定义`props`属性,`text`,并设置默认值为`start`,同时在构造函数中初始化状态
-```
+```javascript
 class State extends Component {
   constructor(props) {
     super(props);
@@ -1720,7 +1720,7 @@ export default State;
 ```
 
 定义点击事件钩子函数,用于改变状态
-```
+```javascript
 _handleClick() {
     let state = '';
     if (this.state.text === 'start') {
@@ -1739,7 +1739,7 @@ _handleClick() {
 ```
 
 在构造函数中为钩子函数绑定`this`对象
-```
+```javascript
 [
   'render',
   '_handleClick',
@@ -1747,12 +1747,12 @@ _handleClick() {
 ```
 
 给按钮`onClick`绑定钩子函数
-```
+```javascript
 <button key={`title3`} onClick = {this._handleClick}>button</button>
 ```
 
 将组件渲染至页面
-```
+```javascript
 ReactDOM.render(
   <State />,
   document.getElementById('example5')
@@ -1778,7 +1778,7 @@ ReactDOM.render(
 ```
 
 同时对应这几个状态分别有如下几种方法
-```
+```javascript
 componentWillMount() // 即将插入真实`DOM`之前
 componentDidMount()  // 完成插入真实`DOM`
 componentWillUpdate(object nextProps, object nextState) // 组件即将被渲染之前
@@ -1787,7 +1787,7 @@ componentWillUnmount()  // 移除真实`DOM`
 ```
 
 还有如下两种方法
-```
+```javascript
 componentWillReceiveProps(object nextProps)  // 已加载组件收到新的参数时调用
 shouldComponentUpdate(object nextProps, object nextState) // 组件判断是否重新渲染时调用
 ```
@@ -1800,7 +1800,7 @@ shouldComponentUpdate(object nextProps, object nextState) // 组件判断是否�
 示例如下
 
 定义`ComponentWillMount`组件类,定义构造方法,声明`componentWillMount`方法,设置初始状态`test`为`start`
-```
+```javascript
 class ComponentWillMount extends Component {
   constructor(props) {
     super(props);
@@ -1815,7 +1815,7 @@ export default ComponentWillMount;
 ```
 
 实现`componentWillMount`方法,打印初始状态,然后再改变状态,将状态`test`改为`end`
-```
+```javascript
 componentWillMount() {
    console.log(`[Method] componentWillMount\n[State test] ${this.state.test}`);
    document.getElementById('contentId_2')
@@ -1827,7 +1827,7 @@ componentWillMount() {
 ```
 
 实现`render`方法,打印状态
-```
+```javascript
 render() {
     console.log(`[Method] render\n[State test] ${this.state.test}`);
     document.getElementById('contentId_2')
@@ -1843,7 +1843,7 @@ render() {
 ```
 
 将组件渲染至页面
-```
+```javascript
 // index.test.html 
 
 ReactDOM.render(
@@ -1866,7 +1866,7 @@ ReactDOM.render(
 示例如下
 
 定义`ComponentDidMount`组件类,初始化状态`this.state.test`为'start',实现`ComponentDidMount`方法和`render`方法,并打印前后状态
-```
+```javascript
 class ComponentDidMount extends Component {
   constructor(props) {
     super(props);
@@ -1899,7 +1899,7 @@ class ComponentDidMount extends Component {
 ```
 
 将组件渲染至页面
-```
+```javascript
 ReactDOM.render(
   <ComponentDidMount />,
   document.getElementById('example6_2')
@@ -1920,7 +1920,7 @@ ReactDOM.render(
 示例如下
 
 定义`ComponentWillUpdate`组件类,定义构造方法,声明`ComponentWillUpdate`方法,设置初始状态`test`为`start`,实现`ComponentDidMount`方法和`render`方法,并打印前后状态
-```
+```javascript
 class ComponentWillUpdate extends Component {
   constructor(props) {
     super(props);
@@ -1949,7 +1949,7 @@ class ComponentWillUpdate extends Component {
 ```
 
 实现点击事件钩子函数,并给按钮绑定钩子函数
-```
+```javascript
 class ComponentWillUpdate extends Component {
   constructor(props) {
     super(props);
@@ -2001,7 +2001,7 @@ class ComponentWillUpdate extends Component {
 ```
 
 渲染组件
-```
+```javascript
 ReactDOM.render(
   <ComponentWillUpdate />,
   document.getElementById('example6_3')
@@ -2022,7 +2022,7 @@ ReactDOM.render(
 组件完成渲染后执行
 
 定义`ComponentDidUpdate`组件类,按照上面的`ComponentWillUpdate`组件实现类似的方法和配置
-```
+```javascript
 class ComponentDidUpdate extends Component {
   constructor(props) {
     super(props);
@@ -2087,7 +2087,7 @@ class ComponentDidUpdate extends Component {
 移除真实`DOM`时执行
 
 定义`ComponentWillUnmount`组件类,用`ReactDOM.unmountComponentAtNode`移除组件
-```
+```javascript
 class ComponentWillUnmount extends Component {
   constructor(props) {
     super(props);
@@ -2119,7 +2119,7 @@ class ComponentWillUnmount extends Component {
 }
 ```
 
-```
+```javascript
 ReactDOM.render(
   <ComponentWillUnmount />,
   document.getElementById('example6_5')
@@ -2142,7 +2142,7 @@ ReactDOM.unmountComponentAtNode(document.getElementById('example6_5'));
 示例如下
 
 定义`ComponentWillReceiveProps`组件类,并定义`props.test`属性,初始化`state`,并将`props.test`传递给`this.state.test`,通过点击事件触发状态改变,同时需要外部调用`ComponentWillReceiveProps`组件类,并且将点击事件传递至`ComponentWillReceiveProps`组件类,且使该组件接收到新的`props`
-```
+```javascript
 class ComponentWillReceiveProps extends Component {
   constructor(props) {
     super(props);
@@ -2208,7 +2208,7 @@ ComponentWillReceiveProps.defaultProps = {
 };
 ```
 
-```
+```javascript
 // index.test.js
 
 class Test extends Component {
@@ -2267,7 +2267,7 @@ ReactDOM.render(
 示例如下
 
 定义`ShouldComponentUpdate`,初始化状态,并用事件触发改变状态,在`shouldComponentUpdate`方法和`render`中打印状态
-```
+```javascript
 class ShouldComponentUpdate extends Component {
   constructor(props) {
     super(props);
@@ -2324,7 +2324,7 @@ class ShouldComponentUpdate extends Component {
 <img src="doc/img/show18.jpg">
 
 请注意此方法要设置返回值,否则会提示如下警告
-```
+```javascript
 Warning: ShouldComponentUpdate.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.
 ```
 
