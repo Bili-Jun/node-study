@@ -42,13 +42,13 @@ $ npm run dev
 
       2.1  [关于`Babel`](#2.1)
 
-          2.1.1  [`Babel`使用](#2.1.1)
+        *  [`Babel`使用](#2.1.1)
       
-      2.2  [关于`Eslint`](#2.2)
+        *  [关于`Eslint`](#2.2)
 
-          2.2.1  [`eslint`使用](#2.2.1)
+        *  [`eslint`使用](#2.2.1)
 
-          2.2.2  [`eslint`使用](#2.2.2)
+        *  [`eslint`使用](#2.2.2)
 
   1. [关于React](#3)
   1. [关于`Webpack`](#4)
@@ -61,19 +61,19 @@ $ npm run dev
 
       5.2  [初始化`package.json`](#5.2)
 
-          5.2.1  [`package.json`初始化配置清单](#5.2.1)
+        *  [`package.json`初始化配置清单](#5.2.1)
 
-          5.2.2  [配置项目完整清单](#5.2.2)
+        *  [配置项目完整清单](#5.2.2)
 
-          5.2.3  [配置`Webpack`开发环境(`webpack-dev-server`)](#5.2.3)
+        *  [配置`Webpack`开发环境(`webpack-dev-server`)](#5.2.3)
 
       5.3  [完整`package.json`清单](#5.3)
 
       5.4  [新建工程目录`src`](#5.4)
 
-          5.4.1  [在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`](#5.4.1)
+        *  [在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`](#5.4.1)
 
-          5.4.2  [在`src`新建出口文件`index.js`和用于测试的出口文件](#5.4.2)
+        *  [在`src`新建出口文件`index.js`和用于测试的出口文件](#5.4.2)
 
   1. [`webpack`配置（项目构建）](#6)
 
@@ -81,15 +81,15 @@ $ npm run dev
 
       6.2  [模块和插件配置](#6.2)
 
-          6.2.1  [配置`ESLint`预加载,用于语法检查](#6.2.1)
+        *  [配置`ESLint`预加载,用于语法检查](#6.2.1)
 
-          6.2.2  [配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node.js`依赖包的编译](#6.2.2)
+        *  [配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node.js`依赖包的编译](#6.2.2)
 
-          6.2.3  [外部引入`react/react-dom`](#6.2.3)
+        *  [外部引入`react/react-dom`](#6.2.3)
 
-          6.2.4  [`webpack-dev-server`也可以在这里配置,包括服务监听端口号](#6.2.4)
+        *  [`webpack-dev-server`也可以在这里配置,包括服务监听端口号](#6.2.4)
 
-          6.2.5  [加载`ESLint`配置文件,由于上面进行`ESLint`模块预加载,在这里需要加入`ESLint`配置文件](#6.2.5)
+        *  [加载`ESLint`配置文件,由于上面进行`ESLint`模块预加载,在这里需要加入`ESLint`配置文件](#6.2.5)
 
       6.3  [完整`webpack`清单](#6.3)
 
@@ -97,9 +97,9 @@ $ npm run dev
 
       6.5  [执行构建/编译](#6.5)
 
-          6.5.1  [启动`webpack-dev-server`开发环境](#6.5.1)
+        *  [启动`webpack-dev-server`开发环境](#6.5.1)
 
-          6.5.2  [构建/编译](#6.5.2)
+        *  [构建/编译](#6.5.2)
 
   1. [项目目录结构](#7)
 
@@ -109,17 +109,17 @@ $ npm run dev
 
       8.1  [Hello World](#8.1)
 
-          8.1.1  [在`components`目录新建`test`目录,并在`Test`目录下新建`HelloWorld.js`文件](#8.1.1)
+        *  [在`components`目录新建`test`目录,并在`Test`目录下新建`HelloWorld.js`文件](#8.1.1)
 
-          8.1.2  [具体实现](#8.1.2)
+        *  [具体实现](#8.1.2)
 
       8.2  [React JSX模板用法](#8.2)
 
-          8.2.1  [具体实现](#8.2.1)
+        *  [具体实现](#8.2.1)
 
       8.3  [组件属性:props用法](#8.3)
 
-          8.3.1  [`this.props.children`属性](#8.3.1)
+        *  [`this.props.children`属性](#8.3.1)
 
       8.4  [组件类的`PropTypes`属性](#8.4)
 
@@ -129,19 +129,19 @@ $ npm run dev
 
       8.7  [组件生命周期](#8.7)
 
-          8.7.1  [componentWillMount用法](#8.7.1)
+        *  [componentWillMount用法](#8.7.1)
 
-          8.7.2  [componentWillMount用法](#8.7.2)
+        *  [componentWillMount用法](#8.7.2)
 
-          8.7.3  [componentDidMount用法](#8.7.3)
+        *  [componentDidMount用法](#8.7.3)
 
-          8.7.4  [componentDidUpdate用法](#8.7.4)
+        *  [componentDidUpdate用法](#8.7.4)
 
-          8.7.5  [componentWillUnmount用法](#8.7.5)
+        *  [componentWillUnmount用法](#8.7.5)
 
-          8.7.6  [componentWillReceiveProps用法](#8.7.6)
+        *  [componentWillReceiveProps用法](#8.7.6)
 
-          8.7.7  [ShouldComponentUpdate用法](#8.7.7)
+        *  [ShouldComponentUpdate用法](#8.7.7)
 
 <a name="1"></a>
 ### 准备
