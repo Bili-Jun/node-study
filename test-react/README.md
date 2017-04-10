@@ -12,22 +12,22 @@ $ npm install
 ```
 
 ## Compile and build
-```shell
+```javascript
 $ npm run build
 ```
 
 #### You also can use this command
-```shell
+```javascript
 $ webpack
 ```
 
 #### Build with press
-```shell
+```javascript
 $ webpack -p
 ```
 
 ## Develop
-```shell
+```javascript
 $ npm run dev
 ```
 
@@ -145,23 +145,23 @@ $ npm run dev
 ### 准备
 
 在使用本项目之前,请配置好如下开发环境
-```shell
+```javascript
 node.js: v6.x/v7.x
 ```
 
 开发工具建议使用
-```
+```javascript
 Visual Studio Code/Atom
 ```
 
 若使用如上开发工具,建议安装如下插件
-```
+```javascript
 eslint: ES6/ES7(ECMAScript)语法检查工具
 babel:  ES6/ES7(ECMAScript)编译工具
 ```
 
 实际页面程序调试工具建议使用如下版本的浏览器
-```
+```javascript
 browser: chrome v50+
 ```
 
@@ -203,38 +203,38 @@ var test = function(str) {
 ##### `Babel`使用
 
 可以通过`node.js`全局安装`Babel`工具
-```
+```javascript
 $ npm install -g babel-cli
 ```
 
 `Babel`使用命令如下
 
 > 转码结果输出到标准输出
-```shell
+```javascript
 $ babel example.js
 ```
 
 > 转码结果写入一个文件,`--out-file`或`-o`参数指定输出文件
-```
+```javascript
 $ babel example.js --out-file compiled.js
 ```
 > 或者
-```
+```javascript
 $ babel example.js -o compiled.js
 ```
 
 > 整个目录转码,`--out-dir`或`-d`参数指定输出目录
-```
+```javascript
 $ babel src --out-dir lib
 ```
 
 > 或者
-```
+```javascript
 $ babel src -d lib
 ```
 
 > -s 参数生成source map文件
-```
+```javascript
 $ babel src -d lib -s
 ```
 
@@ -251,18 +251,18 @@ $ babel src -d lib -s
 `presets`字段设定转码规则,在项目中可以根据需要安装官方提供的规则
 
 > 最新转码规则
-```
+```javascript
 $ npm install --save-dev babel-preset-latest
 ```
 
 > react 转码规则
-```
+```javascript
 $ npm install --save-dev babel-preset-react
 ```
 
 `Babel`官方插件/规则(es2015)
 
-```
+```javascript
 $ npm install --save-dev babel-preset-stage-0
 $ npm install --save-dev babel-preset-stage-1
 $ npm install --save-dev babel-preset-stage-2
@@ -322,12 +322,12 @@ https://github.com/airbnb/javascript
 ##### `eslint`使用
 
 安装`eslint`,在这里使用全局的方式,也可以仅在项目中安装
-```
+```javascript
 $ npm i -g eslint
 ```
 
 安装Airbnb语法规则.
-```
+```javascript
 $ npm i -g eslint-config-airbnb
 ```
 
@@ -604,7 +604,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 #### 完成上面的步骤,执行如下命令安装依赖包
-```
+```javascript
 $ npm install
 ```
 
@@ -626,7 +626,7 @@ $ npm install
 ```
 
 新建`.eslintignore`文件,配置清单如下
-```
+```javascript
 node_modules
 ```
 
@@ -656,7 +656,7 @@ node_modules
 
 <a name="5.4"></a>
 #### 新建工程目录`src`
-```shell
+```javascript
 $ mkdir src
 ```
 
@@ -664,7 +664,7 @@ $ mkdir src
 ##### 新建静态资源目录
 
 在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`
-```shell
+```javascript
 $ mkdir src
 $ mkdir src/components
 $ mkdir src/img
@@ -675,7 +675,7 @@ $ mkdir src/view
 ##### 配置出口文件
 
 在`src`新建出口文件`index.js`和用于测试的出口文件`index.test.js`
-```shell
+```javascript
 $ touch index.js
 $ touch index.test.js
 ```
@@ -958,12 +958,12 @@ $ touch index.html
 
 <a name="6.5.1"></a>
 ##### 启动`webpack-dev-server`开发环境
-```
+```javascript
 $ npm run dev
 ```
 
 > 自动打开浏览器并跳转至如下地址
-```
+```javascript
 localhost:3001 // 在上面的package。json webpack-dev-server配置中设置端口
 ```
 
@@ -976,22 +976,22 @@ localhost:3001 // 在上面的package。json webpack-dev-server配置中设置�
 
 <a name="6.5.2"></a>
 ##### 构建/编译
-```
+```javascript
 $ npm run build
 ```
 
 可以直接使用`webpack`命令编译
-```
+```javascript
 $ webpack
 ```
 
 也可以如下命令进行压缩
-```
+```javascript
 $ webpack -p
 ```
 
 最终编译生成的文件目录如下
-```
+```javascript
 dist/js/
 ```
 
@@ -1064,7 +1064,7 @@ dist/js/
 ##### 新建`HelloWorld.js`文件
 
 在`components`目录新建`test`目录,并在`Test`目录下新建`HelloWorld.js`文件
-```
+```javascript
 $ cd components
 $ mkdir test
 $ touch HelloWorld.js
