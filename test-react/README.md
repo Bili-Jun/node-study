@@ -48,8 +48,6 @@ $ npm run dev
 
         *  [`eslint`使用](#2.2.1)
 
-        *  [`eslint`使用](#2.2.2)
-
   1. [关于React](#3)
   1. [关于`Webpack`](#4)
 
@@ -71,9 +69,9 @@ $ npm run dev
 
       5.4  [新建工程目录`src`](#5.4)
 
-        *  [在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`](#5.4.1)
+        *  [新建静态资源目录](#5.4.1)
 
-        *  [在`src`新建出口文件`index.js`和用于测试的出口文件](#5.4.2)
+        *  [配置出口文件](#5.4.2)
 
   1. [`webpack`配置（项目构建）](#6)
 
@@ -83,13 +81,13 @@ $ npm run dev
 
         *  [配置`ESLint`预加载,用于语法检查](#6.2.1)
 
-        *  [配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node.js`依赖包的编译](#6.2.2)
+        *  [配置模块插件](#6.2.2)
 
         *  [外部引入`react/react-dom`](#6.2.3)
 
         *  [`webpack-dev-server`也可以在这里配置,包括服务监听端口号](#6.2.4)
 
-        *  [加载`ESLint`配置文件,由于上面进行`ESLint`模块预加载,在这里需要加入`ESLint`配置文件](#6.2.5)
+        *  [加载`ESLint`配置文件](#6.2.5)
 
       6.3  [完整`webpack`清单](#6.3)
 
@@ -109,7 +107,7 @@ $ npm run dev
 
       8.1  [Hello World](#8.1)
 
-        *  [在`components`目录新建`test`目录,并在`Test`目录下新建`HelloWorld.js`文件](#8.1.1)
+        *  [新建`HelloWorld.js`文件](#8.1.1)
 
         *  [具体实现](#8.1.2)
 
@@ -663,7 +661,9 @@ $ mkdir src
 ```
 
 <a name="5.4.1"></a>
-##### 在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`
+##### 新建静态资源目录
+
+在`src`目录下新建组件目录`components`,静态资源图片目录`img`,静态html页面资源目录`view`
 ```
 $ mkdir src
 $ mkdir src/components
@@ -672,7 +672,9 @@ $ mkdir src/view
 ```
 
 <a name="5.4.2"></a>
-##### 在`src`新建出口文件`index.js`和用于测试的出口文件`index.test.js`
+##### 配置出口文件
+
+在`src`新建出口文件`index.js`和用于测试的出口文件`index.test.js`
 ```
 $ touch index.js
 $ touch index.test.js
@@ -756,7 +758,9 @@ module: {
 [返回](#6)
 
 <a name="6.2.2"></a>
-##### 配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node.js`依赖包的编译
+##### 配置模块插件
+
+配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node.js`依赖包的编译
 ```
 module: {
   preLoaders: [
@@ -794,7 +798,9 @@ externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
 [返回](#6)
 
 <a name="6.2.4"></a>
-##### `webpack-dev-server`也可以在这里配置,包括服务监听端口号
+##### 配置`webpack-dev-server`服务端口
+
+`webpack-dev-server`也可以在这里配置,包括服务监听端口号
 ```
 devServer: {
   hot: true,
@@ -807,7 +813,9 @@ devServer: {
 [返回](#6)
 
 <a name="6.2.5"></a>
-##### 加载`ESLint`配置文件,由于上面进行`ESLint`模块预加载,在这里需要加入`ESLint`配置文件
+##### 加载`ESLint`配置文件
+
+在上面步骤中已预加载`ESLint`模块,在这里需要加入`ESLint`配置文件
 ```
 eslint: {
   configFile: '.eslintrc',
@@ -1053,7 +1061,9 @@ dist/js/
 在页面上打印`Hello World`,即第一个组件
 
 <a name="8.1.1"></a>
-##### 在`components`目录新建`test`目录,并在`Test`目录下新建`HelloWorld.js`文件
+##### 新建`HelloWorld.js`文件
+
+在`components`目录新建`test`目录,并在`Test`目录下新建`HelloWorld.js`文件
 ```
 $ cd components
 $ mkdir test
