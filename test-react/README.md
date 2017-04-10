@@ -184,7 +184,7 @@ browser: chrome v50+
 `Babel` 是一个广泛使用的 `ES6`(`ECMAScript 2015`) 转码器,可以将`ES6`代码转为`ES5`代码,从而在现有环境中运行.
 
 例如
-```
+```javascript
 // ES6
 // 编译前
 var test = (str) => { 
