@@ -31,7 +31,7 @@ $ webpack -p
 $ npm run dev
 ```
 
-## `React`(`ECMAScript 2015`)以及`Webpack`工具基本用法
+## React(ECMAScript 2015)以及Webpack工具基本用法
 
 本项目是对`React`和`Webpack`工具的基本用法的简单应用,并且整个项目均使用`ECMAScript 2015`规定的`Javascript`语法,欢迎指正错误,欢迎补充,欢迎`fork` :)
 
