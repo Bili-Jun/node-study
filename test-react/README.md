@@ -139,7 +139,7 @@ $ npm run dev
 
         *  [componentWillReceiveProps用法](#8.7.6)
 
-        *  [ShouldComponentUpdate用法](#8.7.7)
+        *  [shouldComponentUpdate用法](#8.7.7)
 
 <a name="1"></a>
 ### 准备
