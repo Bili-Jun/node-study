@@ -6,33 +6,33 @@ React component
 ## Install
 
 #### Install node module package
-```
+```shell
 $ cd test-pagination
 $ npm install
 ```
 
 ## Compile and build
-```
+```javascript
 $ npm run build
 ```
 
 #### You also can use this command
-```
+```javascript
 $ webpack
 ```
 
 #### Build with press
-```
+```javascript
 $ webpack -p
 ```
 
 ## Develop
-```
+```javascript
 $ npm run dev
 ```
 
 ## Usage
-```
+```javascript
 //index.test.js
 
 import React from 'react';
@@ -48,7 +48,7 @@ document.getElementById('example'));
 ```
 
 #### Add react.js/react-dom.js in your html files
-```
+```html
 <!DOCTYPE>
 <html lang="en">
   <head>
@@ -64,7 +64,7 @@ document.getElementById('example'));
 ```
 
 #### Add the component
-```
+```html
 <!DOCTYPE>
 <html lang="en">
   <head>
@@ -107,7 +107,7 @@ document.getElementById('example'));
 <img src="doc/img/pagination.gif">
 
 ### 项目完整目录结构如下
-```
+```javascript
 ├─dist
 │  └─js
 │          pagination.js
@@ -158,7 +158,7 @@ document.getElementById('example'));
 本项目主要基于`node.js`,由于使用`ECMAScript 2015`语法,所以需要`babel/webpack`等工具编译/压缩;用`ESLint`等工具进行语法检查和校验,所以再进行下一步操作之前,请确保系统含有`node.js`环境
 
 在本项目中需要
-```
+```javascript
 node.js v6.0+
 npm v3.0+
 ```
@@ -169,25 +169,25 @@ https://nodejs.org/en/
 ```
 
 建议进行全局安装webpack工具
-```
+```javascript
 $ npm install webpack -g
 ```
 
 ### 初始化和配置项目
 
 新建项目目录
-```
+```shell
 $ mkdir test-pagination
 ```
 
 切换至项目目录下并初始化项目
-```
+```shell
 $ cd test-pagination
 $ npm init
 ```
 
 填写项目配置`package.json`,请注意不可忽略的选项
-```
+```javascript
 name: (test-pagination) //项目名称,可忽略
 version: (1.0.0) //项目版本,可忽略
 description: A pagination component base on React // 项目描述,可忽略
@@ -200,7 +200,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 至此完成`package.json`初始化配置,配置清单如下
-```
+```json
 {
   "name": "test-pagination",
   "version": "1.0.0",
@@ -221,7 +221,7 @@ license: (ISC) // 开源协议,可忽略
 接下来在`package.json`配置开发环境
 
 加入`React`依赖包
-```
+```json
 "dependencies": {
   "lodash": "4.16.4",
   "react": "15.2.1",
@@ -230,7 +230,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 加入`webpack`工具
-```
+```json
 "devDependencies": {
   "extract-text-webpack-plugin": "~0.8.2",
   "webpack": "^1.7.3",
@@ -239,7 +239,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 由于需要使用`ES6`语法编写,加入`babel`编译工具
-```
+```json
 "devDependencies": {
   "babel-core": "^6.5.2",
   "babel-eslint": "^4.1.8",
@@ -258,7 +258,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 加入代码校验工具`ESLint`
-```
+```json
 "devDependencies": {
   "babel-core": "^6.5.2",
   "babel-eslint": "^4.1.8",
@@ -281,7 +281,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 配置`webpack` `build`命令和`webpack-dev-server`开发环境,可用于实时调试和热部署项目
-```
+```json
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "webpack-dev-server --devtool eval --progress --colors --open --hot --content-base ./example",
@@ -315,7 +315,7 @@ license: (ISC) // 开源协议,可忽略
   | --content-base ./example | `webpack`服务启动入口`html`文件目录设置,例如`example`目录  |
 
 至此`package.json`配置完成,在之后的开发中如果需要其他配置和依赖包,可按照如上步骤,以下是完整`package.json`清单
-```
+```json
 {
   "name": "test-pagination",
   "version": "0.0.1",
@@ -360,14 +360,14 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 安装上面配置好的依赖包(这一步执行完毕,才能继续下面的操作否则`ESLint`等工具会提示报错)
-```
+```javascript
 $ npm install
 ```
 
 配置编译工具babel
 
 如果`.babelrc`文件不存在,则新建,配置清单如下
-```
+```json
 {
     "presets": [
         "es2015",
@@ -380,12 +380,12 @@ $ npm install
 ```
 
 由于并不需要让`babel`编译依赖包目录`node_modules`,所以需要进行配置,新建`.eslintignore`文件,配置如下
-```
+```javascript
 node_modules
 ```
 
 接下来配置`js`语法校验工具,按照`ECMAScript 2015`标准对语法进行检验,在这里我们使用`Airbnb`的`eclint`的规则,在前面的`package.json`中已加入依赖包;新建`.eslintrc`,配置清单如下
-```
+```json
 {
     "env": {
     "node": true,
@@ -415,7 +415,7 @@ node_modules
 引入`node` `path`模块,用于获取文件路径 
 引入`ExtractTextPlugin`外部加载文件插件
 初始化`node`依赖包路径
-```
+```javascript
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
@@ -424,21 +424,21 @@ const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 * 这里使用`ECMAScript 2015`不可随意修改的变量类型`const`,具有块级作用域的作用,可避免`var`声明的变量存在变量提升和随意修改的问题 
 
 在这里使用`module.export`输出配置
-```
+```javascript
 module.exports = {
   //webpack配置清单
 }
 ```
 
 设置`devtool`属性为`false`,在`webpack`打包时不生成`sourcemap`信息,
-```
+```javascript
 module.exports = {
   devtool: false
 }
 ```
 
 设置`webpack`入口文件,即编译入口文件
-```
+```javascript
 entry: {
   'pagination.test': path.join(__dirname, 'src', 'index.test.js'),// demo测试程序入口文件
   pagination: path.join(__dirname, 'src', 'index.js'), // 分页组件入口文件
@@ -446,7 +446,7 @@ entry: {
 ```
 
 设置输出文件目录以及`chunk`文件
-```
+```javascript
 output: {
   path: path.join(__dirname, 'dist'), // 输出目录（编译生成文件目录）
   publicPath: '',
@@ -458,7 +458,7 @@ output: {
 模块和插件配置
 
 配置`ESLint`预加载,用于语法检查
-```
+```javascript
 module: {
   preLoaders: [
     {
@@ -473,7 +473,7 @@ module: {
 ```
 
 配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node`依赖包的编译,且使用`babel`;在之后会补充`css/sass`模块插件
-```
+```javascript
 module: {
   preLoaders: [
     {
@@ -495,7 +495,7 @@ module: {
 ```
 
 为了便于更好的扩展性,且同时编译`react/react-dom`,生成的文件会很大,比较消耗资源,在页面中加载数MB的`js`文件并不理想,所以在这里进行如下配置,可以将`react/react-dom`通过`CDN`依赖等外部引入的方式加载至页面
-```
+```javascript
 externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -503,7 +503,7 @@ externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
 ```
 
 `webpack-dev-server`也可以在这里配置,包括服务监听端口号
-```
+```javascript
 devServer: {
   hot: true,
   inline: true, // webpack-dev-server有两种模式,默认是false,即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
@@ -513,14 +513,14 @@ devServer: {
 ```
 
 加载`ESLint`配置文件,由于上面进行`ESLint`模块预加载,在这里需要加入`ESLint`配置文件
-```
+```javascript
 eslint: {
   configFile: '.eslintrc',
 }
 ```
 
 完整`webpack`清单如下
-```
+```javascript
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
@@ -585,7 +585,7 @@ module.exports = {
 | Select           | 分页组件选择每页显示的数目            |
 
 #### 在`src/components`目录中新建如下文件
-```
+```javascript
 Buttons.js // 分页按钮组件
 Pagination.js // 分页组件主结构
 Select.js // 下拉选择数目组件
@@ -594,14 +594,14 @@ Select.js // 下拉选择数目组件
 #### 实现`Buttons`组件
 
 引入react.js
-```
+```javascript
 import React from 'react';
 ```
 
 * `ECMAScript 2015`标准,规定了在`js`文件中可以使用`import`/`from`关键字引入其他目录的`js`模块文件
 
 定义`Buttons`类,并继承`React` `Component`父类
-```
+```javascript
 class Buttons extends React.Component {
 
 }
@@ -611,7 +611,7 @@ class Buttons extends React.Component {
 
 
 定义`Buttons`类的构造方法,构造函数,在创建组件的时候调用一次,用来在之后的方法中引用父类(`React.Component`)的`this`对象
-```
+```javascript
 class Buttons extends React.Component {
   constructor(props) {
     super(props);
@@ -628,7 +628,7 @@ class Buttons extends React.Component {
 | className        | 按钮class属性                       | number            |                |
 
 代码如下：
-```
+```javascript
 Buttons.propTypes = {
   pageNumber: React.PropTypes.number,
   active: React.PropTypes.bool,
@@ -641,21 +641,21 @@ Buttons.defaultProps = {
 ```
 
 实现`render`方法,react.js渲染组件时执行的实现方法
-```
+```javascript
 render() {
 
 }
 ```
 
 初始化`props`对象,`props`中包含上面定义的属性,包括react封装好的属性
-```
+```javascript
 render() {
     const props = this.props;
 }
 ```
 
 按钮组件需要继承父组件的属性包括`className`集合,即多个`class`值,所以这里初始化父组件父组件`class`值
-```
+```javascript
 render() {
     const props = this.props;
     const prefix = `${props.rootClassNamePrefix}-btn`; // 继承父组件class属性前缀
@@ -664,7 +664,7 @@ render() {
 ```
 
 组装`className`属性
-```
+```javascript
 render() {
     const props = this.props;
     const prefix = `${props.rootClassNamePrefix}-btn`;
@@ -682,7 +682,7 @@ render() {
 ```
 
 返回组件标签值
-```
+```javascript
 render() {
     const props = this.props;
     const prefix = `${props.rootClassNamePrefix}-btn`;
@@ -708,31 +708,31 @@ render() {
 ```
 
 至此按钮组件完成,接下来需要输出`Buttons`类供其他组件复用
-```
+```javascript
 export default Buttons;
 ```
 
 这里使用ECMAScript 2015规范中的`export`,即暴露供外部调用的`class/function/变量`等,其他类如果需要使用,只需按如下方式,使用`import/from`等关键字 
-```
+```javascript
 import Buttons from './Buttons';
 ```
 
 在`Pagination.js`中引入`react.js`
-```
+```javascript
 import React from 'react';
 ```
 
 再按照上文所说引入`Buttons`组件
 
 定义父组件`Pagination`类,并继承React.Component
-```
+```javascript
 class Pagination extends React.Component {
 
 }
 ```
 
 定义构造方法并继承`React.Component`的`this`对象
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -757,7 +757,7 @@ class Pagination extends React.Component {
 | selectOptionsPageSize | 分页显示数目选项                | array              | (默认值取子组件) |
 
 代码如下
-```
+```javascript
 Pagination.propTypes = {
   current: React.PropTypes.number,
   defaultCurrent: React.PropTypes.number,
@@ -799,12 +799,12 @@ Pagination.defaultProps = {
 > 页码按钮(红色框)
 
 * 首先定义数组容器,用于存放分页按钮 
-```
+```javascript
 const pageList = [];
 ```
 
 * 第一页始终保持静态,但是当点击触发时该按钮状态变为`active`,即先默认初始化第一页的按钮
-```
+```javascript
 pageList.push(<Buttons
       rootClassNamePrefix={props.classNamePrefix}
       title={1}
@@ -817,42 +817,43 @@ pageList.push(<Buttons
 这里是`react` `jsx`语法的写法,配置`Buttons`组件即可,详细请看下面
 
 * 最后一页即为总页数,总页数由总数目决定,算法如下
-```
+```javascript
 this.props.total / pageSize
 ```
 
 在这里是需要取整页数,且页码计算是从0开始,所以调整如下
-```
+```javascript
 Math.floor((this.props.total - 1) / pageSize) + 1;
 ```
 
 * `props.displayLength`属性控制显示页码按钮数目,默认设置是5,即显示5个页码按钮
 * 接下来需要确定如何动态控制页码按钮,如效果图所示.设定两个锚点值,左锚与右锚.其中右锚由左锚加上`props.displayLength`再减去1得到,如下
 假设当前分页组件的页码状态如下
-```
+```javascript
 1 ... 6(锚) 7 8 9 10(锚) ... 200
 ```
 
 点击第10页,如下
-```
+```javascript
 1 ... 10(锚) 11 12 13 14(锚) ... 200
 ```
 
 点击第11页至第13页锚不发生改变
-```
+```javascript
 1 ... 10(锚) 11 12 13 14(锚) ... 200
 ```
 
 点击向前或向后跳转回到第1页或最后一页,如下
-```
+```javascript
 1 2(锚) 3 4 5 6(锚) ... 200
 ```
-```
+
+```javascript
 1 ... 195(锚) 196 197 198 199(锚) 200
 ```
 
 * 由上可知,初始化如下参数
-```
+```javascript
 const anchor = this.state.leftAnchor; // 起始锚点,不可修改
 const length = this._calcTotalPage(); // 总长度(总页数),不可修改
 const dl = this.props.displayLength; // 步长(页码按钮数量),不可修改
@@ -861,7 +862,7 @@ let end = start + dl - 1; // 结束变化值(右锚点)
 ```
 
 * 执行状态判断
-```
+```javascript
 // n 当前页码,如果当前页码小于等于0,则赋初始值1,即回到第一页
 if (n <= 0) {  
   n = 1;
@@ -909,7 +910,7 @@ if (end >= length - 1) {
 > 至此页面计算完毕,接下来初始化`Pagination`组件`props`属性和状态处理
 
 根据react核心基本原理,当状态(state)发生改变时,立刻刷新组件,重新渲染dom元素.因此上面的算法实现的分页按钮点击事件操作都会用当前页码值改变组件状态,刷新组件.因此在这里做初始化state.current属性
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -924,7 +925,7 @@ class Pagination extends React.Component {
 ```
 
 同时需要监听锚点状态,因此也需要初始化
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -944,7 +945,7 @@ class Pagination extends React.Component {
 ```
 
 接下来实现钩子函数用来改变事件状态
-```
+```javascript
  _handleChange(n) {
     const tempAnchor = this._calcPage(n); // 前面实现的_calcPage动态页码按钮计算函数
  
@@ -960,7 +961,7 @@ class Pagination extends React.Component {
 ```
 
 至此钩子函数实现,由以上算法和原理以及钩子函数,可以依次实现下一页/上一页/向前向后跳转按钮事件,例如
-```
+```javascript
 // 是否有上一页
 _hasPrev() {
   return this.state.current > 1;  // this.state.current当前页(当前状态)
@@ -1002,7 +1003,7 @@ _rightMore() {
 至此分页逻辑基本实现,但是需要做调整
 
 * 方法绑定父类`this`对象
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -1038,7 +1039,7 @@ class Pagination extends React.Component {
 到这里,`Pagination`组件暂时仅仅只能被react-dom渲染至页面,不能当作子组件复用,例如
 
 在`index.test.js`中编写如下代码,以渲染组件
-```
+```javascript
 import React from 'react';
 import ReactDom from 'react-dom';
 import Pagination from './components/Pagination';
@@ -1049,7 +1050,7 @@ ReactDom.render(<Pagination
 ```
 
 在`example/index.html`中引用
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1077,14 +1078,14 @@ http://localhost:3001/
 如上所示,即使配置`current`也不起任何作用,无法满足复用,因此需要使用`react`组件生命周期`API`
 
 `props`是父组件传递给子组件的.父组件发生`render`的时候子组件就会调用`componentWillReceiveProps`(不管`props`有没有更新,也不管父子组件之间有没有数据交换)
-```
+```javascript
 componentWillReceiveProps(nextProps) {
 
 }
 ``` 
 
 在`componentWillReceiveProps`方法内处理当前页状态和锚点状态变化
-```
+```javascript
 componentWillReceiveProps(nextProps) {
 
   // 如果设置current属性,则先做页面分配计算
@@ -1103,7 +1104,7 @@ componentWillReceiveProps(nextProps) {
 ```
 
 同时需要在构造函数中做初始化处理
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -1122,14 +1123,14 @@ class Pagination extends React.Component {
 ```
 
 需要补充页面校验函数
-```
+```javascript
 _isValid(num) {
   return typeof num === 'number' && num >= 1 && num !== this.state.current;
 }
 ```
 
 改进钩子函数`_handleChange`
-```
+```javascript
 _handleChange(n) {
   const tempAnchor = this._calcPage(n);
   if (this._isValid(n)) {
@@ -1153,7 +1154,7 @@ _handleChange(n) {
 ```
 
 实现`pageSize`选择组件,同上`pageSize`改变引发状态改变,即重新渲染组件,所以做如下设置
-```
+```javascript
 //构造函数初始化pageSize
 class Pagination extends React.Component {
   constructor(props) {
@@ -1183,7 +1184,7 @@ class Pagination extends React.Component {
 ```
 
 同上在生命周期函数中需要对`pageSize`状态发生变化做处理,重新计算页面分配,改变当前页面状态
-```
+```javascript
 componentWillReceiveProps(nextProps) {
   
   // ...
@@ -1207,12 +1208,12 @@ componentWillReceiveProps(nextProps) {
 ```
 
 在Select.js中引入react
-```
+```javascript
 import React from 'react';
 ```
 
 定义`Select`类,继承`React.Component`,并定义构造函数继承父类`this`对象
-```
+```javascript
 class Select extends React.Component {
   constructor(props) {
     super(props);
@@ -1230,7 +1231,7 @@ class Select extends React.Component {
 
 
 代码如下
-```
+```javascript
 Select.propTypes = {
   pageSize: React.PropTypes.number,
   changeSize: React.PropTypes.func,
@@ -1243,7 +1244,7 @@ Select.defaultProps = {
 ```
 
 实现下拉框选择钩子函数监听选择事件改变`Pagination` `pageSize`状态
-```
+```javascript
 _changeSize(event) {
   const value = event.target.value;
   this.props.changeSize(Number(value));
@@ -1252,7 +1253,7 @@ _changeSize(event) {
 > 这里由父组件传递`changeSize`方法
 
 实现render方法,返回并输出Select组件
-```
+```javascript
 render() {
   const props = this.props; 
   const pageSize = props.pageSize || props.selectOptionsPageSize[0]; //设置select初始默认值
@@ -1275,7 +1276,7 @@ export default Select;
 
 
 为实现方法绑定`this`对象
-```
+```javascript
 [
   'render',
   '_changeSize',
@@ -1284,7 +1285,7 @@ export default Select;
 > 至此`Select`组件实现
 
 通过一系列调整,接下来可以实现`Select`组件的`_changePageSize`方法
-```
+```javascript
 _changePageSize(size) {
   let current = this.state.current;
   const newCurrent = this._calcTotalPage(size);
@@ -1312,7 +1313,7 @@ _changePageSize(size) {
 ```
 
 为`_changePageSize`方法绑定`this`对象
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -1325,7 +1326,7 @@ class Pagination extends React.Component {
 ```
 
 在`Pagination`组件中引入`Select`组件
-```
+```javascript
 import Select from './Select';
 ```
 
@@ -1334,7 +1335,7 @@ import Select from './Select';
 <img src="doc/img/desc2.jpg">
 
 代码如下
-```
+```javascript
 render() {
 
   // ...
@@ -1361,7 +1362,7 @@ render() {
 ```
 
 通过钩子函数实现手动输入指定页面并按回车键跳转至指定页面
-```
+```javascript
 _handleKeyEnter(event) {
   const value = event.target.value;
   let tempValue;
@@ -1377,7 +1378,7 @@ _handleKeyEnter(event) {
 ```
 
 为`_handleKeyEnter`函数绑定`this`对象
-```
+```javascript
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -1390,7 +1391,7 @@ class Pagination extends React.Component {
 ```
 
 在`render`方法中添加手动输入跳转指定页面的`input`组件,且当`simplePager`属性为`true`时做渲染
-```
+```javascript
 render() {
 
   // ...
@@ -1415,7 +1416,7 @@ render() {
 > 至此,组件基本逻辑改进完成,接下来时组装和最后的输出组件
 
 组装分页页码按钮/下一页/上一页/向前跳转/向后跳转按钮
-```
+```javascript
 render() {
   const props = this.props;
   const pageList = [];
@@ -1489,7 +1490,7 @@ render() {
 ```
 
 输出组件,这里用`svg`生成上一页下一页按钮样式
-```
+```javascript
 render() {
 
   // ...
@@ -1572,7 +1573,7 @@ export default Pagination;
 > 为了便于组件的复用,且`Pagination`组件使用了多个子组件,因此对`Pagination`组件做最终出口文件处理
 
 在`src/index.js`中做如下处理
-```
+```javascript
 import Pagination from './components/Pagination';
 
 export default {
@@ -1583,12 +1584,12 @@ export default {
 接下来用webpack编译出可以供外部使用的完整`Pagination.js`组件
 
 切换至项目目录下,执行如下命令
-```
+```javascript
 $ npm run build
 ```
 
 或者直接执行`webpack`命令
-```
+```javascript
 $ webpack 
 ```
 
@@ -1599,19 +1600,19 @@ webpack编译过程如下
 > 出现`warning`是因为`ESLint`在校验过程中发现存在符合规则但可以忽略的警告,可以在`.eslintrc`中编写过滤规则,过滤不需要的规则,关于ESLint规则,下面会作介绍.
 
 可以使用如下命令对`Pagination.js`进行压缩处理
-```
+```javascript
 $ webpack -p
 ```
 
 最终生成的文件路径(可在webpack.config.js清单中修改)如下
-```
+```javascript
 dist\js\
 ```
 
 在其他页面中使用`Pagination`组件,并进行开发调试
 
 如果按照上面的步骤配置了`webpack-dev-server`,那么即可执行如下命令启动webpack-dev-server,否则请按照上面的步骤进行配置
-```
+```javascript
 $ npm run dev
 ```
 
@@ -1622,7 +1623,7 @@ $ npm run dev
 `Pagination`组件在外部引用中的用法
 
 在`index.test.js`中按照如下方式编写
-```
+```javascript
 import React from 'react'; // 引入react,用于创建`Test`类(组件)
 import ReactDom from 'react-dom'; // 引入react-dom,用于渲染组件
 import Pagination from './components/Pagination'; // 引入`Pagination`组件(尚未编译)
@@ -1674,7 +1675,7 @@ ReactDom.render( // 渲染组件
 接下来需要编写测试用的入口html
 
 在`example/index.html`编写如下代码
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1803,7 +1804,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 >`const\let` 用法
 
 > 不同于`var`,`const/let`更加严格,具有块级作用域性质;可以避免`var`变量提升,局部变量不可控等一系列问题,例如
-  ```
+  ```javascript
   // ES6
   let sum=0;
   for(let i=0; i<5;i++){
@@ -1826,7 +1827,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   // Uncaught SyntaxError: Identifier 'sum' has already been declared
   ```
 > babel编译后  
-  ```
+  ```javascript
   // ES5
   var sum=0;
   for(var i=0; i<5;i++){
@@ -1840,12 +1841,12 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   ```
 
 > 箭头函数用法
-  ```
+  ```javascript
   // ES6
   let f = v => v;
   ```
 > babel编译后  
-  ```
+  ```javascript
   "use strict";
 
   var f = function f(v) {
@@ -1856,7 +1857,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 > class\extends\constructor\super用法
   
 > JavaScript语言的传统方法是通过构造函数,定义并生成新对象,例如
-  ```
+  ```javascript
   function test(value){
    this.value = value
   }
@@ -1866,7 +1867,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   var t = new test(1);
   ```
 > 使用class
-  ```
+  ```javascript
   class test{
    constructor(value){
      this.value = value
@@ -1877,7 +1878,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   }
   ```  
 > `class`之间可以通过`extends`关键字实现继承,这比ES5的通过修改原型链实现继承,要清晰和方便很多,例如在本项目中继承react的Component类
-  ```
+  ```javascript
   class Pagination extends React.Component {
   
   }
@@ -1889,7 +1890,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 > 模块功能主要由两个命令构成:export和import。export命令用于规定模块的对外接口,import命令用于输入他模块提供的功能
 
 > 一个模块就是一个独立的文件,该文件内部的所有变量,外部无法获取.如果希望外部能够读取模块内部的某个变量/方法/类等,就必须使用export关键字输出
-  ```
+  ```javascript
   var firstName = 'Michael';
   var lastName = 'Jackson';
   var year = 1958;
@@ -1899,14 +1900,14 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 > 指定模块输出`export default`  
 
 > 使用export命令定义了模块的对外接口以后,其他 JS 文件就可以通过import命令加载这个模块.
-  ```
+  ```javascript
   import { stat, exists, readFile } from 'fs'; // 引入node 内置fs模块
   ```
 
 > import命令接受一对大括号,里面指定要从其他模块导入的变量名.大括号里面的变量名,必须与被导入模块对外接口的名称相同
 
 > 如果想为输入的变量重新取一个名字,import命令要使用as关键字,将输入的变量重命名
-  ```
+  ```javascript
   import { rf as readFile } from 'fs';
   ```
 
@@ -1920,7 +1921,7 @@ React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM
 * HTML模板
 
 使用React定义的JSX语法实现HTML模板,例如
-```
+```javascript
 class Test extends React.Component {
   render() {
     return (){
@@ -1935,7 +1936,7 @@ class Test extends React.Component {
 * PropTypes用法
 组件的属性可以接受任意值,字符串\对象\函数等等都可以.有时,我们需要一种机制,验证别人使用组件时,提供的参数是否符合要求.
 组件类的PropTypes属性,就是用来验证组件实例的属性是否符合要求
-```
+```javascript
 Test.propTypes = {
   testA: React.PropTypes.number,
   testB: React.PropTypes.string,
@@ -1949,7 +1950,7 @@ React组件基本属性可以获取html标签的所有属性,同时可以用于�
 
 * this.state状态用法
 组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化
-```
+```javascript
 class Test extends React.Component {
   constructor(props) {
     super(props);
