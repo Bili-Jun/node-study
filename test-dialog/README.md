@@ -6,35 +6,35 @@ React component
 ## Install
 
 #### Install node module package
-```
+```shell
 $ cd test-dialog
 $ npm install
 ```
 
 ## Compile and build
-```
+```javascript
 $ npm run build
 ```
 
 #### You also can use this command
-```
+```javascript
 $ webpack
 ```
 
 #### Build with press
-```
+```javascript
 $ webpack -p
 ```
 
 ## Develop
-```
+```javascript
 $ npm run dev
 ```
 
 ## Usage
 
 #### Add new component to use the dialog component
-```
+```javascript
 //index.test.js
 
 import React, { Component } from 'react';
@@ -91,7 +91,7 @@ document.getElementById('example'));
 ```
 
 #### Add react.js/react-dom.js in your html files
-```
+```javascript
 <!--example/index.html-->
 
 <!DOCTYPE html>
@@ -273,7 +273,7 @@ document.getElementById('example'));
 <img src="doc/img/dialog.gif">
 
 ### 项目完整目录结构如下
-```
+```javascript
 ├─dist
 │  └─js
 |         Dialog.js
@@ -320,7 +320,7 @@ document.getElementById('example'));
 ### 用法
 
 在`index.test.js`新建组件(类)
-```
+```javascript
 // 引入react.js\react-dom.js\Dialog
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
@@ -378,7 +378,7 @@ document.getElementById('example'));
 ```
 
 在`examole/index.html`中引入组件,编写组件样式等
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -559,7 +559,7 @@ document.getElementById('example'));
 
 #### 配置node.js环境
 在本项目中需要
-```
+```javascript
 node.js v6.0+
 npm v3.0+
 ```
@@ -571,7 +571,7 @@ https://nodejs.org/en/
 
 #### 全局安装webpack工具(可选)
 建议进行全局安装`webpack`工具
-```
+```javascript
 $ npm install webpack -g
 ```
 
@@ -582,18 +582,18 @@ $ npm install webpack -g
 #### 初始化
 
 ##### 新建项目目录
-```
+```javascript
 $ mkdir test-dialog
 ```
 
 ##### 切换至项目目录下并初始化项目
-```
+```shell
 $ cd test-dialog
 $ npm init
 ```
 
 ##### 填写项目配置`package.json`,请注意不可忽略的选项
-```
+```javascript
 name: (test-dialog) //项目名称,可忽略
 version: (1.0.0) //项目版本,可忽略
 description: A dialog component base on React // 项目描述,可忽略
@@ -608,7 +608,7 @@ license: (ISC) // 开源协议,可忽略
 > 至此完成`package.json`初始化配置
 
 ##### 配置清单如下
-```
+```json
 {
   "name": "test-dialog",
   "version": "1.0.0",
@@ -629,7 +629,7 @@ license: (ISC) // 开源协议,可忽略
 #### 配置`package.json`及配置项目开发环境
 
 ##### 加入`React`依赖包
-```
+```json
 "dependencies": {
   "lodash": "4.16.4",
   "react": "15.2.1",
@@ -639,7 +639,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 ##### 加入`webpack`工具
-```
+```json
 "devDependencies": {
   "extract-text-webpack-plugin": "~0.8.2",
   "webpack": "^1.7.3",
@@ -648,7 +648,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 ##### 由于需要使用`ES6`语法编写,加入`babel`编译工具
-```
+```json
 "devDependencies": {
   "babel-core": "^6.5.2",
   "babel-eslint": "^4.1.8",
@@ -667,7 +667,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 ##### 加入代码校验工具`ESLint`
-```
+```json
 "devDependencies": {
   "babel-core": "^6.5.2",
   "babel-eslint": "^4.1.8",
@@ -690,7 +690,7 @@ license: (ISC) // 开源协议,可忽略
 ```
 
 ##### 配置`webpack` `build`命令和`webpack-dev-server`开发环境,可用于实时调试和热部署项目
-```
+```json
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "webpack-dev-server --devtool eval --progress --colors --open --hot --content-base ./example",
@@ -726,7 +726,7 @@ license: (ISC) // 开源协议,可忽略
 > 至此`package.json`配置完成,在之后的开发中如果需要其他配置和依赖包,可按照如上步骤
 
 ##### 完整`package.json`清单
-```
+```json
 {
   "name": "test-dialog",
   "version": "0.0.1",
@@ -774,14 +774,14 @@ license: (ISC) // 开源协议,可忽略
 ##### 安装node.js依赖包
 
 安装上面配置好的依赖包(这一步执行完毕,才能继续下面的操作否则`ESLint`等工具会提示报错)
-```
+```javascript
 $ npm install
 ```
 
 #### 配置编译工具babel
 
 ##### 如果`.babelrc`文件不存在,则新建,配置清单如下
-```
+```json
 {
     "presets": [
         "es2015",
@@ -796,7 +796,7 @@ $ npm install
 #### 配置eslintignore
 
 由于并不需要让`babel`编译依赖包目录`node_modules`,所以需要进行配置,新建`.eslintignore`文件,配置如下
-```
+```javascript
 node_modules
 ```
 
@@ -805,7 +805,7 @@ node_modules
 按照`ECMAScript 2015`标准对语法进行检验,在这里我们使用`Airbnb`的`eclint`的规则,在前面的`package.json`中已加入依赖包;新建`.eslintrc`
 
 ##### 配置清单如下
-```
+```json
 {
     "env": {
     "node": true,
@@ -837,7 +837,7 @@ node_modules
 引入`node` `path`模块,用于获取文件路径 
 引入`ExtractTextPlugin`外部加载文件插件
 初始化`node`依赖包路径
-```
+```javascript
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
@@ -846,14 +846,14 @@ const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 > 这里使用`ECMAScript 2015`不可随意修改的变量类型`const`,具有块级作用域的作用,可避免`var`声明的变量存在变量提升和随意修改的问题 
 
 在这里使用`module.export`输出配置
-```
+```javascript
 module.exports = {
   //webpack配置清单
 }
 ```
 
 设置`devtool`属性为`false`,在`webpack`打包时不生成`sourcemap`信息,
-```
+```javascript
 module.exports = {
   devtool: false
 }
@@ -862,7 +862,7 @@ module.exports = {
 ##### 模块和插件配置
 
 配置`ESLint`预加载,用于语法检查
-```
+```javascript
 module: {
   preLoaders: [
     {
@@ -877,7 +877,7 @@ module: {
 ```
 
 配置加载模块插件,在本项目中仅编译`js`所以仅加载`js`的编译工具,同时排除`node`依赖包的编译,且使用`babel`;在之后会补充`css/sass`模块插件
-```
+```javascript
 module: {
   preLoaders: [
     {
@@ -899,7 +899,7 @@ module: {
 ```
 
 为了便于更好的扩展性,且同时编译`react/react-dom`,生成的文件会很大,比较消耗资源,在页面中加载数MB的`js`文件并不理想,所以在这里进行如下配置,可以将`react/react-dom`通过`CDN`依赖等外部引入的方式加载至页面
-```
+```javascript
 externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -907,7 +907,7 @@ externals: {    // 指定采用外部 CDN 依赖的资源,不被webpack打包
 ```
 
 `webpack-dev-server`也可以在这里配置,包括服务监听端口号
-```
+```javascript
 devServer: {
   hot: true,
   inline: true, // webpack-dev-server有两种模式,默认是false,即在页面中加入frame标签构建调试页面;若为true则是在完整页面中构建调试页面
@@ -917,14 +917,14 @@ devServer: {
 ```
 
 加载`ESLint`配置文件,由于上面进行`ESLint`模块预加载,在这里需要加入`ESLint`配置文件
-```
+```javascript
 eslint: {
   configFile: '.eslintrc',
 }
 ```
 
 #### 完整`webpack`清单如下
-```
+```javascript
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
@@ -992,19 +992,19 @@ module.exports = {
 弹出层有一个遮罩层,可避免误操作,同时点击遮罩层可关闭弹出层
 
 ##### 引入React
-```
+```javascript
 import React, { Component } from 'react';
 ```
 
 ##### 定义`Mask`类,并继承React的Component父类
-```
+```javascript
 class Mask extends Component {
 
 }
 ```
 
 ##### 定义构造方法以继承`this`对象
-```
+```javascript
 class Mask extends Component {
   constructor(props) {
     super(props);
@@ -1013,7 +1013,7 @@ class Mask extends Component {
 ```
 
 ##### 定义`Mask`类`propTypes`属性
-```
+```javascript
 Mask.propTypes = {
   className: React.PropTypes.string, //Mask组件class属性
   handleChange: React.PropTypes.func, // Mask组件点击事件
@@ -1021,28 +1021,28 @@ Mask.propTypes = {
 ```
 
 ##### 设定`propTypes`属性默认值
-```
+```javascript
 Mask.defaultProps = {
   className: 'mc-mask',
 };
 ```
 
 ##### 定义`reader`方法,并初始化变量
-```
+```javascript
 render() {
   const props = this.props;
 }
 ```
 
 ##### 实现点击事件钩子函数`_handleChange`
-```
+```javascript
 _handleChange() {
     this.props.handleChange(); // 这里由上层父组件传递事件函数至Mask组件
   }
 ```
 
 ##### 接下来实现`Mask`组件`render`返回值,即`Mask`组件主体,并设置点击事件
-```
+```javascript
 render() {
     const props = this.props;
     // 组装className属性;style属性;点击事件
@@ -1058,7 +1058,7 @@ render() {
 ```
 
 ##### 为`render`方法和`_handleChange`方法绑定`this`对象
-```
+```javascript
 class Mask extends Component {
   constructor(props) {
     super(props);
@@ -1075,7 +1075,7 @@ class Mask extends Component {
 ```
 
 ##### 导出组件
-```
+```javascript
 export default Mask;
 ```
 
@@ -1094,19 +1094,19 @@ export default Mask;
 弹出层主体组件,包含组件具体内容,可通过传入子组件实现多种不同功能的弹出层,即使用React.Children.map方法,详细如下
 
 ##### 引入React
-```
+```javascript
 import React, { Component } from 'react';
 ```
 
 ##### 定义`DialogChild`类,并继承React的Component父类
-```
+```javascript
 class DialogChild extends Component {
 
 }
 ```
 
 ##### 定义构造方法以继承`this`对象
-```
+```javascript
 class DialogChild extends Component {
   constructor(props) {
     super(props);
@@ -1115,7 +1115,7 @@ class DialogChild extends Component {
 ```
 
 ##### 定义`DialogChild`类`propTypes`属性
-```
+```javascript
 Mask.propTypes = {
   className: React.PropTypes.string, // Mask组件class属性
   handleChange: React.PropTypes.func, // Mask组件点击事件
@@ -1125,7 +1125,7 @@ Mask.propTypes = {
 ```
 
 ##### 设定`propTypes`属性默认值
-```
+```javascript
 Mask.defaultProps = {
   content: 'Title', // 默认标题
   title: 'This is content', // 默认内容
@@ -1133,7 +1133,7 @@ Mask.defaultProps = {
 ```
 
 ##### 定义`reader`方法,并初始化变量
-```
+```javascript
 render() {
   const props = this.props;
   const preFix = `${props.rootClassNamePrefix}-child`;
@@ -1143,7 +1143,7 @@ render() {
 ##### 设置子组件,这里引入`reatc` `this.props.children`
 
 如果未定义子组件,则设置默认子组件,并组装class
-```
+```javascript
 const children = (
   <div className={`${preFix}-content mc-content`}>
     <h3>{props.title}</h3>
@@ -1161,7 +1161,7 @@ const children = (
 ```
 
 否则使用自定义子组件,clone
-```
+```javascript
 const children = (React.Children.map(props.children, (child) => React.cloneElement(child))); 
 ```
 
@@ -1170,7 +1170,7 @@ const children = (React.Children.map(props.children, (child) => React.cloneEleme
 > 请注意在这里使用了箭头函数
 
 整理代码
-```
+```javascript
 const children = (('children' in props) && props.children !== undefined) ? (React.Children.map(props.children, (child) => React.cloneElement(child))) :
       (<div className={`${preFix}-content mc-content`}>
         <h3>{props.title}</h3>
@@ -1187,7 +1187,7 @@ const children = (('children' in props) && props.children !== undefined) ? (Reac
 ```
 
 ##### 接下来实现`DialogChild`组件`render`返回值,即`DialogChild`组件主体,并组装上面完成的子组件
-```
+```javascript
 return (
   <div
     className = {`${preFix} ${('className' in props) ? props.className : ''} `}
@@ -1199,7 +1199,7 @@ return (
 ```
 
 ##### 为`render`方法绑定`this`对象
-```
+```javascript
 class DialogChild extends Component {
   constructor(props) {
     super(props);
@@ -1215,7 +1215,7 @@ class DialogChild extends Component {
 ```
 
 ##### 导出组件
-```
+```javascript
 export default DialogChild;
 ```
 
@@ -1237,14 +1237,14 @@ export default DialogChild;
 弹出层组件主体,涉及点击事件,子组件方法传递,组件动画效果,组件复用性和可扩展性等
 
 ##### 定义`Dialog`类,并继承React的Component父类
-```
+```javascript
 class Dialog extends Component {
 
 }
 ```
 
 ##### 定义构造方法以继承`this`对象
-```
+```javascript
 class Dialog extends Component {
   constructor(props) {
     super(props);
@@ -1253,7 +1253,7 @@ class Dialog extends Component {
 ```
 
 ##### 定义`Dialog`类`propTypes`属性
-```
+```javascript
 Dialog.propTypes = {
   className: React.PropTypes.string, // Mask组件class属性
   show: React.PropTypes.bool, // 是否打开弹出层
@@ -1269,13 +1269,13 @@ Dialog.propTypes = {
 ```
 
 ##### `React.PropTypes.func`类型的属性默认值不能为空,所以需要初始化一个无操作无返回值的函数
-```
+```javascript
 function onChange() {
 }
 ```
 
 ##### 设定`propTypes`属性默认值
-```
+```javascript
 Dialog.defaultProps = {
   defaultShow: false,
   classNamePrefix: 'mc-dialog',
@@ -1288,7 +1288,7 @@ Dialog.defaultProps = {
 ##### 实现打开/关闭弹出层钩子函数
 
 打开弹出层
-```
+```javascript
 _handleOpen() {
     if ('handleOpen' in this.props) {
       this.props.handleOpen(); // 开放API接口
@@ -1299,7 +1299,7 @@ _handleOpen() {
 ```
 
 关闭弹出层
-```
+```javascript
 _handleClose() {
     if ('handleClose' in this.props) {
       this.props.handleClose();
@@ -1312,7 +1312,7 @@ _handleClose() {
 ##### 处理接口和状态
 
 初始化`props.show`接口
-```
+```javascript
 class Dialog extends Component {
   constructor(props) {
     super(props);
@@ -1326,7 +1326,7 @@ class Dialog extends Component {
 ```
 
 设置状态
-```
+```javascript
 class Dialog extends Component {
   constructor(props) {
     super(props);
@@ -1347,7 +1347,7 @@ class Dialog extends Component {
 ##### 处理组件生命周期
 
 当组件重新`render`前,`this.props.show`接收到新的值时,改变状态
-```
+```javascript
 componentWillReceiveProps(nextProps) {
   if ('show' in nextProps) {
     this.setState({
@@ -1358,12 +1358,12 @@ componentWillReceiveProps(nextProps) {
 ```
 
 > 请注意当外部复用`Dialog`组件时,只有配置`show`,且时已经改变的状态值才能触发该生命周期函数,即
-> ```
+> ```javascript
 > show = {this.state.show}
 > ```
 
 ##### 为钩子函数和`render`方法绑定`this`对象
-```
+```javascript
 class Dialog extends Component {
   constructor(props) {
     super(props);
@@ -1383,7 +1383,7 @@ class Dialog extends Component {
 ##### 在`render`方法里初始化变量并组装组件
 
 初始化
-```
+```javascript
 render() {
   const props = this.props;
   const _state = this.state;
@@ -1393,7 +1393,7 @@ render() {
 ```
 
 如果当前状态`show`为`true`显示弹出层主体组件`DialogChild`
-```
+```javascript
 if (_state.show) {
   dialogChild = (
     <DialogChild
@@ -1408,7 +1408,7 @@ if (_state.show) {
 ```
 
 往`DialogChild`装入子组件`props.children`,使用`React.Children.map`获取和遍历子组件,用`React.cloneElement` `clone`和重新渲染子组件,并为子组件设置`key`标识符
-```
+```javascript
 if (_state.show) {
   dialogChild = (
     <DialogChild
@@ -1428,7 +1428,7 @@ if (_state.show) {
 ```
 
 如果`props.isMaskOpen`为`true`则启用遮罩层`Mask`组件
-```
+```javascript
 if (_state.show) {
 
   // ...
@@ -1447,7 +1447,7 @@ if (_state.show) {
 ##### 装载动画效果
 
 在这里需要引入使用含插件版本的`react.js`,使用`react`动画组件`ReactCSSTransitionGroup`
-```
+```javascript
 <ReactCSSTransitionGroup
   component="div" // 渲染组件类型
   transitionName="mc-dialog-child" // 动画效果class前缀,(动画效果类)
@@ -1459,7 +1459,7 @@ if (_state.show) {
 ```
 
 请注意定义了动画类(class前缀),需要在外部定义对应的css属性
-```
+```html
 <style>
   // index.html
 
@@ -1492,7 +1492,7 @@ if (_state.show) {
 ```
 
 为`Mask`组件同样装载动画,并定义动画类(class)
-```
+```javascript
 <ReactCSSTransitionGroup
   component="div"
   transitionName="mc-dialog-mask"
@@ -1503,7 +1503,7 @@ if (_state.show) {
 </ReactCSSTransitionGroup>
 ```
 
-```
+```html
 .mc-dialog-mask-enter {
   background-color: rgba(0, 0, 0, 0);
   transition: all .5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -1524,7 +1524,7 @@ if (_state.show) {
 ```
 
 ##### 导出组件
-```
+```javascript
 export default Dialog;
 ```
 
@@ -1590,7 +1590,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 >`const\let` 用法
 
 > 不同于`var`,`const/let`更加严格,具有块级作用域性质;可以避免`var`变量提升,局部变量不可控等一系列问题,例如
-  ```
+  ```javascript
   // ES6
   let sum=0;
   for(let i=0; i<5;i++){
@@ -1613,7 +1613,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   // Uncaught SyntaxError: Identifier 'sum' has already been declared
   ```
 > babel编译后  
-  ```
+  ```javascript
   // ES5
   var sum=0;
   for(var i=0; i<5;i++){
@@ -1627,12 +1627,12 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   ```
 
 > 箭头函数用法
-  ```
+  ```javascript
   // ES6
   let f = v => v;
   ```
 > babel编译后  
-  ```
+  ```javascript
   "use strict";
 
   var f = function f(v) {
@@ -1643,7 +1643,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 > class\extends\constructor\super用法
   
 > JavaScript语言的传统方法是通过构造函数,定义并生成新对象,例如
-  ```
+  ```javascript
   function test(value){
    this.value = value
   }
@@ -1653,7 +1653,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   var t = new test(1);
   ```
 > 使用class
-  ```
+  ```javascript
   class test{
    constructor(value){
      this.value = value
@@ -1664,7 +1664,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
   }
   ```  
 > `class`之间可以通过`extends`关键字实现继承,这比ES5的通过修改原型链实现继承,要清晰和方便很多,例如在本项目中继承react的Component类
-  ```
+  ```javascript
   class dialog extends React.Component {
   
   }
@@ -1676,7 +1676,7 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 > 模块功能主要由两个命令构成:export和import。export命令用于规定模块的对外接口,import命令用于输入他模块提供的功能
 
 > 一个模块就是一个独立的文件,该文件内部的所有变量,外部无法获取.如果希望外部能够读取模块内部的某个变量/方法/类等,就必须使用export关键字输出
-  ```
+  ```javascript
   var firstName = 'Michael';
   var lastName = 'Jackson';
   var year = 1958;
@@ -1686,25 +1686,25 @@ Babel是一个广泛使用的转码器,可以将ECMAScript 2015(ECMAScript 6)代
 > 指定模块输出`export default`  
 
 > 使用export命令定义了模块的对外接口以后,其他 JS 文件就可以通过import命令加载这个模块.
-  ```
+  ```javascript
   import { stat, exists, readFile } from 'fs'; // 引入node 内置fs模块
   ```
 
 > import命令接受一对大括号,里面指定要从其他模块导入的变量名.大括号里面的变量名,必须与被导入模块对外接口的名称相同
 
 > 如果想为输入的变量重新取一个名字,import命令要使用as关键字,将输入的变量重命名
-  ```
+  ```javascript
   import { rf as readFile } from 'fs';
   ```
 
 > 字符串模板
 使用 两个反引号\`包裹字符串
-```
+```javascript
 `Hello world`
 ```
 
 使用`${}`包裹需要嵌入字符串模板的变量
-```
+```javascript
 let number = 111
 let str = `the number is ${number}`
 console.log(str);
@@ -1722,7 +1722,7 @@ React提出了虚拟DOM的概念(virtual DOM)即React组件并不是真实的DOM
 ##### HTML模板
 
 使用React定义的JSX语法实现HTML模板,例如
-```
+```javascript
 class Test extends React.Component {
   render() {
     return (){
@@ -1737,7 +1737,7 @@ class Test extends React.Component {
 ##### PropTypes用法
 组件的属性可以接受任意值,字符串\对象\函数等等都可以.有时,我们需要一种机制,验证别人使用组件时,提供的参数是否符合要求.
 组件类的PropTypes属性,就是用来验证组件实例的属性是否符合要求
-```
+```javascript
 Test.propTypes = {
   testA: React.PropTypes.number,
   testB: React.PropTypes.string,
@@ -1751,7 +1751,7 @@ React组件基本属性可以获取html标签的所有属性,同时可以用于�
 
 ##### this.state状态用法
 组件免不了要与用户互动,React 的一大创新,就是将组件看成是一个状态机,一开始有一个初始状态,然后用户互动,导致状态变化
-```
+```javascript
 class Test extends React.Component {
   constructor(props) {
     super(props);
@@ -1784,7 +1784,7 @@ class Test extends React.Component {
 
 
 当组件状态发生改变时,接收到新的`props`属性,在`render`方法之前触发此函数,在此方法结束之后再触发`render`方法,使用此方法请注意组件状态的变化`this.state`
-```
+```javascript
 componentWillReceiveProps(nextProps) {
   console.log(nextProps);
 
@@ -1794,7 +1794,7 @@ componentWillReceiveProps(nextProps) {
 
 ### 开发工具及环境
 
-```
+```javascript
 IDE：Visual Studio Code
 plugin：ESLint/Webpack/Babel
 node.js：6.x +
