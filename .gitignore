@@ -42,3 +42,4 @@ npm-debug.log
 jsconfig.json
 debug.log
 ./debug.log
+package-lock.json*
